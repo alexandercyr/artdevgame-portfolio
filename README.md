@@ -7,6 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Observable HQ D3 playground
 
 [Mousover Scale Collision Detection](https://observablehq.com/@alexandercyr/mouseover-scale-collision-detection-svg)
+
 Playground to test out d3 implementation for portfolio.
 
 ## Development server
