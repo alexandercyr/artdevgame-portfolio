@@ -4,6 +4,11 @@ Interactive floating, filterable nodes including projects with wide range of ski
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
 
+## Observable HQ D3 playground
+
+[Mousover Scale Collision Detection](https://observablehq.com/@alexandercyr/mouseover-scale-collision-detection-svg)
+Playground to test out d3 implementation for portfolio.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
