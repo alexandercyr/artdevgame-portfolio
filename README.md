@@ -1,6 +1,14 @@
-# Portfolio2020
+# Angular D3 Portfolio
+
+Interactive floating, filterable nodes including projects with wide range of skills and mediums.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+
+## Observable HQ D3 playground
+
+[Mousover Scale Collision Detection](https://observablehq.com/@alexandercyr/mouseover-scale-collision-detection-svg)
+
+Playground to test out d3 implementation for portfolio.
 
 ## Development server
 
