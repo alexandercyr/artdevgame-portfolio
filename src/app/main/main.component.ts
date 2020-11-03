@@ -194,7 +194,9 @@ export class MainComponent implements AfterContentInit, OnInit {
                 .attr("x", function(d) { return -d.r;})
                 .attr("y", function(d) { return -d.r;})
                 .attr("height", d => 2 * d.r)
-                .attr("width", d => 2 * d.r))
+                .attr("width", d => 2 * d.r)
+                .attr("preserveAspectRatio", "xMidYMid slice"))
+
                 ;
           });
 
