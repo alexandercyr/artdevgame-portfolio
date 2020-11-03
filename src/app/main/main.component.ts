@@ -22,11 +22,13 @@ export class MainComponent implements AfterContentInit, OnInit {
   data() {
     const k = this.width / 200;
     const r = d3.randomUniform(k, k * 4);
+    var index = 0;
     return Array.from({length: 50}, (_, i) => {
+      index += 1;
       const radius = r();
       var img = new Image(100, 100);
-      img.src = 'https://cataas.com/cat';
-      return {r: radius, startingSize: radius, group: (i % (this.n + 1)), img: img}
+      img.src = '/assets/images/phone.jpg';
+      return {id: index, r: radius, startingSize: radius, group: (i % (this.n + 1)), img: '/assets/images/phone.jpg'}
     });
   }
 
@@ -41,11 +43,6 @@ export class MainComponent implements AfterContentInit, OnInit {
   }
 
   ngAfterContentInit() {
-    // console.log(this.chart);
-    // const rect = this.chart.nativeElement.getBoundingClientRect();
-    // console.log(rect.width, rect.height);
-
-    // this.width = rect.width;
 
     const objs: any[] = this.data();
 
@@ -77,33 +74,157 @@ export class MainComponent implements AfterContentInit, OnInit {
 
           this.svg.on("pointermove", event => pointed(event));
 
+          // const node = this.svg.append("g")
+          //     //.attr("stroke", "#fff")
+          //    // .attr("stroke-width", 1.5)
+
+          //   .selectAll("g.node")
+          //   .data(nodes, function(d) { return d.id; })
+          //   .join("g")
+          //     .attr("class", "node")
+          //     .call( g => g
+          //       .append("svg:circle")
+          //       .attr("r", d => d.r)
+          //       .attr("fill", d => self.colors(d.group))
+          //     )
+          //     .call( g => g
+          //       .append("svg:image")
+          //      .attr("xlink:href",  function(d) { return d.img;})
+          //      .attr("x", function(d) { return -25;})
+          //      .attr("y", function(d) { return -25;})
+          //      .attr("height", 50)
+          //      .attr("width", 50)
+
+          //     )
+          // const node = this.svg.append("g")
+          //     //.attr("stroke", "#fff")
+          //    // .attr("stroke-width", 1.5)
+
+          //   .selectAll("g.node")
+          //   .data(nodes, function(d) { return d.id; })
+          //   .join("g")
+          //     .attr("class", "node")
+          //     .call( g => g
+          //       .append("svg:circle")
+          //       .attr("r", d => d.r)
+          //       .attr("fill", d => self.colors(d.group))
+          //       .append("svg:image")
+          //        .attr("xlink:href",  function(d) { return d.img;})
+          //        .attr("x", function(d) { return -d.r;})
+          //        .attr("y", function(d) { return -d.r;})
+          //        .attr("height", d => d.r)
+          //        .attr("width", d =>  d.r)
+          //     )
+
+
           const node = this.svg.append("g")
               //.attr("stroke", "#fff")
              // .attr("stroke-width", 1.5)
-            .selectAll("circle")
-            .data(nodes)
-            .join("circle")
-              .attr("r", d => d.r)
-              .attr("fill", d => self.colors(d.group));
-             // .call(drag(simulation));
 
-          node.append("title")
-              .text(d => d.id);
+            .selectAll("g.node")
+            .data(nodes, function(d) { return d.id; })
+            .join("g")
+              .attr("class", "node")
+              .call( g => g
+                .append("svg:clipPath")
+               .attr("id",  function(d) { return d.id;})
+                .append("svg:circle")
+                .attr("r", d => d.r)
+                .attr("fill", d => self.colors(d.group))
+              )
+              .call( g => g
+
+
+               .append("svg:image")
+               .attr("clip-path", d => "url(#" + d.id + ")")
+                .attr("xlink:href",  function(d) { return d.img;})
+                .attr("x", function(d) { return -d.r;})
+                .attr("y", function(d) { return -d.r;})
+                .attr("height", d => 2 * d.r)
+                .attr("width", d => 2 * d.r)
+
+              )
+
+
+
+      //         var nod = this.svg.selectAll("circle")
+      // .data(nodes, function(d) { return d.id; });
+
+          // const node = this.svg.append("g")
+          //     //.attr("stroke", "#fff")
+          //    // .attr("stroke-width", 1.5)
+          //   .selectAll("circle")
+          //   .data(nodes, function(d) { return d.id; });
+          //    // .call(drag(simulation));
+
+
+          // var node = this.svg.selectAll("g.node")
+          // .data(nodes, function(d) { return d.id; });
+
+         // Enter any new nodes.
+        //  var nodeEnter = node.enter().append("svg:g")
+        //      .attr("class", "node")
+        //      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+            // .on("click", click)
+             //.call(force.drag);
+
+         // Append a circle
+        //  nodeEnter.append("svg:circle")
+        //      .attr("r", function(d) { return Math.sqrt(d.size) / 10 || 4.5; })
+        //      .style("fill", "#eee");
+
+
+         // Append images
+        //  var images = nodeEnter.append("svg:image")
+        //        .attr("xlink:href",  function(d) { return d.img;})
+        //        .attr("x", function(d) { return -25;})
+        //        .attr("y", function(d) { return -25;})
+        //        .attr("height", 50)
+        //        .attr("width", 50)
+        //        .attr("r", d => d.r);
+
+          // node.append("title")
+          //     .text(d => d.id);
 
           self.simulation.on("tick", () => {
             node
-                .attr("r", d => d.r)
-                .attr("cx", d => d.x)
-                .attr("cy", d => d.y);
+                .attr("transform", d => "translate(" + d.x + ", " + d.y + ")")
+                .call( g => g.selectAll('circle').attr('r', d => d.r))
+                .call( g => g.selectAll('image')
+                .attr("x", function(d) { return -d.r;})
+                .attr("y", function(d) { return -d.r;})
+                .attr("height", d => 2 * d.r)
+                .attr("width", d => 2 * d.r))
+                ;
           });
 
+          // var setEvents = images
+          // // Append hero text
+          // .on( 'click', function (d) {
+          //     d3.select("h1").html(d.hero);
+          //     d3.select("h2").html(d.name);
+          //     d3.select("h3").html ("Take me to " + "<a href='" + d.link + "' >"  + d.hero + " web page ⇢"+ "</a>" );
+          //  })
 
-      // d3.select(context.canvas)
-      //     .on("touchmove", event => event.preventDefault())
-      //     .on("pointermove", event => pointed(event));
+          // .on( 'mouseenter', function() {
+          //   // select element in current context
+          //   d3.select( this )
+          //     .transition()
+          //     .attr("x", function(d) { return -60;})
+          //     .attr("y", function(d) { return -60;})
+          //     .attr("height", 100)
+          //     .attr("width", 100);
+          // })
+          // // set back
+          // .on( 'mouseleave', function() {
+          //   d3.select( this )
+          //     .transition()
+          //     .attr("x", function(d) { return -25;})
+          //     .attr("y", function(d) { return -25;})
+          //     .attr("height", 50)
+          //     .attr("width", 50);
+          // });
 
-
-      // // invalidation.then(() => simulation.stop());
 
       function pointed(event) {
         const [x, y] = d3.pointer(event);
@@ -167,7 +288,7 @@ export class MainComponent implements AfterContentInit, OnInit {
     this.width = window.innerWidth;
     this.width = window.innerHeight;
     this.svg.width = this.width;
-    this.svg.height = this.height;
+    this.svg.style.height = this.height;
 
     this.simulation.restart();
   }
