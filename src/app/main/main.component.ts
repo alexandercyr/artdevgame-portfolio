@@ -20,10 +20,10 @@ export class MainComponent implements AfterContentInit, OnInit {
 
 
   data() {
-    const k = this.width / 200;
+    const k = this.width / 100;
     const r = d3.randomUniform(k, k * 4);
     var index = 0;
-    return Array.from({length: 50}, (_, i) => {
+    return Array.from({length: 20}, (_, i) => {
       index += 1;
       const radius = r();
       var img = new Image(100, 100);
@@ -228,6 +228,7 @@ export class MainComponent implements AfterContentInit, OnInit {
           // });
 
 
+
       function pointed(event) {
         const [x, y] = d3.pointer(event);
         const xPos = x;
@@ -238,13 +239,24 @@ export class MainComponent implements AfterContentInit, OnInit {
           // Distance from mouse position to node
           const magnitude = Math.sqrt(Math.pow((d.x - xPos), 2) + Math.pow((d.y - yPos), 2));
 
+         // console.log('magnitude: '  + magnitude);
+          const maxMagnitude = 250;
+
+          const normalized = magnitude > maxMagnitude ? 0 : 1 - (magnitude / maxMagnitude);
+
           const minSize = 5;
-          const r = d.startingSize + 1000 / magnitude;
+          const changeModifier = 100;
+         const r = d.startingSize + (changeModifier * easeInOutCubic(normalized));
           const maxSize = 50;
-          d.r = r > maxSize ? maxSize : r;
+          // d.r = r > maxSize ? maxSize : r;
+          d.r = Math.abs(r);
         }
         self.simulation.force("collide").initialize(nodes);
       }
+
+      function easeInOutCubic(x: number): number {
+        return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+        }
 
       // function ticked() {
       //   context.clearRect(0, 0, self.width, self.height);
@@ -294,6 +306,8 @@ export class MainComponent implements AfterContentInit, OnInit {
 
     this.simulation.restart();
   }
+
+
 
 
 
