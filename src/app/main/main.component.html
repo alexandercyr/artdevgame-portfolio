@@ -3,4 +3,51 @@
       id="chart"
      >
 </svg>
+<div class="bg"></div>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+  <filter id="blueFilter">
+    <feColorMatrix type="matrix" result="grayscale" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0" />
+    <feComponentTransfer color-interpolation-filters="sRGB" result="duotone_magenta_gold">
+      <feFuncR type="table" tableValues="0 1"></feFuncR>
+      <feFuncG type="table" tableValues="0 1"></feFuncG>
+      <feFuncB type="table" tableValues="1 1"></feFuncB>
+      <feFuncA type="table" tableValues="0 1"></feFuncA>
+    </feComponentTransfer>
+  </filter>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg">
+  <filter id="orangeFilter">
+    <feColorMatrix type="matrix" result="grayscale" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0" />
+    <feComponentTransfer color-interpolation-filters="sRGB" result="duotone_magenta_gold">
+      <feFuncR type="table" tableValues="0.969 1"></feFuncR>
+      <feFuncG type="table" tableValues="0.576 1"></feFuncG>
+      <feFuncB type="table" tableValues="0.118 1"></feFuncB>
+      <feFuncA type="table" tableValues="0 1"></feFuncA>
+    </feComponentTransfer>
+  </filter>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg">
+  <filter id="pinkFilter">
+    <feColorMatrix type="matrix" result="grayscale" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0" />
+    <feComponentTransfer color-interpolation-filters="sRGB" result="duotone_magenta_gold">
+      <feFuncR type="table" tableValues="0.929 1"></feFuncR>
+      <feFuncG type="table" tableValues="0.118 1"></feFuncG>
+      <feFuncB type="table" tableValues="0.475 1"></feFuncB>
+      <feFuncA type="table" tableValues="0 1"></feFuncA>
+    </feComponentTransfer>
+  </filter>
+</svg>
+<!-- <svg xmlns="http://www.w3.org/2000/svg">
+  <filter id="blueFilter">
+    <feColorMatrix type="matrix" result="grayscale" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0" />
+    <feComponentTransfer color-interpolation-filters="sRGB" result="duotone_magenta_gold">
+      <feFuncR type="table" tableValues={${red/255} ${red/255 + 0.3}}></feFuncR>
+      <feFuncG type="table" tableValues={${green/255} ${green/255 + 0.3}}></feFuncG>
+      <feFuncB type="table" tableValues={${blue/255} ${blue/255 + 0.3}}></feFuncB>
+      <feFuncA type="table" tableValues="0 1"></feFuncA>
+    </feComponentTransfer>
+  </filter>
+</svg> -->
+
 </div>

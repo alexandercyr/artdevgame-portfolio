@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef, AfterContentInit, OnInit } from '@angular/core';
 import * as d3 from 'd3';
+import * as data from '../../assets/data/data.json';
 
 
 @Component({
@@ -18,17 +19,21 @@ export class MainComponent implements AfterContentInit, OnInit {
   svg;
   simulation;
 
+  filters = ['blueFilter', 'orangeFilter', 'pinkFilter'];
+
 
   data() {
     const k = this.width / 100;
     const r = d3.randomUniform(k, k * 4);
     var index = 0;
-    return Array.from({length: 20}, (_, i) => {
+
+    return Array.from({length: data.projects.length}, (_, i) => {
+
       index += 1;
       const radius = r();
       var img = new Image(100, 100);
       img.src = '/assets/images/phone.jpg';
-      return {id: index, r: radius, startingSize: radius, group: (i % (this.n + 1)), img: '/assets/images/phone.jpg'}
+      return {id: index, r: radius, startingSize: radius, group: (i % (this.n)), img: data.projects[i].imgUrl}
     });
   }
 
@@ -142,6 +147,7 @@ export class MainComponent implements AfterContentInit, OnInit {
                 .attr("y", function(d) { return -d.r;})
                 .attr("height", d => 2 * d.r)
                 .attr("width", d => 2 * d.r)
+                .attr("filter", d => "url(#" + this.filters[d.group] + ")")
 
               )
 
@@ -306,7 +312,6 @@ export class MainComponent implements AfterContentInit, OnInit {
 
     this.simulation.restart();
   }
-
 
 
 
