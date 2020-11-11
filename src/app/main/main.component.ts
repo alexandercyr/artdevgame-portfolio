@@ -68,7 +68,7 @@ export class MainComponent implements AfterContentInit, OnInit {
           .velocityDecay(0.1) // low friction
           .force("x", d3.forceX().strength(0.01))
           .force("y", d3.forceY().strength(0.01))
-          .force("collide", d3.forceCollide().radius(d => d.r + 1).iterations(3))
+          .force("collide", d3.forceCollide().radius(d => d.r + 5).iterations(3))
           .force("center", d3.forceCenter(this.width / 2, this.height / 2));
 
           //.force("charge", d3.forceManyBody().strength((d, i) => i ? 0 : -width * 2 / 3))
@@ -130,12 +130,19 @@ export class MainComponent implements AfterContentInit, OnInit {
             .data(nodes, function(d) { return d.id; })
             .join("g")
               .attr("class", "node")
+              .attr("filter", "drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5))")
               .call( g => g
                 .append("svg:clipPath")
                .attr("id",  function(d) { return d.id;})
                 .append("svg:circle")
                 .attr("r", d => d.r)
                 .attr("fill", d => self.colors(d.group))
+              )
+              .call( g => g
+                .append("svg:circle")
+                .attr("r", d => d.r)
+                .attr("fill", d => self.colors(d.group))
+                .attr("filter", "url(#shadow)")
               )
               .call( g => g
 
@@ -148,6 +155,7 @@ export class MainComponent implements AfterContentInit, OnInit {
                 .attr("height", d => 2 * d.r)
                 .attr("width", d => 2 * d.r)
                 .attr("filter", d => "url(#" + this.filters[d.group] + ")")
+
 
               )
 
@@ -313,7 +321,9 @@ export class MainComponent implements AfterContentInit, OnInit {
     this.simulation.restart();
   }
 
-
+  colorFilter = (red, blue, green, id) => {
+    return `<svg xmlns="http://www.w3.org/2000/svg" ><filter id="${id}"><feColorMatrix type="matrix" result="grayscale" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0" /> <feComponentTransfer color-interpolation-filters="sRGB" result="duotone_magenta_gold"><feFuncR type="table" tableValues="${red} 1"></feFuncR><feFuncG type="table" tableValues="${green} 1"></feFuncG><feFuncB type="table" tableValues="${blue} 1"></feFuncB><feFuncA type="table" tableValues="0 1"></feFuncA></feComponentTransfer></filter></svg>`;
+  }
 
 
 }

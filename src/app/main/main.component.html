@@ -4,7 +4,16 @@
      >
 </svg>
 <div class="bg"></div>
+<!-- {{colorFilter(0, 0, 0, "#blueFilter")}} -->
 
+<svg xmlns="http://www.w3.org/2000/svg">
+  <filter id="shadow">
+    <feDropShadow dx="0.2" dy="3" stdDeviation="1" flood-color="rgba(0,0,0,0.2)"/>
+  </filter>
+  <!-- <filter id="shadow" x="0" y="0" width="200%" height="200%">
+    <feDropShadow dx="40" dy="40" stdDeviation="35" flood-color="#000000" flood-opacity="1" />
+  </filter> -->
+</svg>
 <svg xmlns="http://www.w3.org/2000/svg">
   <filter id="blueFilter">
     <feColorMatrix type="matrix" result="grayscale" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0" />
