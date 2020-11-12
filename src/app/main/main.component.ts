@@ -19,7 +19,23 @@ export class MainComponent implements AfterContentInit, OnInit {
   svg;
   simulation;
 
-  filters = ['blueFilter', 'orangeFilter', 'pinkFilter'];
+  filters = [
+    {
+      r: 0,
+      g: 0,
+      b: 1
+    },
+    {
+      r: 0.969,
+      g: 0.576,
+      b: 0.118
+    },
+    {
+      r: 0.929,
+      g: 0.118,
+      b: 0.475
+    }];
+
 
 
   data() {
@@ -154,7 +170,7 @@ export class MainComponent implements AfterContentInit, OnInit {
                 .attr("y", function(d) { return -d.r;})
                 .attr("height", d => 2 * d.r)
                 .attr("width", d => 2 * d.r)
-                .attr("filter", d => "url(#" + this.filters[d.group] + ")")
+                .attr("filter", d => `url(#${this.filters[d.group].r}${this.filters[d.group].g}${this.filters[d.group].b})`)
 
 
               )
