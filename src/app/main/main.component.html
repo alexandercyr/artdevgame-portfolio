@@ -1,4 +1,7 @@
 <div>
+  <div #popup id="popup" class="popup">
+    <p class="title" (click)="showMore(activeItemIndex)">{{projects[activeItemIndex].title}}</p>
+  </div>
   <svg #chart
       id="chart"
      >

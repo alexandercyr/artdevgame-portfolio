@@ -9,6 +9,7 @@ import * as data from '../../assets/data/data.json';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements AfterContentInit, OnInit {
+  @ViewChild('popup', {static: true}) popup: ElementRef;
 
   width = 960;
   height = 960;
@@ -18,6 +19,8 @@ export class MainComponent implements AfterContentInit, OnInit {
 
   svg;
   simulation;
+  activeItemIndex = 0;
+  projects = [];
 
   filters = [
     {
@@ -41,15 +44,14 @@ export class MainComponent implements AfterContentInit, OnInit {
   data() {
     const k = this.width / 100;
     const r = d3.randomUniform(k, k * 4);
-    var index = 0;
+
 
     return Array.from({length: data.projects.length}, (_, i) => {
 
-      index += 1;
       const radius = r();
       var img = new Image(100, 100);
       img.src = '/assets/images/phone.jpg';
-      return {id: index, r: radius, startingSize: radius, group: (i % (this.n)), img: data.projects[i].imgUrl}
+      return {id: i, r: radius, startingSize: radius, group: (i % (this.n)), img: data.projects[i].imgUrl}
     });
   }
 
@@ -58,7 +60,8 @@ export class MainComponent implements AfterContentInit, OnInit {
   ngOnInit() {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
-
+    this.projects = data.projects;
+    console.log(this.popup);
 
     window.addEventListener('resize', () => this.resize());
   }
@@ -145,11 +148,12 @@ export class MainComponent implements AfterContentInit, OnInit {
             .selectAll("g.node")
             .data(nodes, function(d) { return d.id; })
             .join("g")
+              .attr("id", d => d.id)
               .attr("class", "node")
               .attr("filter", "drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5))")
               .call( g => g
                 .append("svg:clipPath")
-               .attr("id",  function(d) { return d.id;})
+               .attr("id",  function(d) { return "circle" + d.id;})
                 .append("svg:circle")
                 .attr("r", d => d.r)
                 .attr("fill", d => self.colors(d.group))
@@ -159,15 +163,17 @@ export class MainComponent implements AfterContentInit, OnInit {
                 .attr("r", d => d.r)
                 .attr("fill", d => self.colors(d.group))
                 .attr("filter", "url(#shadow)")
-              )
+              );
+
+          const images = this.svg.selectAll("g.node")
               .call( g => g
-
-
                .append("svg:image")
-               .attr("clip-path", d => "url(#" + d.id + ")")
+               .attr("clip-path", d => "url(#circle" + d.id + ")")
                 .attr("xlink:href",  function(d) { return d.img;})
                 .attr("x", function(d) { return -d.r;})
                 .attr("y", function(d) { return -d.r;})
+                .attr("id", d => "image-" + d.id)
+                .attr("cursor", "pointer")
                 .attr("height", d => 2 * d.r)
                 .attr("width", d => 2 * d.r)
                 .attr("filter", d => `url(#${this.filters[d.group].r}${this.filters[d.group].g}${this.filters[d.group].b})`)
@@ -230,32 +236,33 @@ export class MainComponent implements AfterContentInit, OnInit {
                 ;
           });
 
-          // var setEvents = images
+          var setEvents = images
           // // Append hero text
-          // .on( 'click', function (d) {
-          //     d3.select("h1").html(d.hero);
-          //     d3.select("h2").html(d.name);
-          //     d3.select("h3").html ("Take me to " + "<a href='" + d.link + "' >"  + d.hero + " web page ⇢"+ "</a>" );
-          //  })
+          .on( 'click', function (d) {
+            console.log(d);
+              // d3.select("h1").html(d.hero);
+              // d3.select("h2").html(d.name);
+              // d3.select("h3").html ("Take me to " + "<a href='" + d.link + "' >"  + d.hero + " web page ⇢"+ "</a>" );
+           })
 
-          // .on( 'mouseenter', function() {
-          //   // select element in current context
-          //   d3.select( this )
-          //     .transition()
-          //     .attr("x", function(d) { return -60;})
-          //     .attr("y", function(d) { return -60;})
-          //     .attr("height", 100)
-          //     .attr("width", 100);
-          // })
+          .on( 'mouseenter', function(e) {
+            // select element in current context
+
+            self.activeItemIndex = e.target.id;
+            self.popup.nativeElement.classList.toggle("show");
+
+            // d3.select( this )
+            //   .transition()
+            //   .attr("x", function(d) { return -60;})
+            //   .attr("y", function(d) { return -60;})
+            //   .attr("height", 100)
+            //   .attr("width", 100);
+          })
           // // set back
-          // .on( 'mouseleave', function() {
-          //   d3.select( this )
-          //     .transition()
-          //     .attr("x", function(d) { return -25;})
-          //     .attr("y", function(d) { return -25;})
-          //     .attr("height", 50)
-          //     .attr("width", 50);
-          // });
+          .on( 'mouseleave', function() {
+            self.popup.nativeElement.classList.toggle("show");
+
+          });
 
 
 
@@ -263,6 +270,9 @@ export class MainComponent implements AfterContentInit, OnInit {
         const [x, y] = d3.pointer(event);
         const xPos = x;
         const yPos = y;
+
+        self.popup.nativeElement.style.left = event.clientX / window.innerWidth * 100.0 + '%';
+        self.popup.nativeElement.style.top = event.clientY / window.innerHeight * 100.0  + '%';
 
         for (const d of nodes) {
 
@@ -341,5 +351,8 @@ export class MainComponent implements AfterContentInit, OnInit {
     return `<svg xmlns="http://www.w3.org/2000/svg" ><filter id="${id}"><feColorMatrix type="matrix" result="grayscale" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0" /> <feComponentTransfer color-interpolation-filters="sRGB" result="duotone_magenta_gold"><feFuncR type="table" tableValues="${red} 1"></feFuncR><feFuncG type="table" tableValues="${green} 1"></feFuncG><feFuncB type="table" tableValues="${blue} 1"></feFuncB><feFuncA type="table" tableValues="0 1"></feFuncA></feComponentTransfer></filter></svg>`;
   }
 
+  showMore() {
+
+  }
 
 }
