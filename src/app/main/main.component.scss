@@ -31,11 +31,11 @@
   height: 30px;
   text-align: left;
   margin-top: 0;
-  position: absolute;
+  position: fixed;
   z-index: 5000001;
   display: flex;
   flex-direction: column;
-  transition: all 0.5s ease-in-out;
+  transition: transform 0.3s ease-in-out;// left 0.5s ease-in-out, top 0.5s ease-in-out;
   cursor: pointer;
   overflow: hidden;
   background-color: #000;

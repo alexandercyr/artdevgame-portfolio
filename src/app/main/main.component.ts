@@ -64,6 +64,7 @@ export class MainComponent implements AfterContentInit, OnInit {
     console.log(this.popup);
 
     window.addEventListener('resize', () => this.resize());
+
   }
 
   ngAfterContentInit() {
@@ -97,6 +98,8 @@ export class MainComponent implements AfterContentInit, OnInit {
           this.svg.on("touchmove", event => event.preventDefault())
 
           this.svg.on("pointermove", event => pointed(event));
+
+
 
           // const node = this.svg.append("g")
           //     //.attr("stroke", "#fff")
@@ -245,34 +248,39 @@ export class MainComponent implements AfterContentInit, OnInit {
               // d3.select("h3").html ("Take me to " + "<a href='" + d.link + "' >"  + d.hero + " web page ⇢"+ "</a>" );
            })
 
-          .on( 'mouseenter', function(e) {
-            // select element in current context
+          // .on( 'pointerenter', function(e) {
+          //   // select element in current context
 
-            self.activeItemIndex = e.target.id;
-            self.popup.nativeElement.classList.toggle("show");
+          //   console.log('enter');
+          //   self.activeItemIndex = e.target.id;
 
-            // d3.select( this )
-            //   .transition()
-            //   .attr("x", function(d) { return -60;})
-            //   .attr("y", function(d) { return -60;})
-            //   .attr("height", 100)
-            //   .attr("width", 100);
-          })
-          // // set back
-          .on( 'mouseleave', function() {
-            self.popup.nativeElement.classList.toggle("show");
+          //   self.popup.nativeElement.classList.toggle("show");
 
-          });
+          //   // d3.select( this )
+          //   //   .transition()
+          //   //   .attr("x", function(d) { return -60;})
+          //   //   .attr("y", function(d) { return -60;})
+          //   //   .attr("height", 100)
+          //   //   .attr("width", 100);
+          // })
+          // // // set back
+          // .on( 'pointerout', function(event) {
+          //   console.log('out');
+
+          //   self.popup.nativeElement.classList.toggle("show");
+
+          // });
 
 
 
       function pointed(event) {
+        self.checkIfHovered(document.elementFromPoint(event.clientX, event.clientY));
         const [x, y] = d3.pointer(event);
         const xPos = x;
         const yPos = y;
 
-        self.popup.nativeElement.style.left = event.clientX / window.innerWidth * 100.0 + '%';
-        self.popup.nativeElement.style.top = event.clientY / window.innerHeight * 100.0  + '%';
+        self.popup.nativeElement.style.left = event.clientX + 20 + 'px';
+        self.popup.nativeElement.style.top = event.clientY + 'px';
 
         for (const d of nodes) {
 
@@ -355,4 +363,12 @@ export class MainComponent implements AfterContentInit, OnInit {
 
   }
 
+  checkIfHovered(el: Element) {
+    if (el.id !== null && el.id.indexOf('image') > -1) {
+      this.activeItemIndex = parseInt(el.id.slice(6), 10);
+      this.popup.nativeElement.classList.add("show");
+    } else {
+      this.popup.nativeElement.classList.remove("show");
+    }
+  }
 }
