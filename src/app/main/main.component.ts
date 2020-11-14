@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterContentInit, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterContentInit, OnInit, NgZone } from '@angular/core';
 import * as d3 from 'd3';
 import * as data from '../../assets/data/data.json';
 
@@ -55,7 +55,7 @@ export class MainComponent implements AfterContentInit, OnInit {
     });
   }
 
-  constructor() { }
+  constructor(private ngZone: NgZone) { }
 
   ngOnInit() {
     this.width = window.innerWidth;
@@ -97,7 +97,10 @@ export class MainComponent implements AfterContentInit, OnInit {
 
           this.svg.on("touchmove", event => event.preventDefault())
 
-          this.svg.on("pointermove", event => pointed(event));
+          this.ngZone.runOutsideAngular(() => {
+            self.svg.on("pointermove", event => pointed(event));
+          });
+
 
 
 
