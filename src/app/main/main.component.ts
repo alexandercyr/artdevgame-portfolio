@@ -39,6 +39,8 @@ export class MainComponent implements AfterContentInit, OnInit {
       b: 0.475
     }];
 
+    mouseEvent;
+    lastMouseEvent;
 
 
   data() {
@@ -98,10 +100,20 @@ export class MainComponent implements AfterContentInit, OnInit {
           this.svg.on("touchmove", event => event.preventDefault())
 
           this.ngZone.runOutsideAngular(() => {
-            self.svg.on("pointermove", event => pointed(event));
+            self.svg.on("pointermove", event => movePointer(event));
+            setInterval(() => checkIfMouseMoving(), 10);
+
           });
 
 
+
+          function checkIfMouseMoving() {
+            if (self.mouseEvent === self.lastMouseEvent) {
+              pointed(self.mouseEvent);
+            } else {
+              self.lastMouseEvent = self.mouseEvent;
+            }
+          }
 
 
           // const node = this.svg.append("g")
@@ -275,6 +287,10 @@ export class MainComponent implements AfterContentInit, OnInit {
           // });
 
 
+      function movePointer(e) {
+        self.mouseEvent = e;
+        pointed(self.mouseEvent);
+      }
 
       function pointed(event) {
         self.checkIfHovered(document.elementFromPoint(event.clientX, event.clientY));
