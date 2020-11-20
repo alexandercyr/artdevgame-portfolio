@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -23,6 +23,7 @@
     "@angular/router": "~10.1.6",
     "d3": "^6.2.0",
     "d3-force": "^2.1.1",
+    "express": "^4.17.1",
     "heroku": "^7.47.2",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",

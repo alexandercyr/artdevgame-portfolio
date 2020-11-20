@@ -183,7 +183,7 @@ export class MainComponent implements AfterContentInit, OnInit {
             console.log(d);
             const i = parseInt(d.target.id.slice(6), 10);
             focus(i);
-            self.focused = true;
+            self.focused = !self.focused;
             self.selectedIndex = i;
 
               // d3.select("h1").html(d.hero);
@@ -253,6 +253,10 @@ export class MainComponent implements AfterContentInit, OnInit {
       }
 
       function focus(selected) {
+
+        self.svg
+    .attr("height", 2 * window.innerHeight )
+
         console.log(node);
         node.transition()
         .attr("transform", d => {
@@ -270,6 +274,8 @@ export class MainComponent implements AfterContentInit, OnInit {
 
         .attr("width", window.innerWidth)
         .attr("height", window.innerWidth);
+
+
           node.selectAll("circle").transition()
 
           .attr("r", d => {
