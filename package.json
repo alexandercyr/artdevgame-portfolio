@@ -7,12 +7,13 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "preinstall": "npm install @angular/cli@~10.1.7"
+    "e2e": "ng e2e"
 
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/build-angular": "~0.1001.7",
+    "@angular/cli": "~10.1.7",
     "@angular/animations": "~10.1.6",
     "@angular/common": "~10.1.6",
     "@angular/compiler": "~10.1.6",
