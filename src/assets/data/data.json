@@ -7,7 +7,19 @@
       "title": "The 30 Clean",
       "short": "30 Clean connects clean eating challengers, giving them all the support they need in one place. Users can post photos, share stories, find tips and recipes, and be inspired by the successes of all the other challengers.",
       "imgUrl": "/assets/images/mocks/web-mock1.jpg",
-      "priority": 1
+      "priority": 1,
+      "pageContent": [
+        {
+          "type": "block",
+          "header": "Identity",
+          "copy": "",
+          "images": [
+            {
+
+            }
+          ]
+        }
+      ]
     },
     {
       "type": ["design"],

@@ -19,20 +19,25 @@ export class MainComponent implements AfterContentInit, OnInit {
 
   svg;
   simulation;
+  selectedIndex = 0;
   activeItemIndex = 0;
   projects = [];
+  focused = false;
 
   filters = [
+    //blue
     {
       r: 0,
       g: 0,
       b: 1
     },
+    //orange
     {
       r: 0.969,
       g: 0.576,
       b: 0.118
     },
+    //pink
     {
       r: 0.929,
       g: 0.118,
@@ -116,50 +121,7 @@ export class MainComponent implements AfterContentInit, OnInit {
           }
 
 
-          // const node = this.svg.append("g")
-          //     //.attr("stroke", "#fff")
-          //    // .attr("stroke-width", 1.5)
-
-          //   .selectAll("g.node")
-          //   .data(nodes, function(d) { return d.id; })
-          //   .join("g")
-          //     .attr("class", "node")
-          //     .call( g => g
-          //       .append("svg:circle")
-          //       .attr("r", d => d.r)
-          //       .attr("fill", d => self.colors(d.group))
-          //     )
-          //     .call( g => g
-          //       .append("svg:image")
-          //      .attr("xlink:href",  function(d) { return d.img;})
-          //      .attr("x", function(d) { return -25;})
-          //      .attr("y", function(d) { return -25;})
-          //      .attr("height", 50)
-          //      .attr("width", 50)
-
-          //     )
-          // const node = this.svg.append("g")
-          //     //.attr("stroke", "#fff")
-          //    // .attr("stroke-width", 1.5)
-
-          //   .selectAll("g.node")
-          //   .data(nodes, function(d) { return d.id; })
-          //   .join("g")
-          //     .attr("class", "node")
-          //     .call( g => g
-          //       .append("svg:circle")
-          //       .attr("r", d => d.r)
-          //       .attr("fill", d => self.colors(d.group))
-          //       .append("svg:image")
-          //        .attr("xlink:href",  function(d) { return d.img;})
-          //        .attr("x", function(d) { return -d.r;})
-          //        .attr("y", function(d) { return -d.r;})
-          //        .attr("height", d => d.r)
-          //        .attr("width", d =>  d.r)
-          //     )
-
-
-          const node = this.svg.append("g")
+          const node = this.svg
               //.attr("stroke", "#fff")
              // .attr("stroke-width", 1.5)
 
@@ -195,69 +157,35 @@ export class MainComponent implements AfterContentInit, OnInit {
                 .attr("height", d => 2 * d.r)
                 .attr("width", d => 2 * d.r)
                 .attr("filter", d => `url(#${this.filters[d.group].r}${this.filters[d.group].g}${this.filters[d.group].b})`)
-
-
               )
 
 
-
-      //         var nod = this.svg.selectAll("circle")
-      // .data(nodes, function(d) { return d.id; });
-
-          // const node = this.svg.append("g")
-          //     //.attr("stroke", "#fff")
-          //    // .attr("stroke-width", 1.5)
-          //   .selectAll("circle")
-          //   .data(nodes, function(d) { return d.id; });
-          //    // .call(drag(simulation));
-
-
-          // var node = this.svg.selectAll("g.node")
-          // .data(nodes, function(d) { return d.id; });
-
-         // Enter any new nodes.
-        //  var nodeEnter = node.enter().append("svg:g")
-        //      .attr("class", "node")
-        //      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-            // .on("click", click)
-             //.call(force.drag);
-
-         // Append a circle
-        //  nodeEnter.append("svg:circle")
-        //      .attr("r", function(d) { return Math.sqrt(d.size) / 10 || 4.5; })
-        //      .style("fill", "#eee");
-
-
-         // Append images
-        //  var images = nodeEnter.append("svg:image")
-        //        .attr("xlink:href",  function(d) { return d.img;})
-        //        .attr("x", function(d) { return -25;})
-        //        .attr("y", function(d) { return -25;})
-        //        .attr("height", 50)
-        //        .attr("width", 50)
-        //        .attr("r", d => d.r);
-
-          // node.append("title")
-          //     .text(d => d.id);
-
           self.simulation.on("tick", () => {
-            node
-                .attr("transform", d => "translate(" + d.x + ", " + d.y + ")")
-                .call( g => g.selectAll('circle').attr('r', d => d.r))
-                .call( g => g.selectAll('image')
-                .attr("x", function(d) { return -d.r;})
-                .attr("y", function(d) { return -d.r;})
-                .attr("height", d => 2 * d.r)
-                .attr("width", d => 2 * d.r)
-                .attr("preserveAspectRatio", "xMidYMid slice"))
+            if (!self.focused) {
+              node
+              .attr("transform", d => "translate(" + d.x + ", " + d.y + ")")
+              .call( g => g.selectAll('circle').attr('r', d => d.r))
+              .call( g => g.selectAll('image')
+              .attr("x", function(d) { return -d.r;})
+              .attr("y", function(d) { return -d.r;})
+              .attr("height", d => 2 * d.r)
+              .attr("width", d => 2 * d.r)
+              .attr("preserveAspectRatio", "xMidYMid slice"))
 
-                ;
+              ;
+            }
+
           });
 
           var setEvents = images
           // // Append hero text
           .on( 'click', function (d) {
             console.log(d);
+            const i = parseInt(d.target.id.slice(6), 10);
+            focus(i);
+            self.focused = true;
+            self.selectedIndex = i;
+
               // d3.select("h1").html(d.hero);
               // d3.select("h2").html(d.name);
               // d3.select("h3").html ("Take me to " + "<a href='" + d.link + "' >"  + d.hero + " web page ⇢"+ "</a>" );
@@ -293,75 +221,72 @@ export class MainComponent implements AfterContentInit, OnInit {
       }
 
       function pointed(event) {
-        self.checkIfHovered(document.elementFromPoint(event.clientX, event.clientY));
-        const [x, y] = d3.pointer(event);
-        const xPos = x;
-        const yPos = y;
+        if (!self.focused) {
+          self.checkIfHovered(document.elementFromPoint(event.clientX, event.clientY));
+          const [x, y] = d3.pointer(event);
+          const xPos = x;
+          const yPos = y;
 
-        self.popup.nativeElement.style.left = event.clientX + 20 + 'px';
-        self.popup.nativeElement.style.top = event.clientY + 'px';
+          self.popup.nativeElement.style.left = event.clientX + 20 + 'px';
+          self.popup.nativeElement.style.top = event.clientY + 'px';
 
-        for (const d of nodes) {
+          for (const d of nodes) {
 
-          // Distance from mouse position to node
-          const magnitude = Math.sqrt(Math.pow((d.x - xPos), 2) + Math.pow((d.y - yPos), 2));
+            // Distance from mouse position to node
+            const magnitude = Math.sqrt(Math.pow((d.x - xPos), 2) + Math.pow((d.y - yPos), 2));
 
-         // console.log('magnitude: '  + magnitude);
-          const maxMagnitude = 250;
+           // console.log('magnitude: '  + magnitude);
+            const maxMagnitude = 250;
 
-          const normalized = magnitude > maxMagnitude ? 0 : 1 - (magnitude / maxMagnitude);
+            const normalized = magnitude > maxMagnitude ? 0 : 1 - (magnitude / maxMagnitude);
 
-          const minSize = 5;
-          const changeModifier = 100;
-         const r = d.startingSize + (changeModifier * easeInOutCubic(normalized));
-          const maxSize = 50;
-          // d.r = r > maxSize ? maxSize : r;
-          d.r = Math.abs(r);
+            const minSize = 5;
+            const changeModifier = 100;
+            const r = d.startingSize + (changeModifier * easeInOutCubic(normalized));
+            const maxSize = 50;
+            // d.r = r > maxSize ? maxSize : r;
+            d.r = Math.abs(r);
+          }
+          self.simulation.force("collide").initialize(nodes);
         }
+
+      }
+
+      function focus(selected) {
+        console.log(node);
+        node.transition()
+        .attr("transform", d => {
+          if (d.index === selected) {
+            console.log("translate(" + window.innerWidth * 2 / 3 + ", " + window.innerHeight * 2 / 3 + ")");
+            return "translate(" + window.innerWidth * 2 / 3 + ", " + window.innerHeight * 2 / 3 + ")" ;
+          }
+
+          return "translate(" + d.x + ", " + d.y + ")";
+        })
+        ;
+        node.select(`#image-${selected}`).transition()
+        .attr("x", -window.innerWidth / 2)
+        .attr("y", -window.innerWidth / 2)
+
+        .attr("width", window.innerWidth)
+        .attr("height", window.innerWidth);
+          node.selectAll("circle").transition()
+
+          .attr("r", d => {
+            if (d.index === selected) {
+              return window.innerWidth / 2;
+            }
+            return 0;
+          }).duration('1000');
+        // for (const d of nodes) {
+        //   d.r = 0;
+        // }
         self.simulation.force("collide").initialize(nodes);
       }
 
       function easeInOutCubic(x: number): number {
         return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
         }
-
-      // function ticked() {
-      //   context.clearRect(0, 0, self.width, self.height);
-      //   context.save();
-
-      //   context.translate(self.width / 2, self.height / 2);
-      //   context.beginPath();
-
-      //   for (const d of nodes) {
-
-
-      //     context.moveTo(d.x + d.r, d.y);
-      //     context.arc(d.x, d.y, d.r, 0, 2 * Math.PI, false);
-      //     context.fillStyle = self.colors(d.group);
-      //     context.fill();
-
-      //     // const pattern = context.createPattern(d.img, "repeat");
-      //     // context.strokeStyle = pattern;
-      //     // context.stroke();
-
-      //   }
-
-      //   context.clip();
-      //   for (const d of nodes) {
-
-
-      //     context.drawImage(d.img, d.x - d.r, d.y - d.r, d.r * 2, d.r * 2)
-
-      //     // const pattern = context.createPattern(d.img, "repeat");
-      //     // context.strokeStyle = pattern;
-      //     // context.stroke();
-
-      //   }
-
-
-      //   context.restore();
-      // }
-
 
   }
 
