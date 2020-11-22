@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "artgamedev-portfolio"
+  },
+  "targets": {
+    "artgamedev-portfolio": {
+      "hosting": {
+        "portfolio2020": [
+          "artgamedev-portfolio"
+        ]
+      }
+    }
+  }
+}

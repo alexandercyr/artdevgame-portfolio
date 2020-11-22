@@ -23,6 +23,7 @@ export class MainComponent implements AfterContentInit, OnInit {
   activeItemIndex = 0;
   projects = [];
   focused = false;
+  transitionDuration = 1000;
 
   filters = [
     //blue
@@ -113,7 +114,7 @@ export class MainComponent implements AfterContentInit, OnInit {
 
 
           function checkIfMouseMoving() {
-            if (self.mouseEvent === self.lastMouseEvent) {
+            if (self.mouseEvent === self.lastMouseEvent && !self.focused) {
               pointed(self.mouseEvent);
             } else {
               self.lastMouseEvent = self.mouseEvent;
@@ -138,12 +139,15 @@ export class MainComponent implements AfterContentInit, OnInit {
                 .attr("r", d => d.r)
                 .attr("fill", d => self.colors(d.group))
               )
-              .call( g => g
-                .append("svg:circle")
-                .attr("r", d => d.r)
-                .attr("fill", d => self.colors(d.group))
-                .attr("filter", "url(#shadow)")
-              );
+
+              // Drop shadow hurting performace
+              //
+              // .call( g => g
+              //   .append("svg:circle")
+              //   .attr("r", d => d.r)
+              //   .attr("fill", d => self.colors(d.group))
+              //   .attr("filter", "url(#shadow)")
+              // );
 
           const images = this.svg.selectAll("g.node")
               .call( g => g
@@ -182,8 +186,17 @@ export class MainComponent implements AfterContentInit, OnInit {
           .on( 'click', function (d) {
             console.log(d);
             const i = parseInt(d.target.id.slice(6), 10);
-            focus(i);
-            self.focused = !self.focused;
+            openProject(i);
+            if (!self.focused) {
+              openProject(i);
+              self.focused = !self.focused;
+
+            } else {
+              closeProject(i);
+              setTimeout(() => {
+                self.focused = !self.focused;
+              }, self.transitionDuration);
+            }
             self.selectedIndex = i;
 
               // d3.select("h1").html(d.hero);
@@ -217,42 +230,27 @@ export class MainComponent implements AfterContentInit, OnInit {
 
       function movePointer(e) {
         self.mouseEvent = e;
-        pointed(self.mouseEvent);
+        if (!self.focused) {
+          pointed(self.mouseEvent);
+        }
       }
 
       function pointed(event) {
-        if (!self.focused) {
-          self.checkIfHovered(document.elementFromPoint(event.clientX, event.clientY));
-          const [x, y] = d3.pointer(event);
-          const xPos = x;
-          const yPos = y;
+        self.checkIfHovered(document.elementFromPoint(event.clientX, event.clientY));
+        const [x, y] = d3.pointer(event);
+        const xPos = x;
+        const yPos = y;
 
-          self.popup.nativeElement.style.left = event.clientX + 20 + 'px';
-          self.popup.nativeElement.style.top = event.clientY + 'px';
+        self.popup.nativeElement.style.left = event.clientX + 20 + 'px';
+        self.popup.nativeElement.style.top = event.clientY + 'px';
 
-          for (const d of nodes) {
-
-            // Distance from mouse position to node
-            const magnitude = Math.sqrt(Math.pow((d.x - xPos), 2) + Math.pow((d.y - yPos), 2));
-
-           // console.log('magnitude: '  + magnitude);
-            const maxMagnitude = 250;
-
-            const normalized = magnitude > maxMagnitude ? 0 : 1 - (magnitude / maxMagnitude);
-
-            const minSize = 5;
-            const changeModifier = 100;
-            const r = d.startingSize + (changeModifier * easeInOutCubic(normalized));
-            const maxSize = 50;
-            // d.r = r > maxSize ? maxSize : r;
-            d.r = Math.abs(r);
-          }
-          self.simulation.force("collide").initialize(nodes);
+        for (const d of nodes) {
+          d.r = self.calculateCircleRadius(d, xPos, yPos);
         }
-
+        self.simulation.force("collide").initialize(nodes);
       }
 
-      function focus(selected) {
+      function openProject(selected) {
 
         self.svg
     .attr("height", 2 * window.innerHeight )
@@ -261,40 +259,94 @@ export class MainComponent implements AfterContentInit, OnInit {
         node.transition()
         .attr("transform", d => {
           if (d.index === selected) {
-            console.log("translate(" + window.innerWidth * 2 / 3 + ", " + window.innerHeight * 2 / 3 + ")");
             return "translate(" + window.innerWidth * 2 / 3 + ", " + window.innerHeight * 2 / 3 + ")" ;
           }
 
           return "translate(" + d.x + ", " + d.y + ")";
-        })
-        ;
-        node.select(`#image-${selected}`).transition()
-        .attr("x", -window.innerWidth / 2)
-        .attr("y", -window.innerWidth / 2)
+        });
 
-        .attr("width", window.innerWidth)
-        .attr("height", window.innerWidth);
+        const radius = self.calculateFocusedCircleRadius();
+        node.select(`#image-${selected}`).transition()
+        .attr("x", -radius)
+        .attr("y", -radius)
+
+        .attr("width", radius * 2)
+        .attr("height", radius * 2)
+        .duration(self.transitionDuration);
 
 
           node.selectAll("circle").transition()
 
           .attr("r", d => {
             if (d.index === selected) {
-              return window.innerWidth / 2;
+              return radius;
             }
             return 0;
-          }).duration('1000');
+          }).duration(self.transitionDuration);
         // for (const d of nodes) {
         //   d.r = 0;
         // }
         self.simulation.force("collide").initialize(nodes);
       }
 
-      function easeInOutCubic(x: number): number {
-        return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-        }
+      function closeProject(selected) {
+
+        node.transition()
+        .attr("transform", d => {
+          return "translate(" + d.x + ", " + d.y + ")";
+        }).duration(self.transitionDuration);
+
+        node.selectAll("circle").transition()
+          .attr("r", d => d.startingSize).duration(self.transitionDuration);
+        node.select(`#image-${selected}`).transition()
+        .attr("x",  d => -d.startingSize)
+        .attr("y", d => -d.startingSize)
+
+        .attr("width", d => 2 * d.startingSize)
+        .attr("height",  d => 2 * d.startingSize)
+        .duration(self.transitionDuration);
+
+
+        // for (const d of nodes) {
+        //   d.r = 0;
+        // }
+        self.simulation.force("collide").initialize(nodes);
+      }
+
+
 
   }
+
+  easeInOutCubic(x: number): number {
+    return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+  }
+
+  calculateFocusedCircleRadius() {
+    const center = window.innerHeight * 2 / 3;
+
+    const distanceFromTopEdge = 50;
+
+    return center - distanceFromTopEdge;
+  }
+
+  calculateCircleRadius(d, xPos, yPos) {
+     // Distance from mouse position to node
+     const magnitude = Math.sqrt(Math.pow((d.x - xPos), 2) + Math.pow((d.y - yPos), 2));
+
+     // console.log('magnitude: '  + magnitude);
+     const maxMagnitude = 250;
+
+     const normalized = magnitude > maxMagnitude ? 0 : 1 - (magnitude / maxMagnitude);
+
+     const minSize = 5;
+     const changeModifier = 100;
+     const r = d.startingSize + (changeModifier * this.easeInOutCubic(normalized));
+     const maxSize = 50;
+     // d.r = r > maxSize ? maxSize : r;
+
+     return Math.abs(r);
+  }
+
 
   resize() {
     this.width = window.innerWidth;
