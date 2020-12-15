@@ -45,7 +45,7 @@
     font-size: 28px;
     width: auto;
     margin-top: 0;
-    font-family: sans-serif;
+    font-family: monospace;
     text-transform: capitalize;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     font-weight: 300;
@@ -53,6 +53,10 @@
     margin: 0;
 
   }
+}
+
+.selected {
+  transition: all 0.3s ease-in-out;
 }
 
 .show{

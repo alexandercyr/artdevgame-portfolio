@@ -1,5 +1,5 @@
 <div>
-  <div #popup id="popup" class="popup">
+  <div #popup id="popup" class="popup" [ngClass]="focused ? 'selected' : ''">
     <p class="title" (click)="showMore()">{{projects[activeItemIndex].title}}</p>
   </div>
   <svg #chart

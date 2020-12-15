@@ -1,4 +1,6 @@
+@import './assets/styles/variables.scss';
+
 body {
-  background-color: #f4f4f4;
+  background-color: $color-background;
   margin:0;
 }

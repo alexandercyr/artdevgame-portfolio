@@ -1,4 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterContentInit, OnInit, NgZone } from '@angular/core';
+import {Location} from '@angular/common';
+
+import { Router } from '@angular/router';
 import * as d3 from 'd3';
 import * as data from '../../assets/data/data.json';
 
@@ -63,7 +66,7 @@ export class MainComponent implements AfterContentInit, OnInit {
     });
   }
 
-  constructor(private ngZone: NgZone) { }
+  constructor(private ngZone: NgZone, private router: Router, private location: Location) { }
 
   ngOnInit() {
     this.width = window.innerWidth;
@@ -158,10 +161,27 @@ export class MainComponent implements AfterContentInit, OnInit {
                 .attr("y", function(d) { return -d.r;})
                 .attr("id", d => "image-" + d.id)
                 .attr("cursor", "pointer")
+                .attr("opacity", 0)
+                .attr("display", "none")
                 .attr("height", d => 2 * d.r)
                 .attr("width", d => 2 * d.r)
                 .attr("filter", d => `url(#${this.filters[d.group].r}${this.filters[d.group].g}${this.filters[d.group].b})`)
               )
+
+            const smolImages = this.svg.selectAll("g.node")
+            .call( g => g
+              .append("svg:image")
+              .attr("clip-path", d => "url(#circle" + d.id + ")")
+              .attr("xlink:href",  function(d) { return "/assets/images/phone-sml.jpg";})
+              .attr("x", function(d) { return -d.r;})
+              .attr("y", function(d) { return -d.r;})
+              .attr("id", d => "image-" + d.id + "-sml")
+              .attr("opacity", 1)
+              .attr("cursor", "pointer")
+              .attr("height", d => 2 * d.r)
+              .attr("width", d => 2 * d.r)
+              .attr("filter", d => `url(#${this.filters[d.group].r}${this.filters[d.group].g}${this.filters[d.group].b})`)
+            )
 
 
           self.simulation.on("tick", () => {
@@ -188,8 +208,9 @@ export class MainComponent implements AfterContentInit, OnInit {
             const i = parseInt(d.target.id.slice(6), 10);
             openProject(i);
             if (!self.focused) {
-              openProject(i);
               self.focused = !self.focused;
+
+              openProject(i);
 
             } else {
               closeProject(i);
@@ -252,8 +273,13 @@ export class MainComponent implements AfterContentInit, OnInit {
 
       function openProject(selected) {
 
+        // self.location.go(data.projects[selected].title);
+        self.router.navigate([data.projects[selected].title])
         self.svg
     .attr("height", 2 * window.innerHeight )
+
+    self.popup.nativeElement.style.left = '15%';
+        self.popup.nativeElement.style.top = '15%';
 
         console.log(node);
         node.transition()
@@ -266,9 +292,24 @@ export class MainComponent implements AfterContentInit, OnInit {
         });
 
         const radius = self.calculateFocusedCircleRadius();
+        node.select(`#image-${selected}-sml`).transition()
+        .attr("x", -radius)
+        .attr("y", -radius)
+        .attr("opacity", 0)
+        .attr("width", radius * 2)
+        .attr("height", radius * 2)
+        .duration(self.transitionDuration);
+
+        setTimeout(() => {
+          node.select(`#image-${selected}-sml`)
+          .attr("display", "none");
+        }, self.transitionDuration)
+
         node.select(`#image-${selected}`).transition()
         .attr("x", -radius)
         .attr("y", -radius)
+        .attr("opacity", 1)
+        .attr("display", "block")
 
         .attr("width", radius * 2)
         .attr("height", radius * 2)
@@ -298,13 +339,30 @@ export class MainComponent implements AfterContentInit, OnInit {
 
         node.selectAll("circle").transition()
           .attr("r", d => d.startingSize).duration(self.transitionDuration);
-        node.select(`#image-${selected}`).transition()
+        node.select(`#image-${selected}-sml`).transition()
         .attr("x",  d => -d.startingSize)
         .attr("y", d => -d.startingSize)
+        .attr("opacity", 1)
+
+        .attr("display", "block")
 
         .attr("width", d => 2 * d.startingSize)
         .attr("height",  d => 2 * d.startingSize)
         .duration(self.transitionDuration);
+
+        node.select(`#image-${selected}`).transition()
+        .attr("x",  d => -d.startingSize)
+        .attr("y", d => -d.startingSize)
+        .attr("opacity", 0)
+        .attr("width", d => 2 * d.startingSize)
+        .attr("height",  d => 2 * d.startingSize)
+        .duration(self.transitionDuration);
+
+        setTimeout(() => {
+          node.select(`#image-${selected}`)
+          .attr("display", "none");
+        }, self.transitionDuration)
+
 
 
         // for (const d of nodes) {

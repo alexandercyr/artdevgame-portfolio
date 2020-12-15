@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { NavComponent } from './nav/nav.component';
 import { ColorFiltersComponent } from './color-filters/color-filters.component';
+import { ProjectComponent } from './project/project.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     NavComponent,
-    ColorFiltersComponent
+    ColorFiltersComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,

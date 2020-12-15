@@ -1,6 +1,7 @@
 {
   "projects": [
     {
+      "id": "30-clean",
       "type": ["design", "front-end"],
       "media": ["web"],
       "tech": ["ruby", "sketch"],
@@ -22,6 +23,7 @@
       ]
     },
     {
+      "id": "preuss-pets",
       "type": ["design"],
       "media": ["web"],
       "tech": ["sketch"],
