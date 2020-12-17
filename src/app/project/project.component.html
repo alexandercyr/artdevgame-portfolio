@@ -4,6 +4,7 @@
   </div>
   <div *ngIf="project !== undefined && project.pageContent !== undefined" class="project-content">
     <app-feature-text [content]="project.pageContent[1].content"></app-feature-text>
+    <app-photo-grid [content]="project.pageContent[2].content"></app-photo-grid>
     <app-text-block [content]="project.pageContent[0].content"></app-text-block>
   </div>
 </div>

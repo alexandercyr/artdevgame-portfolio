@@ -12,6 +12,7 @@ import { TagsComponent } from './tags/tags.component';
 import { TagComponent } from './tag/tag.component';
 import { TextBlockComponent } from './project/components/text-block/text-block.component';
 import { FeatureTextComponent } from './project/components/feature-text/feature-text.component';
+import { PhotoGridComponent } from './project/components/photo-grid/photo-grid.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FeatureTextComponent } from './project/components/feature-text/feature-
     TagsComponent,
     TagComponent,
     TextBlockComponent,
-    FeatureTextComponent
+    FeatureTextComponent,
+    PhotoGridComponent
   ],
   imports: [
     BrowserModule,

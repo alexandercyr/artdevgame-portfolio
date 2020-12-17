@@ -1,4 +1,5 @@
 export enum ContentType {
   TEXT = "TEXT",
-  FEATURE = "FEATURE"
+  FEATURE = "FEATURE",
+  PHOTOGRID = "PHOTOGRID"
 }
