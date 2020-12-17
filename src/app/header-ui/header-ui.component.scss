@@ -1,13 +1,28 @@
+.header-container {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.header-content {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 50px;
+  height: 100vh;
+}
 
 .popup {
   transform: scale(0);
   pointer-events: none;
   width: auto;
   max-width: 300px;
-  height: 30px;
   text-align: left;
   margin-top: 0;
-  position: fixed;
+  position: absolute;
   z-index: 5000001;
   display: flex;
   flex-direction: column;
@@ -19,9 +34,11 @@
   .title {
     color: white;
     font-size: 28px;
+    padding: 5px;
+    padding-right: 25px;
+
     width: auto;
     margin-top: 0;
-    font-family: monospace;
     text-transform: capitalize;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     font-weight: 300;
@@ -31,12 +48,31 @@
   }
 }
 
+
 .selected {
   transition: all 0.3s ease-in-out;
+  position: relative;
+  min-width: 50%;
+  margin-top: 20%;
+  pointer-events: all;
+
+
+  .title {
+    font-size: 45px;
+    padding: 20px;
+  }
 }
 
 .show {
   transform: scale(1);
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
+}
+
+@media only screen and (max-width: 600px) {
+  .header-content {
+    width: 100%;
+    margin: 0 15px;
+  }
+
 }

@@ -1,7 +1,4 @@
-<div>
-  <!-- <div #popup id="popup" class="popup" [ngClass]="focused ? 'selected' : ''">
-    <p class="title" (click)="showMore()">{{projects[activeItemId].title}}</p>
-  </div> -->
+<div [ngClass]="{'scroll-frozen': !focused}">
   <app-header-ui></app-header-ui>
   <svg #chart
       id="chart"
@@ -17,5 +14,7 @@
 
 <app-color-filters [filters]="filters"></app-color-filters>
 
+<router-outlet></router-outlet>
 
 </div>
+

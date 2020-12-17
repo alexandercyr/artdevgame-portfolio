@@ -285,10 +285,9 @@ export class MainComponent implements AfterContentInit, OnInit {
 
       function openProject(selected) {
 
-        // self.location.go(data.projects[selected].title);
         self.router.navigate([data.projects[self.projectIds[selected]].id])
         self.svg
-          .attr("height", 2 * window.innerHeight )
+          .attr("height", 2 * window.innerHeight)
 
         console.log(node);
         node.transition()
@@ -372,8 +371,6 @@ export class MainComponent implements AfterContentInit, OnInit {
           .attr("display", "none");
         }, self.transitionDuration)
 
-
-
         // for (const d of nodes) {
         //   d.r = 0;
         // }
@@ -423,10 +420,6 @@ export class MainComponent implements AfterContentInit, OnInit {
 
   colorFilter = (red, blue, green, id) => {
     return `<svg xmlns="http://www.w3.org/2000/svg" ><filter id="${id}"><feColorMatrix type="matrix" result="grayscale" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0" /> <feComponentTransfer color-interpolation-filters="sRGB" result="duotone_magenta_gold"><feFuncR type="table" tableValues="${red} 1"></feFuncR><feFuncG type="table" tableValues="${green} 1"></feFuncG><feFuncB type="table" tableValues="${blue} 1"></feFuncB><feFuncA type="table" tableValues="0 1"></feFuncA></feComponentTransfer></filter></svg>`;
-  }
-
-  showMore() {
-
   }
 
   checkIfHovered(el: Element) {

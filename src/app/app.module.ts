@@ -8,6 +8,8 @@ import { NavComponent } from './nav/nav.component';
 import { ColorFiltersComponent } from './color-filters/color-filters.component';
 import { ProjectComponent } from './project/project.component';
 import { HeaderUiComponent } from './header-ui/header-ui.component';
+import { TagsComponent } from './tags/tags.component';
+import { TagComponent } from './tag/tag.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { HeaderUiComponent } from './header-ui/header-ui.component';
     NavComponent,
     ColorFiltersComponent,
     ProjectComponent,
-    HeaderUiComponent
+    HeaderUiComponent,
+    TagsComponent,
+    TagComponent
   ],
   imports: [
     BrowserModule,

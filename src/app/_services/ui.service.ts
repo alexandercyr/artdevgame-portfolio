@@ -20,8 +20,8 @@ export class UiService {
 
   openProject() {
     this.isFocused = true;
-    this.popupLeft = '15%';
-    this.popupTop = '15%';
+    this.popupLeft = '0';
+    this.popupTop = '0';
   }
 
   closeProject() {

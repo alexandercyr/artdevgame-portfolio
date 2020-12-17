@@ -1,0 +1,10 @@
+.tags-container {
+  max-height: 0px;
+  overflow: hidden;
+  margin-top: 25px;
+}
+
+.visible {
+  max-height: 100vh;
+  pointer-events: all;
+}

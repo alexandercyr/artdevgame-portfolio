@@ -1,0 +1,5 @@
+<div *ngIf="project !== undefined" class="tags-container" [ngClass]="{'visible': visible}">
+    <app-tag label="Type" [list]="project.type"></app-tag>
+    <app-tag label="Media" [list]="project.media"></app-tag>
+    <app-tag label="Tech" [list]="project.tech"></app-tag>
+</div>
