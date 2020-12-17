@@ -10,6 +10,8 @@ import { ProjectComponent } from './project/project.component';
 import { HeaderUiComponent } from './header-ui/header-ui.component';
 import { TagsComponent } from './tags/tags.component';
 import { TagComponent } from './tag/tag.component';
+import { TextBlockComponent } from './project/components/text-block/text-block.component';
+import { FeatureTextComponent } from './project/components/feature-text/feature-text.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TagComponent } from './tag/tag.component';
     ProjectComponent,
     HeaderUiComponent,
     TagsComponent,
-    TagComponent
+    TagComponent,
+    TextBlockComponent,
+    FeatureTextComponent
   ],
   imports: [
     BrowserModule,

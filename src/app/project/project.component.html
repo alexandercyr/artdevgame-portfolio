@@ -1,9 +1,9 @@
 <div class="project-container">
   <div class="top">
     <div class="gradient"></div>
-
   </div>
-  <div class="project">
-    <p>{{path}}</p>
+  <div *ngIf="project !== undefined && project.pageContent !== undefined" class="project-content">
+    <app-feature-text [content]="project.pageContent[1].content"></app-feature-text>
+    <app-text-block [content]="project.pageContent[0].content"></app-text-block>
   </div>
 </div>

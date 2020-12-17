@@ -1,0 +1,6 @@
+<div class="text-block">
+  <div class="text-content" *ngFor="let section of content">
+    <h4 *ngIf="section.label !== '' && section.label !== undefined">{{section.label}}</h4>
+    <p *ngFor="let text of section.text">{{text}}</p>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+@import '../../../../assets/styles/variables.scss';
+
+.text-block {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-content {
+  max-width: 860px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.text {
+  font-size: 30px;
+  color: #333;
+  font-weight: 100;
+  font-family: $font-sans;
+}

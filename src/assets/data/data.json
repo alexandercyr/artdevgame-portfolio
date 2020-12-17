@@ -11,6 +11,29 @@
       "priority": 1,
       "pageContent": [
         {
+          "type": "TEXT",
+          "content": [
+            {
+              "label": "Synopsis",
+              "text": [
+                "30 Clean connects clean eating challengers, giving them all the support they need in one place. Users can post photos, share stories, find tips and recipes, and be inspired by the successes of all the other challengers."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "FEATURE",
+          "content": [
+            {
+              "title" : "A Clean Eating Challenge",
+              "subtitle": "Objective",
+              "text": [
+                "30 Clean connects clean eating challengers, giving them all the support they need in one place. Users can post photos, share stories, find tips and recipes, and be inspired by the successes of all the other challengers."
+              ]
+            }
+          ]
+        }
+        , {
           "type": "block",
           "header": "Identity",
           "copy": "",

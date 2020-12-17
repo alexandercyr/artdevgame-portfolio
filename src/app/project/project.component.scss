@@ -7,9 +7,19 @@
   top: 0;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-items: center;
+  width: 100vw;
   pointer-events: none;
 }
+
+
+.project-content {
+  max-width: 1080px;
+  margin: 0 50px;
+  pointer-events: all;
+  z-index: 5;
+}
+
 
 .top {
   height: 100vh;
@@ -29,3 +39,8 @@
   background-image: linear-gradient(transparent, $color-background);
 }
 
+@media only screen and (max-width: 600px) {
+  .project-content {
+    margin: 0 15px;
+  }
+}

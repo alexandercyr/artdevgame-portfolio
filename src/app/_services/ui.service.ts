@@ -19,13 +19,18 @@ export class UiService {
   }
 
   openProject() {
+    this.isHovering = true;
     this.isFocused = true;
     this.popupLeft = '0';
     this.popupTop = '0';
   }
 
   closeProject() {
-    this.isFocused = false;
+    this.isHovering = false;
+    setTimeout(() => {
+      this.isFocused = false;
+
+    }, 500)
   }
 
   updatePopupPosition(event) {

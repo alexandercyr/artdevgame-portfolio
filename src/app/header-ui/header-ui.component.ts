@@ -12,9 +12,6 @@ export class HeaderUiComponent implements OnInit {
   constructor(public uiService: UiService, public dataService: DataService) { }
 
   ngOnInit(): void {
-    setInterval(() => {
-      console.log(this.uiService.isHovering);
-    }, 1000)
   }
 
   getClassString() {
