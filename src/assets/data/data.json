@@ -36,7 +36,7 @@
         {
           "type": "PHOTOGRID",
           "content": {
-            "vertical": false,
+            "vertical": true,
             "images":[
               {
                 "label": "Interesting image",

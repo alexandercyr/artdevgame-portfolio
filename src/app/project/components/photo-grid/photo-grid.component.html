@@ -4,8 +4,13 @@
       <div class="image" [ngStyle]="{'background-image': 'url(' + content.images[0].src +')'}"></div>
     </div>
     <div class="double">
-      <div class="image" [ngStyle]="{'background-image': 'url(' + content.images[1].src +')'}"></div>
-      <div class="image" [ngStyle]="{'background-image': 'url(' + content.images[2].src +')'}"></div>
+      <div class="overflow">
+        <div class="image" [ngStyle]="{'background-image': 'url(' + content.images[1].src +')'}"></div>
+
+      </div>
+      <div class="overflow">
+        <div class="image" [ngStyle]="{'background-image': 'url(' + content.images[2].src +')'}"></div>
+      </div>
     </div>
 
   </div>
