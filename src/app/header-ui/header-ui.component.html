@@ -1,0 +1,3 @@
+<div *ngIf="dataService.activeProject !== undefined" #popup id="popup" class="popup" [ngStyle]="{left: uiService.popupLeft, top: uiService.popupTop} " [ngClass]="{'selected': uiService.isFocused, 'show' : uiService.isHovering}">
+  <p class="title">{{dataService.activeProject.title}}</p>
+</div>

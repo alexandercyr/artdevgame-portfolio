@@ -1,0 +1,42 @@
+
+.popup {
+  transform: scale(0);
+  pointer-events: none;
+  width: auto;
+  max-width: 300px;
+  height: 30px;
+  text-align: left;
+  margin-top: 0;
+  position: fixed;
+  z-index: 5000001;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease-in-out;// left 0.5s ease-in-out, top 0.5s ease-in-out;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: #000;
+
+  .title {
+    color: white;
+    font-size: 28px;
+    width: auto;
+    margin-top: 0;
+    font-family: monospace;
+    text-transform: capitalize;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-weight: 300;
+    letter-spacing: 1.1px;
+    margin: 0;
+
+  }
+}
+
+.selected {
+  transition: all 0.3s ease-in-out;
+}
+
+.show {
+  transform: scale(1);
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}

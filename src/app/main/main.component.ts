@@ -4,6 +4,8 @@ import {Location} from '@angular/common';
 import { Router } from '@angular/router';
 import * as d3 from 'd3';
 import * as data from '../../assets/data/data.json';
+import { EventManagerService } from '../_services/event-manager.service';
+import { DataService } from '../_services/data.service';
 
 
 @Component({
@@ -12,7 +14,6 @@ import * as data from '../../assets/data/data.json';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements AfterContentInit, OnInit {
-  @ViewChild('popup', {static: true}) popup: ElementRef;
 
   width = 960;
   height = 960;
@@ -24,7 +25,9 @@ export class MainComponent implements AfterContentInit, OnInit {
   simulation;
   selectedIndex = 0;
   activeItemIndex = 0;
-  projects = [];
+  activeItemId = '30-clean';
+  projectIds = [];
+  projects;
   focused = false;
   transitionDuration = 1000;
 
@@ -57,22 +60,23 @@ export class MainComponent implements AfterContentInit, OnInit {
     const r = d3.randomUniform(k, k * 4);
 
 
-    return Array.from({length: data.projects.length}, (_, i) => {
+
+    return Array.from({length: this.projectIds.length}, (_, i) => {
 
       const radius = r();
       var img = new Image(100, 100);
       img.src = '/assets/images/phone.jpg';
-      return {id: i, r: radius, startingSize: radius, group: (i % (this.n)), img: data.projects[i].imgUrl}
+      return {id: i, r: radius, startingSize: radius, group: (i % (this.n)), img: data.projects[this.projectIds[i]].imgUrl}
     });
   }
 
-  constructor(private ngZone: NgZone, private router: Router, private location: Location) { }
+  constructor(private ngZone: NgZone, private router: Router, private location: Location, private eventManager: EventManagerService, private dataService: DataService) { }
 
   ngOnInit() {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
+    this.projectIds = Object.keys(data.projects);
     this.projects = data.projects;
-    console.log(this.popup);
 
     window.addEventListener('resize', () => this.resize());
 
@@ -210,9 +214,11 @@ export class MainComponent implements AfterContentInit, OnInit {
             if (!self.focused) {
               self.focused = !self.focused;
 
+              self.eventManager.openProject();
               openProject(i);
 
             } else {
+              self.eventManager.closeProject();
               closeProject(i);
               setTimeout(() => {
                 self.focused = !self.focused;
@@ -257,29 +263,32 @@ export class MainComponent implements AfterContentInit, OnInit {
       }
 
       function pointed(event) {
-        self.checkIfHovered(document.elementFromPoint(event.clientX, event.clientY));
-        const [x, y] = d3.pointer(event);
-        const xPos = x;
-        const yPos = y;
+        if (event !== undefined) {
+          self.checkIfHovered(document.elementFromPoint(event.clientX, event.clientY));
+          self.eventManager.updatePopupPosition(event);
 
-        self.popup.nativeElement.style.left = event.clientX + 20 + 'px';
-        self.popup.nativeElement.style.top = event.clientY + 'px';
+          const [x, y] = d3.pointer(event);
+          const xPos = x;
+          const yPos = y;
 
-        for (const d of nodes) {
-          d.r = self.calculateCircleRadius(d, xPos, yPos);
+
+
+          for (const d of nodes) {
+            d.r = self.calculateCircleRadius(d, xPos, yPos);
+          }
+          self.simulation.force("collide").initialize(nodes);
+
+
         }
-        self.simulation.force("collide").initialize(nodes);
+
       }
 
       function openProject(selected) {
 
         // self.location.go(data.projects[selected].title);
-        self.router.navigate([data.projects[selected].title])
+        self.router.navigate([data.projects[self.projectIds[selected]].id])
         self.svg
-    .attr("height", 2 * window.innerHeight )
-
-    self.popup.nativeElement.style.left = '15%';
-        self.popup.nativeElement.style.top = '15%';
+          .attr("height", 2 * window.innerHeight )
 
         console.log(node);
         node.transition()
@@ -370,9 +379,6 @@ export class MainComponent implements AfterContentInit, OnInit {
         // }
         self.simulation.force("collide").initialize(nodes);
       }
-
-
-
   }
 
   easeInOutCubic(x: number): number {
@@ -425,10 +431,17 @@ export class MainComponent implements AfterContentInit, OnInit {
 
   checkIfHovered(el: Element) {
     if (el.id !== null && el.id.indexOf('image') > -1) {
+      console.log(el.id);
+      this.activeItemId = this.projectIds[parseInt(el.id.slice(6), 10)];
+      console.log(this.activeItemId);
+
       this.activeItemIndex = parseInt(el.id.slice(6), 10);
-      this.popup.nativeElement.classList.add("show");
-    } else {
-      this.popup.nativeElement.classList.remove("show");
+      this.eventManager.setActiveProject(this.projects[this.activeItemId]);
+
+      this.eventManager.projectHoverEnter();
+        } else {
+      this.eventManager.projectHoverExit();
+
     }
   }
 }

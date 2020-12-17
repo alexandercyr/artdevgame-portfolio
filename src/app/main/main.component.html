@@ -1,7 +1,8 @@
 <div>
-  <div #popup id="popup" class="popup" [ngClass]="focused ? 'selected' : ''">
-    <p class="title" (click)="showMore()">{{projects[activeItemIndex].title}}</p>
-  </div>
+  <!-- <div #popup id="popup" class="popup" [ngClass]="focused ? 'selected' : ''">
+    <p class="title" (click)="showMore()">{{projects[activeItemId].title}}</p>
+  </div> -->
+  <app-header-ui></app-header-ui>
   <svg #chart
       id="chart"
      >

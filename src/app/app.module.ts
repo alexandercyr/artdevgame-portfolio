@@ -7,6 +7,7 @@ import { MainComponent } from './main/main.component';
 import { NavComponent } from './nav/nav.component';
 import { ColorFiltersComponent } from './color-filters/color-filters.component';
 import { ProjectComponent } from './project/project.component';
+import { HeaderUiComponent } from './header-ui/header-ui.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ProjectComponent } from './project/project.component';
     MainComponent,
     NavComponent,
     ColorFiltersComponent,
-    ProjectComponent
+    ProjectComponent,
+    HeaderUiComponent
   ],
   imports: [
     BrowserModule,

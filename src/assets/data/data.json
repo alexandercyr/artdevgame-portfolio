@@ -1,6 +1,6 @@
 {
-  "projects": [
-    {
+  "projects": {
+    "30-clean": {
       "id": "30-clean",
       "type": ["design", "front-end"],
       "media": ["web"],
@@ -22,7 +22,7 @@
         }
       ]
     },
-    {
+    "preuss-pets": {
       "id": "preuss-pets",
       "type": ["design"],
       "media": ["web"],
@@ -32,7 +32,8 @@
       "imgUrl": "/assets/images/mocks/web-mock2.jpg",
       "priority": 1
     },
-    {
+    "ingham-health-plan": {
+      "id": "ingham-health-plan",
       "type": ["design", "development"],
       "media": ["web"],
       "tech": ["illustator", "html/css", "DotNetNuke"],
@@ -41,7 +42,8 @@
       "imgUrl": "/assets/images/mocks/web-mock3.jpg",
       "priority": 1
     },
-    {
+    "washi-con": {
+      "id": "washi-con",
       "type": ["design"],
       "media": ["print"],
       "tech": ["illustator"],
@@ -50,7 +52,8 @@
       "imgUrl": "/assets/images/mocks/web-mock3.jpg",
       "priority": 1
     },
-    {
+    "eat-me": {
+      "id": "eat-me",
       "type": ["design"],
       "media": ["mobile"],
       "tech": ["illustator"],
@@ -59,7 +62,8 @@
       "imgUrl": "/assets/images/mocks/mobile-mock2.jpg",
       "priority": 1
     },
-    {
+    "spared-change": {
+      "id": "spared-change",
       "type": ["design"],
       "media": ["mobile"],
       "tech": ["illustator"],
@@ -68,16 +72,18 @@
       "imgUrl": "/assets/images/mocks/mobile-mock3.jpg",
       "priority": 1
     },
-    {
+    "illustrations": {
+      "id": "illustrations",
       "type": ["design"],
       "media": ["print"],
       "tech": ["illustrator"],
-      "title": "Illustations",
+      "title": "Illustrations",
       "short": "A collection of art and designs done for fun and various competitions such as Threadless.",
       "imgUrl": "/assets/images/mocks/mobile-mock3.jpg",
       "priority": 1
     },
-    {
+    "detroit-tigers": {
+      "id": "detroit-tigers",
       "type": ["design"],
       "media": ["print"],
       "tech": ["illustrator"],
@@ -86,7 +92,8 @@
       "imgUrl": "/assets/images/mocks/mobile-mock3.jpg",
       "priority": 1
     },
-    {
+    "dave-and-busters": {
+      "id": "dave-and-busters",
       "type": ["design"],
       "media": ["print"],
       "tech": ["illustrator"],
@@ -95,7 +102,8 @@
       "imgUrl": "/assets/images/mocks/mobile-mock3.jpg",
       "priority": 1
     },
-    {
+    "the-state-news": {
+      "id": "the-state-news",
       "type": ["design"],
       "media": ["web"],
       "tech": ["illustator"],
@@ -104,7 +112,8 @@
       "imgUrl": "/assets/images/mocks/web-mock4.jpg",
       "priority": 1
     },
-    {
+    "wantify": {
+      "id": "wantify",
       "type": ["design", "development"],
       "media": ["mobile", "web"],
       "tech": ["swift", "react", "keycloak", "illustrator"],
@@ -113,7 +122,8 @@
       "imgUrl": "/assets/images/mocks/mobile-web-mock1.jpg",
       "priority": 1
     },
-    {
+    "scribble-stacks": {
+      "id": "scribble-stacks",
       "type": ["design", "development", "games"],
       "media": ["mobile"],
       "tech": ["swift", "firebase", "illustrator"],
@@ -123,5 +133,5 @@
       "priority": 1
     }
 
-  ]
+  }
 }
