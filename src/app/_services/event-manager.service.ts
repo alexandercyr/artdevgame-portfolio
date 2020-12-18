@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Project } from '../_models/project.model';
 import { DataService } from './data.service';
 import { UiService } from './ui.service';
 

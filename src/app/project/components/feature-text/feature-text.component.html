@@ -1,6 +1,6 @@
 <div class="text-block">
   <div class="text-content" *ngFor="let section of content">
-    <h4 class="subtitle" *ngIf="section.subtitle !== '' && section.subtitle !== undefined">{{section.subtitle}}</h4>
+    <h4 class="subtitle" [ngStyle]="{'color': 'rgb('+ (dataService.activeColor.r * 255) +', '+ (dataService.activeColor.g * 255) +', ' + (dataService.activeColor.b * 255) +')'}" *ngIf="section.subtitle !== '' && section.subtitle !== undefined">{{section.subtitle}}</h4>
 
     <h3 class="title" *ngIf="section.title !== '' && section.title !== undefined">{{section.title}}</h3>
     <p class="text" *ngFor="let text of section.text">{{text}}</p>

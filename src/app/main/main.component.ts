@@ -59,8 +59,6 @@ export class MainComponent implements AfterContentInit, OnInit {
     const k = this.width / 100;
     const r = d3.randomUniform(k, k * 4);
 
-
-
     return Array.from({length: this.projectIds.length}, (_, i) => {
 
       const radius = r();
@@ -85,6 +83,7 @@ export class MainComponent implements AfterContentInit, OnInit {
   ngAfterContentInit() {
 
     const objs: any[] = this.data();
+
 
 
     this.svg =  d3.select("svg#chart")
@@ -425,11 +424,13 @@ export class MainComponent implements AfterContentInit, OnInit {
   checkIfHovered(el: Element) {
     if (el.id !== null && el.id.indexOf('image') > -1) {
       console.log(el.id);
-      this.activeItemId = this.projectIds[parseInt(el.id.slice(6), 10)];
+      const index = parseInt(el.id.slice(6), 10);
+      this.activeItemId = this.projectIds[index];
       console.log(this.activeItemId);
 
       this.activeItemIndex = parseInt(el.id.slice(6), 10);
-      this.eventManager.setActiveProject(this.projects[this.activeItemId]);
+      this.dataService.setActiveProject(this.projects[this.activeItemId]);
+      this.dataService.setActiveColor(this.filters[index % (this.n)]);
 
       this.eventManager.projectHoverEnter();
         } else {

@@ -1,4 +1,4 @@
-class Project {
+export class Project {
   id;
   type;
   media;
