@@ -1,4 +1,4 @@
-<div [ngClass]="{'scroll-frozen': !focused}">
+<div [ngClass]="{'scroll-frozen': !uiService.isFocused}">
   <app-header-ui></app-header-ui>
   <svg #chart
       id="chart"
