@@ -10,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class IconComponent implements OnInit {
   @Input() name: string;
+  @Input() height: string;
+  @Input() width: string;
   @Input() color: string = "#000";
 
   svgTemplate;

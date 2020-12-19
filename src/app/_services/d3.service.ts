@@ -333,6 +333,7 @@ export class D3Service {
         this.activeItemIndex = i;
         this.focused = true;
         this.dataService.setActiveColor(this.filters[i % (this.n)]);
+        this.eventManager.openProject();
 
       this.openProject(i);
       }, 500);

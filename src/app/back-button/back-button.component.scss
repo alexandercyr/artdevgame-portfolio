@@ -1,3 +1,71 @@
+@import '../../assets/styles/variables.scss';
+
 button {
   pointer-events: all;
+  background-color: #ffffff;
+  height: 40px;
+  width: auto;
+  display: flex;
+  padding: 0;
+  box-sizing: content-box;
+  border-radius: 0px;
+  cursor: pointer;
+  margin-top: 50px;
+
+  .button-text {
+    line-height: 40px;
+    font-family: $font-mono;
+    padding: 0 15px;
+    font-size: 18px;
+  }
+
+  .icon {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+
+    div {
+      height: 20px;
+      width: 20px;
+    }
+  }
+
 }
+
+
+:host ::ng-deep .p-button {
+  pointer-events: all;
+  background-color: #ffffff;
+  height: 40px;
+  width: auto;
+  display: flex;
+  padding: 0;
+  box-sizing: content-box;
+  border-radius: 0px;
+  cursor: pointer;
+  margin-top: 50px;
+
+  .p-button-icon {
+    width: 40px;
+    height: 40px;
+    border-right: 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .p-button-label {
+    padding: 0 15px 0 0;
+    font-size: 18px;
+    font-family: $font-mono;
+  }
+}
+
+:host ::ng-deep .p-button:hover {
+  opacity: 0.9 !important;
+  background-color: #fff !important;
+}
+

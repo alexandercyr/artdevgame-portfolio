@@ -22,10 +22,12 @@
     "@angular/router": "~10.1.6",
     "d3": "^6.2.0",
     "d3-force": "^2.1.1",
+    "firebase": "^7.0.0 || ^8.0.0",
+    "primeicons": "^4.1.0",
+    "primeng": "^11.0.0",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2",
-    "firebase": "^7.0.0 || ^8.0.0"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.7",

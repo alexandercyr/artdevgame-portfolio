@@ -16,6 +16,7 @@ import { PhotoGridComponent } from './project/components/photo-grid/photo-grid.c
 import { BackButtonComponent } from './back-button/back-button.component';
 import { IconComponent } from './icon/icon.component';
 import { HttpClientModule } from '@angular/common/http';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

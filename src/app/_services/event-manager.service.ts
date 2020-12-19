@@ -38,7 +38,7 @@ export class EventManagerService {
 
     if (project !== undefined) {
       this.dataService.setActiveProject(project);
-      this.uiService.openProject();
+     // this.uiService.openProject();
       this.d3Service.openProjectIfNotSet(project.id);
     } else {
       this.d3Service.closeProjectIfOpen();
