@@ -12,10 +12,9 @@ export class EventManagerService {
 
   d3Service: D3Service;
 
-
   constructor(private uiService: UiService, private dataService: DataService, private navigate: NavigationService) { }
 
-
+  // Set manually to prevent circular dependency
   public setD3Service(d3: D3Service) {
     this.d3Service = d3;
   }

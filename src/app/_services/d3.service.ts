@@ -61,6 +61,7 @@ export class D3Service {
     this.projectIds = Object.keys(data.projects);
     this.projects = data.projects;
 
+    // Set manually to prevent circular dependency
     this.eventManager.setD3Service(this);
   }
 
@@ -134,16 +135,7 @@ export class D3Service {
                 .append("svg:circle")
                 .attr("r", d => d.r)
                 .attr("fill", d => self.colors(d.group))
-              )
-
-              // Drop shadow hurting performace
-              //
-              // .call( g => g
-              //   .append("svg:circle")
-              //   .attr("r", d => d.r)
-              //   .attr("fill", d => self.colors(d.group))
-              //   .attr("filter", "url(#shadow)")
-              // );
+              );
 
           const images = this.svg.selectAll("g.node")
               .call( g => g
@@ -205,40 +197,9 @@ export class D3Service {
               self.eventManager.openProject();
               self.openProject(i);
 
-            } else {
-              //self.eventManager.closeProject();
-              self.closeProject(i);
-
             }
             self.selectedIndex = i;
-
-              // d3.select("h1").html(d.hero);
-              // d3.select("h2").html(d.name);
-              // d3.select("h3").html ("Take me to " + "<a href='" + d.link + "' >"  + d.hero + " web page ⇢"+ "</a>" );
            })
-
-          // .on( 'pointerenter', function(e) {
-          //   // select element in current context
-
-          //   console.log('enter');
-          //   self.activeItemIndex = e.target.id;
-
-          //   self.popup.nativeElement.classList.toggle("show");
-
-          //   // d3.select( this )
-          //   //   .transition()
-          //   //   .attr("x", function(d) { return -60;})
-          //   //   .attr("y", function(d) { return -60;})
-          //   //   .attr("height", 100)
-          //   //   .attr("width", 100);
-          // })
-          // // // set back
-          // .on( 'pointerout', function(event) {
-          //   console.log('out');
-
-          //   self.popup.nativeElement.classList.toggle("show");
-
-          // });
 
 
       function movePointer(e) {
@@ -347,6 +308,8 @@ export class D3Service {
     .attr("x", -radius)
     .attr("y", -radius)
     .attr("opacity", 0)
+    .attr("cursor", "initial")
+
     .attr("width", radius * 2)
     .attr("height", radius * 2)
     .duration(this.transitionDuration);
@@ -361,6 +324,7 @@ export class D3Service {
     .attr("y", -radius)
     .attr("opacity", 1)
     .attr("display", "block")
+    .attr("cursor", "initial")
 
     .attr("width", radius * 2)
     .attr("height", radius * 2)
@@ -394,6 +358,7 @@ export class D3Service {
     .attr("x",  d => -d.startingSize)
     .attr("y", d => -d.startingSize)
     .attr("opacity", 1)
+    .attr("cursor", "pointer")
 
     .attr("display", "block")
 
@@ -405,6 +370,7 @@ export class D3Service {
     .attr("x",  d => -d.startingSize)
     .attr("y", d => -d.startingSize)
     .attr("opacity", 0)
+    .attr("cursor", "pointer")
     .attr("width", d => 2 * d.startingSize)
     .attr("height",  d => 2 * d.startingSize)
     .duration(this.transitionDuration);
