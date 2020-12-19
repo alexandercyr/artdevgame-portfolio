@@ -13,6 +13,7 @@ import { TagComponent } from './tag/tag.component';
 import { TextBlockComponent } from './project/components/text-block/text-block.component';
 import { FeatureTextComponent } from './project/components/feature-text/feature-text.component';
 import { PhotoGridComponent } from './project/components/photo-grid/photo-grid.component';
+import { BackButtonComponent } from './back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PhotoGridComponent } from './project/components/photo-grid/photo-grid.c
     TagComponent,
     TextBlockComponent,
     FeatureTextComponent,
-    PhotoGridComponent
+    PhotoGridComponent,
+    BackButtonComponent
   ],
   imports: [
     BrowserModule,

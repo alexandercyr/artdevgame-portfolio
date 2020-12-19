@@ -1,5 +1,7 @@
 <div class="header-container">
   <div class="header-content">
+    <app-back-button *ngIf="uiService.isFocused"></app-back-button>
+
     <div *ngIf="dataService.activeProject !== undefined" #popup id="popup" class="popup" [ngStyle]="{left: uiService.popupLeft, top: uiService.popupTop} " [ngClass]="{'selected': uiService.isFocused, 'show': uiService.isHovering}">
       <div class="info-tag" [ngStyle]="{'background-color': 'rgb('+ (dataService.activeColor.r * 255) +', '+ (dataService.activeColor.g * 255) +', ' + (dataService.activeColor.b * 255) +')'}">
         <p><strong>{{dataService.activeProject.type[0]}}</strong></p>

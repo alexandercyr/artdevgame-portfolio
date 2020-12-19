@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Project } from '../_models/project.model';
+import { D3Service } from './d3.service';
 import { DataService } from './data.service';
+import { NavigationService } from './navigation.service';
 import { UiService } from './ui.service';
 
 @Injectable({
@@ -8,7 +10,15 @@ import { UiService } from './ui.service';
 })
 export class EventManagerService {
 
-  constructor(private uiService: UiService, private dataService: DataService) { }
+  d3Service: D3Service;
+
+
+  constructor(private uiService: UiService, private dataService: DataService, private navigate: NavigationService) { }
+
+
+  public setD3Service(d3: D3Service) {
+    this.d3Service = d3;
+  }
 
   public projectHoverEnter() {
     this.uiService.handleHover(true);
@@ -31,5 +41,11 @@ export class EventManagerService {
 
   public updatePopupPosition(event) {
     this.uiService.updatePopupPosition(event);
+  }
+
+  public goBack() {
+    this.navigate.back();
+    this.uiService.closeProject();
+    this.d3Service.closeProject(this.d3Service.activeItemIndex);
   }
 }

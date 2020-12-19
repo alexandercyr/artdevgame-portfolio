@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Project } from '../_models/project.model';
 
 @Component({
   selector: 'app-tags',

@@ -13,6 +13,7 @@ export class D3Service {
 
   simulation;
   nodes;
+  node;
   svg;
 
   projectIds;
@@ -59,6 +60,8 @@ export class D3Service {
     this.height = window.innerHeight;
     this.projectIds = Object.keys(data.projects);
     this.projects = data.projects;
+
+    this.eventManager.setD3Service(this);
   }
 
   setSVG(svg) {
@@ -81,13 +84,6 @@ export class D3Service {
   setupVisualization() {
 
     const objs: any[] = this.data();
-
-
-
-
-      //this.svg = document.querySelector('#chart') as HTMLElement;
-
-
     this.nodes = objs.map(Object.create);
 
       const self = this;
@@ -122,7 +118,7 @@ export class D3Service {
           }
 
 
-          const node = this.svg
+          this.node = this.svg
               //.attr("stroke", "#fff")
              // .attr("stroke-width", 1.5)
 
@@ -183,7 +179,7 @@ export class D3Service {
 
           this.simulation.on("tick", () => {
             if (!self.focused) {
-              node
+              this.node
               .attr("transform", d => "translate(" + d.x + ", " + d.y + ")")
               .call( g => g.selectAll('circle').attr('r', d => d.r))
               .call( g => g.selectAll('image')
@@ -203,19 +199,16 @@ export class D3Service {
           .on( 'click', function (d) {
             console.log(d);
             const i = parseInt(d.target.id.slice(6), 10);
-            openProject(i);
             if (!self.focused) {
               self.focused = !self.focused;
 
               self.eventManager.openProject();
-              openProject(i);
+              self.openProject(i);
 
             } else {
-              self.eventManager.closeProject();
-              closeProject(i);
-              setTimeout(() => {
-                self.focused = !self.focused;
-              }, self.transitionDuration);
+              //self.eventManager.closeProject();
+              self.closeProject(i);
+
             }
             self.selectedIndex = i;
 
@@ -275,101 +268,158 @@ export class D3Service {
 
       }
 
-      function openProject(selected) {
+      // function openProject(selected) {
 
-        self.router.navigate([data.projects[self.projectIds[selected]].id])
-        self.svg
-          .attr("height", 2 * window.innerHeight)
+      //   self.router.navigate([data.projects[self.projectIds[selected]].id])
+      //   self.svg
+      //     .attr("height", 2 * window.innerHeight)
 
-        console.log(node);
-        node.transition()
-        .attr("transform", d => {
-          if (d.index === selected) {
-            return "translate(" + window.innerWidth * 2 / 3 + ", " + window.innerHeight * 2 / 3 + ")" ;
-          }
+      //   console.log(self.node);
+      //   self.node.transition()
+      //   .attr("transform", d => {
+      //     if (d.index === selected) {
+      //       return "translate(" + window.innerWidth * 2 / 3 + ", " + window.innerHeight * 2 / 3 + ")" ;
+      //     }
 
-          return "translate(" + d.x + ", " + d.y + ")";
-        });
+      //     return "translate(" + d.x + ", " + d.y + ")";
+      //   });
 
-        const radius = self.calculateFocusedCircleRadius();
-        node.select(`#image-${selected}-sml`).transition()
-        .attr("x", -radius)
-        .attr("y", -radius)
-        .attr("opacity", 0)
-        .attr("width", radius * 2)
-        .attr("height", radius * 2)
-        .duration(self.transitionDuration);
+      //   const radius = self.calculateFocusedCircleRadius();
+      //   self.node.select(`#image-${selected}-sml`).transition()
+      //   .attr("x", -radius)
+      //   .attr("y", -radius)
+      //   .attr("opacity", 0)
+      //   .attr("width", radius * 2)
+      //   .attr("height", radius * 2)
+      //   .duration(self.transitionDuration);
 
-        setTimeout(() => {
-          node.select(`#image-${selected}-sml`)
-          .attr("display", "none");
-        }, self.transitionDuration)
+      //   setTimeout(() => {
+      //     node.select(`#image-${selected}-sml`)
+      //     .attr("display", "none");
+      //   }, self.transitionDuration)
 
-        node.select(`#image-${selected}`).transition()
-        .attr("x", -radius)
-        .attr("y", -radius)
-        .attr("opacity", 1)
-        .attr("display", "block")
+      //   node.select(`#image-${selected}`).transition()
+      //   .attr("x", -radius)
+      //   .attr("y", -radius)
+      //   .attr("opacity", 1)
+      //   .attr("display", "block")
 
-        .attr("width", radius * 2)
-        .attr("height", radius * 2)
-        .duration(self.transitionDuration);
+      //   .attr("width", radius * 2)
+      //   .attr("height", radius * 2)
+      //   .duration(self.transitionDuration);
 
 
-          node.selectAll("circle").transition()
+      //     node.selectAll("circle").transition()
 
-          .attr("r", d => {
-            if (d.index === selected) {
-              return radius;
-            }
-            return 0;
-          }).duration(self.transitionDuration);
-        // for (const d of nodes) {
-        //   d.r = 0;
-        // }
-        self.simulation.force("collide").initialize(self.nodes);
-      }
+      //     .attr("r", d => {
+      //       if (d.index === selected) {
+      //         return radius;
+      //       }
+      //       return 0;
+      //     }).duration(self.transitionDuration);
+      //   // for (const d of nodes) {
+      //   //   d.r = 0;
+      //   // }
+      //   self.simulation.force("collide").initialize(self.nodes);
+      // }
 
-      function closeProject(selected) {
 
-        node.transition()
-        .attr("transform", d => {
-          return "translate(" + d.x + ", " + d.y + ")";
-        }).duration(self.transitionDuration);
-
-        node.selectAll("circle").transition()
-          .attr("r", d => d.startingSize).duration(self.transitionDuration);
-        node.select(`#image-${selected}-sml`).transition()
-        .attr("x",  d => -d.startingSize)
-        .attr("y", d => -d.startingSize)
-        .attr("opacity", 1)
-
-        .attr("display", "block")
-
-        .attr("width", d => 2 * d.startingSize)
-        .attr("height",  d => 2 * d.startingSize)
-        .duration(self.transitionDuration);
-
-        node.select(`#image-${selected}`).transition()
-        .attr("x",  d => -d.startingSize)
-        .attr("y", d => -d.startingSize)
-        .attr("opacity", 0)
-        .attr("width", d => 2 * d.startingSize)
-        .attr("height",  d => 2 * d.startingSize)
-        .duration(self.transitionDuration);
-
-        setTimeout(() => {
-          node.select(`#image-${selected}`)
-          .attr("display", "none");
-        }, self.transitionDuration)
-
-        // for (const d of nodes) {
-        //   d.r = 0;
-        // }
-        self.simulation.force("collide").initialize(self.nodes);
-      }
   }
 
+  openProject(selected) {
+
+    this.router.navigate([data.projects[this.projectIds[selected]].id])
+    this.svg
+      .attr("height", 2 * window.innerHeight)
+
+    console.log(this.node);
+    this.node.transition()
+    .attr("transform", d => {
+      if (d.index === selected) {
+        return "translate(" + window.innerWidth * 2 / 3 + ", " + window.innerHeight * 2 / 3 + ")" ;
+      }
+
+      return "translate(" + d.x + ", " + d.y + ")";
+    });
+
+    const radius = this.calculateFocusedCircleRadius();
+    this.node.select(`#image-${selected}-sml`).transition()
+    .attr("x", -radius)
+    .attr("y", -radius)
+    .attr("opacity", 0)
+    .attr("width", radius * 2)
+    .attr("height", radius * 2)
+    .duration(this.transitionDuration);
+
+    setTimeout(() => {
+      this.node.select(`#image-${selected}-sml`)
+      .attr("display", "none");
+    }, this.transitionDuration)
+
+    this.node.select(`#image-${selected}`).transition()
+    .attr("x", -radius)
+    .attr("y", -radius)
+    .attr("opacity", 1)
+    .attr("display", "block")
+
+    .attr("width", radius * 2)
+    .attr("height", radius * 2)
+    .duration(this.transitionDuration);
+
+
+      this.node.selectAll("circle").transition()
+
+      .attr("r", d => {
+        if (d.index === selected) {
+          return radius;
+        }
+        return 0;
+      }).duration(this.transitionDuration);
+    // for (const d of nodes) {
+    //   d.r = 0;
+    // }
+    this.simulation.force("collide").initialize(this.nodes);
+  }
+
+  closeProject(selected) {
+
+    this.node.transition()
+    .attr("transform", d => {
+      return "translate(" + d.x + ", " + d.y + ")";
+    }).duration(this.transitionDuration);
+
+    this.node.selectAll("circle").transition()
+      .attr("r", d => d.startingSize).duration(this.transitionDuration);
+    this.node.select(`#image-${selected}-sml`).transition()
+    .attr("x",  d => -d.startingSize)
+    .attr("y", d => -d.startingSize)
+    .attr("opacity", 1)
+
+    .attr("display", "block")
+
+    .attr("width", d => 2 * d.startingSize)
+    .attr("height",  d => 2 * d.startingSize)
+    .duration(this.transitionDuration);
+
+    this.node.select(`#image-${selected}`).transition()
+    .attr("x",  d => -d.startingSize)
+    .attr("y", d => -d.startingSize)
+    .attr("opacity", 0)
+    .attr("width", d => 2 * d.startingSize)
+    .attr("height",  d => 2 * d.startingSize)
+    .duration(this.transitionDuration);
+
+    setTimeout(() => {
+      this.node.select(`#image-${selected}`)
+      .attr("display", "none");
+    }, this.transitionDuration)
+
+    this.simulation.force("collide").initialize(this.nodes);
+
+    setTimeout(() => {
+      this.focused = !this.focused;
+    }, this.transitionDuration);
+  }
 
 
   easeInOutCubic(x: number): number {
