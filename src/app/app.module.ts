@@ -14,6 +14,8 @@ import { TextBlockComponent } from './project/components/text-block/text-block.c
 import { FeatureTextComponent } from './project/components/feature-text/feature-text.component';
 import { PhotoGridComponent } from './project/components/photo-grid/photo-grid.component';
 import { BackButtonComponent } from './back-button/back-button.component';
+import { IconComponent } from './icon/icon.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,11 +30,13 @@ import { BackButtonComponent } from './back-button/back-button.component';
     TextBlockComponent,
     FeatureTextComponent,
     PhotoGridComponent,
-    BackButtonComponent
+    BackButtonComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

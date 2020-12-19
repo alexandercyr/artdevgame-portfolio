@@ -5,6 +5,7 @@ import * as d3 from 'd3';
 import { DataService } from '../_services/data.service';
 import { D3Service } from '../_services/d3.service';
 import { UiService } from '../_services/ui.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -37,15 +38,23 @@ export class MainComponent implements AfterContentInit, OnInit {
       b: 0.475
     }];
 
+  path;
 
-
-  constructor(public dataService: DataService, private d3Service: D3Service, public uiService: UiService) { }
+  constructor(public dataService: DataService, private d3Service: D3Service, public uiService: UiService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
     window.addEventListener('resize', () => this.resize());
 
+    const sub = this.route.params.subscribe(params => {
+      this.path = params.id;
+      console.log('main: ' + this.path);
+
+      if (this.path === '') {
+        this.d3Service.closeProject(this.d3Service.activeItemId);
+      }
+    });
   }
 
   ngAfterContentInit() {

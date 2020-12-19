@@ -17,7 +17,8 @@ export class NavigationService {
   back(): void {
     this.history.pop()
     if (this.history.length > 0) {
-      this.location.back()
+      this.router.navigateByUrl('/')
+      // this.location.back()
     } else {
       this.router.navigateByUrl('/')
     }

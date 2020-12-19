@@ -35,7 +35,16 @@ export class EventManagerService {
     this.uiService.closeProject();
   }
   public setActiveProject(project: Project) {
-    this.dataService.setActiveProject(project);
+
+    if (project !== undefined) {
+      this.dataService.setActiveProject(project);
+      this.uiService.openProject();
+      this.d3Service.openProjectIfNotSet(project.id);
+    } else {
+      this.d3Service.closeProjectIfOpen();
+      this.uiService.closeProject();
+    }
+
   }
 
   public updatePopupPosition(event) {
@@ -45,6 +54,6 @@ export class EventManagerService {
   public goBack() {
     this.navigate.back();
     this.uiService.closeProject();
-    this.d3Service.closeProject(this.d3Service.activeItemIndex);
+   // this.d3Service.closeProject(this.d3Service.activeItemIndex);
   }
 }

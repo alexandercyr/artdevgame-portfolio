@@ -24,7 +24,7 @@ export class D3Service {
   n = 3;
 
   selectedIndex = 0;
-  activeItemIndex = 0;
+  activeItemIndex;
   activeItemId = '30-clean';
 
   focused = false;
@@ -191,6 +191,7 @@ export class D3Service {
           .on( 'click', function (d) {
             console.log(d);
             const i = parseInt(d.target.id.slice(6), 10);
+            self.selectedIndex = i;
             if (!self.focused) {
               self.focused = !self.focused;
 
@@ -198,7 +199,6 @@ export class D3Service {
               self.openProject(i);
 
             }
-            self.selectedIndex = i;
            })
 
 
@@ -218,8 +218,6 @@ export class D3Service {
           const xPos = x;
           const yPos = y;
 
-
-
           for (const d of self.nodes) {
             d.r = self.calculateCircleRadius(d, xPos, yPos);
           }
@@ -228,62 +226,6 @@ export class D3Service {
         }
 
       }
-
-      // function openProject(selected) {
-
-      //   self.router.navigate([data.projects[self.projectIds[selected]].id])
-      //   self.svg
-      //     .attr("height", 2 * window.innerHeight)
-
-      //   console.log(self.node);
-      //   self.node.transition()
-      //   .attr("transform", d => {
-      //     if (d.index === selected) {
-      //       return "translate(" + window.innerWidth * 2 / 3 + ", " + window.innerHeight * 2 / 3 + ")" ;
-      //     }
-
-      //     return "translate(" + d.x + ", " + d.y + ")";
-      //   });
-
-      //   const radius = self.calculateFocusedCircleRadius();
-      //   self.node.select(`#image-${selected}-sml`).transition()
-      //   .attr("x", -radius)
-      //   .attr("y", -radius)
-      //   .attr("opacity", 0)
-      //   .attr("width", radius * 2)
-      //   .attr("height", radius * 2)
-      //   .duration(self.transitionDuration);
-
-      //   setTimeout(() => {
-      //     node.select(`#image-${selected}-sml`)
-      //     .attr("display", "none");
-      //   }, self.transitionDuration)
-
-      //   node.select(`#image-${selected}`).transition()
-      //   .attr("x", -radius)
-      //   .attr("y", -radius)
-      //   .attr("opacity", 1)
-      //   .attr("display", "block")
-
-      //   .attr("width", radius * 2)
-      //   .attr("height", radius * 2)
-      //   .duration(self.transitionDuration);
-
-
-      //     node.selectAll("circle").transition()
-
-      //     .attr("r", d => {
-      //       if (d.index === selected) {
-      //         return radius;
-      //       }
-      //       return 0;
-      //     }).duration(self.transitionDuration);
-      //   // for (const d of nodes) {
-      //   //   d.r = 0;
-      //   // }
-      //   self.simulation.force("collide").initialize(self.nodes);
-      // }
-
 
   }
 
@@ -331,17 +273,14 @@ export class D3Service {
     .duration(this.transitionDuration);
 
 
-      this.node.selectAll("circle").transition()
-
+    this.node.selectAll("circle").transition()
       .attr("r", d => {
         if (d.index === selected) {
           return radius;
         }
         return 0;
       }).duration(this.transitionDuration);
-    // for (const d of nodes) {
-    //   d.r = 0;
-    // }
+
     this.simulation.force("collide").initialize(this.nodes);
   }
 
@@ -383,8 +322,28 @@ export class D3Service {
     this.simulation.force("collide").initialize(this.nodes);
 
     setTimeout(() => {
-      this.focused = !this.focused;
+      this.focused = false;
     }, this.transitionDuration);
+  }
+  openProjectIfNotSet(projectId) {
+    if (this.activeItemIndex === undefined) {
+      setTimeout(() => {
+        const i = this.projectIds.indexOf(projectId);
+        this.selectedIndex = i;
+        this.activeItemIndex = i;
+        this.focused = true;
+        this.dataService.setActiveColor(this.filters[i % (this.n)]);
+
+      this.openProject(i);
+      }, 500);
+
+
+    }
+  }
+  closeProjectIfOpen() {
+    if (this.focused) {
+      this.closeProject(this.activeItemIndex)
+    }
   }
 
 
