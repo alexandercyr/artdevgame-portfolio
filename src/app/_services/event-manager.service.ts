@@ -11,12 +11,16 @@ import { UiService } from './ui.service';
 export class EventManagerService {
 
   d3Service: D3Service;
+  dataService: DataService;
 
-  constructor(private uiService: UiService, private dataService: DataService, private navigate: NavigationService) { }
+  constructor(private uiService: UiService, private navigate: NavigationService) { }
 
   // Set manually to prevent circular dependency
   public setD3Service(d3: D3Service) {
     this.d3Service = d3;
+  }
+  public setDataService(data: DataService) {
+    this.dataService = data;
   }
 
   public projectHoverEnter() {
@@ -37,14 +41,14 @@ export class EventManagerService {
   public setActiveProject(project: Project) {
 
     if (project !== undefined) {
-      this.dataService.setActiveProject(project);
-     // this.uiService.openProject();
       this.d3Service.openProjectIfNotSet(project.id);
+      this.dataService.setActiveProject(project);
+
+     // this.uiService.openProject();
     } else {
       this.d3Service.closeProjectIfOpen();
       this.uiService.closeProject();
     }
-
   }
 
   public updatePopupPosition(event) {
@@ -55,5 +59,15 @@ export class EventManagerService {
     this.navigate.back();
     this.uiService.closeProject();
    // this.d3Service.closeProject(this.d3Service.activeItemIndex);
+  }
+
+  public navigateToProject(projectId) {
+   // this.d3Service.closeProjectIfOpen();
+    // this.closeProject();
+    this.uiService.isFocused = false;
+    this.dataService.setActiveItemIndex(undefined);
+    this.setActiveProject(this.dataService.projects[projectId]);
+    this.uiService.isFocused = true;
+
   }
 }

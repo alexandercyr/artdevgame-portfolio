@@ -6,6 +6,7 @@ import { DataService } from '../_services/data.service';
 import { D3Service } from '../_services/d3.service';
 import { UiService } from '../_services/ui.service';
 import { ActivatedRoute } from '@angular/router';
+import { EventManagerService } from '../_services/event-manager.service';
 
 
 @Component({
@@ -40,7 +41,7 @@ export class MainComponent implements AfterContentInit, OnInit {
 
   path;
 
-  constructor(public dataService: DataService, private d3Service: D3Service, public uiService: UiService, private route: ActivatedRoute) { }
+  constructor(private eventManager: EventManagerService, public dataService: DataService, private d3Service: D3Service, public uiService: UiService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.width = window.innerWidth;

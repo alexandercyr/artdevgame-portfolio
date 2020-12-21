@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import * as d3 from 'd3';
 import * as data from '../../assets/data/data.json';
+import { Color } from '../_models/color.model';
 import { DataService } from './data.service';
 import { EventManagerService } from './event-manager.service';
 @Injectable({
@@ -16,7 +17,6 @@ export class D3Service {
   node;
   svg;
 
-  projectIds;
   projects;
 
   width = 960;
@@ -24,7 +24,6 @@ export class D3Service {
   n = 3;
 
   selectedIndex = 0;
-  activeItemIndex;
   activeItemId = '30-clean';
 
   focused = false;
@@ -58,7 +57,7 @@ export class D3Service {
   constructor(private router: Router, private ngZone: NgZone, private eventManager: EventManagerService, private dataService: DataService) {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
-    this.projectIds = Object.keys(data.projects);
+
     this.projects = data.projects;
 
     // Set manually to prevent circular dependency
@@ -73,12 +72,12 @@ export class D3Service {
     const k = this.width / 100;
     const r = d3.randomUniform(k, k * 4);
 
-    return Array.from({length: this.projectIds.length}, (_, i) => {
+    return Array.from({length: this.dataService.projectIds.length}, (_, i) => {
 
       const radius = r();
       var img = new Image(100, 100);
       img.src = '/assets/images/phone.jpg';
-      return {id: i, r: radius, startingSize: radius, group: (i % (this.n)), img: data.projects[this.projectIds[i]].imgUrl}
+      return {id: i, r: radius, startingSize: radius, group: (i % (this.n)), img: data.projects[this.dataService.projectIds[i]].imgUrl}
     });
   }
 
@@ -231,7 +230,7 @@ export class D3Service {
 
   openProject(selected) {
 
-    this.router.navigate([data.projects[this.projectIds[selected]].id])
+    this.router.navigate([data.projects[this.dataService.projectIds[selected]].id])
     this.svg
       .attr("height", 2 * window.innerHeight)
 
@@ -326,16 +325,19 @@ export class D3Service {
     }, this.transitionDuration);
   }
   openProjectIfNotSet(projectId) {
-    if (this.activeItemIndex === undefined) {
+    if (this.dataService.activeIndex === undefined) {
+      const i = this.dataService.projectIds.indexOf(projectId);
+      this.dataService.setActiveColor(this.filters[i % (this.n)]);
+
       setTimeout(() => {
-        const i = this.projectIds.indexOf(projectId);
+        console.log(i);
         this.selectedIndex = i;
-        this.activeItemIndex = i;
         this.focused = true;
-        this.dataService.setActiveColor(this.filters[i % (this.n)]);
+
+        this.dataService.setActiveItemIndex(i);
         this.eventManager.openProject();
 
-      this.openProject(i);
+        this.openProject(i);
       }, 500);
 
 
@@ -343,7 +345,7 @@ export class D3Service {
   }
   closeProjectIfOpen() {
     if (this.focused) {
-      this.closeProject(this.activeItemIndex)
+      this.closeProject(this.dataService.activeIndex)
     }
   }
 
@@ -396,15 +398,26 @@ export class D3Service {
     if (el.id !== null && el.id.indexOf('image') > -1) {
       console.log(el.id);
       const index = parseInt(el.id.slice(6), 10);
-      this.activeItemId = this.projectIds[index];
-      console.log(this.activeItemId);
 
-      this.activeItemIndex = parseInt(el.id.slice(6), 10);
-      this.dataService.setActiveProject(this.projects[this.activeItemId]);
-      this.dataService.setActiveColor(this.filters[index % (this.n)]);
+      if (index !== this.dataService.activeIndex) {
+        const activeItemId = this.dataService.projectIds[index];
 
-      this.eventManager.projectHoverEnter();
-        } else {
+        this.dataService.setActiveItemIndex(index);
+        this.dataService.setActiveProject(this.dataService.projects[activeItemId]);
+
+        // Testing color mixing
+        ///////////////////////
+        // const col1 = this.filters[index % (this.n)];
+        // const col2 = this.filters[(index + 1) % (this.n)]
+        // const color = new Color(col1.r, col1.b, col1.g)
+        // const mixedColor = color.colorMixer([col2.r * 255, col2.g * 255, col2.b * 255], 0.7)
+        // this.dataService.setActiveColor({r: mixedColor[0] / 255, g: mixedColor[1]/ 255, b: mixedColor[2] / 255});
+
+        this.dataService.setActiveColor(this.filters[index % (this.n)]);
+
+        this.eventManager.projectHoverEnter();
+      }
+    } else {
       this.eventManager.projectHoverExit();
 
     }

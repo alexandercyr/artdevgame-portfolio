@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as data from '../../assets/data/data.json';
+import { DataService } from '../_services/data.service';
 import { EventManagerService } from '../_services/event-manager.service';
 
 
@@ -14,10 +15,11 @@ export class ProjectComponent implements OnInit {
   path: string;
   project;
 
-  constructor(private router: Router, private route: ActivatedRoute, private eventManager: EventManagerService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private eventManager: EventManagerService, private dataService: DataService) { }
 
   ngOnInit(): void {
     this.path = this.router.url;
+    console.log(this.dataService.activeColor);
 
     const sub = this.route.params.subscribe(params => {
       this.path = params.id;
@@ -26,7 +28,6 @@ export class ProjectComponent implements OnInit {
       if (this.path !== '' || this.path !== undefined) {
         this.eventManager.setActiveProject(this.project);
       }
-      console.log(this.project);
     });
   }
 

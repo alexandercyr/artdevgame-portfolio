@@ -10,6 +10,12 @@
       <p class="title">{{dataService.activeProject.title}}</p>
     </div>
     <!-- <app-tags class="tags" [visible]="uiService.isFocused && uiService.isHovering" [project]="dataService.activeProject"></app-tags> -->
+
+    <div class="direction-buttons" *ngIf="uiService.isFocused">
+      <app-arrow-button (onButtonClick)="navigateButtonClick(dataService.previousProject.id)" [label]="dataService.previousProject.title"></app-arrow-button>
+      <app-arrow-button (onButtonClick)="navigateButtonClick(dataService.nextProject.id)" [label]="dataService.nextProject.title" direction="right"></app-arrow-button>
+
+    </div>
   </div>
 
 </div>

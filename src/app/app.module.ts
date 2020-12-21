@@ -17,6 +17,7 @@ import { BackButtonComponent } from './back-button/back-button.component';
 import { IconComponent } from './icon/icon.component';
 import { HttpClientModule } from '@angular/common/http';
 import {ButtonModule} from 'primeng/button';
+import { ArrowButtonComponent } from './arrow-button/arrow-button.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {ButtonModule} from 'primeng/button';
     FeatureTextComponent,
     PhotoGridComponent,
     BackButtonComponent,
-    IconComponent
+    IconComponent,
+    ArrowButtonComponent
   ],
   imports: [
     BrowserModule,
