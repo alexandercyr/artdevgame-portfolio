@@ -4,7 +4,8 @@ import { Router, NavigationEnd } from '@angular/router'
 
 @Injectable({ providedIn: 'root' })
 export class NavigationService {
-  private history: string[] = []
+  private history: string[] = [];
+  count = 0;
 
   constructor(private router: Router, private location: Location) {
     this.router.events.subscribe((event) => {
@@ -22,5 +23,10 @@ export class NavigationService {
     } else {
       this.router.navigateByUrl('/')
     }
+  }
+
+  public isFirstLoad() {
+    this.count++;
+    return this.history.length === 1 && this.count <= 1;
   }
 }

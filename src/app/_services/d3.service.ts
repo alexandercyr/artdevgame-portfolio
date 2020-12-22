@@ -7,6 +7,7 @@ import * as data from '../../assets/data/data.json';
 import { Color } from '../_models/color.model';
 import { DataService } from './data.service';
 import { EventManagerService } from './event-manager.service';
+import { NavigationService } from './navigation.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,6 +27,7 @@ export class D3Service {
   selectedIndex = 0;
   activeItemId = '30-clean';
 
+  loading = false;
   focused = false;
   transitionDuration = 1000;
 
@@ -54,7 +56,7 @@ export class D3Service {
 
   colors =  d3.scaleOrdinal(d3.range(this.n), d3.schemeTableau10);
 
-  constructor(private router: Router, private ngZone: NgZone, private eventManager: EventManagerService, private dataService: DataService) {
+  constructor(private router: Router, private ngZone: NgZone, private eventManager: EventManagerService, private dataService: DataService, private navigate: NavigationService) {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
 
@@ -283,7 +285,7 @@ export class D3Service {
     this.simulation.force("collide").initialize(this.nodes);
   }
 
-  closeProject(selected) {
+  closeProject(selected, isNavigating) {
 
     this.node.transition()
     .attr("transform", d => {
@@ -318,34 +320,58 @@ export class D3Service {
       .attr("display", "none");
     }, this.transitionDuration)
 
+    if (isNavigating) {
+      this.focused = false;
+    } else {
+      setTimeout(() => {
+        this.focused = false;
+      }, this.transitionDuration);
+    }
+
+
     this.simulation.force("collide").initialize(this.nodes);
 
-    setTimeout(() => {
-      this.focused = false;
-    }, this.transitionDuration);
+
   }
   openProjectIfNotSet(projectId) {
     if (this.dataService.activeIndex === undefined) {
       const i = this.dataService.projectIds.indexOf(projectId);
       this.dataService.setActiveColor(this.filters[i % (this.n)]);
+      this.loading = true;
 
-      setTimeout(() => {
-        console.log(i);
-        this.selectedIndex = i;
-        this.focused = true;
+      if (this.navigate.isFirstLoad()) {
+        setTimeout(() => {
+          console.log(i);
+          this.selectedIndex = i;
+          this.focused = true;
+          this.loading = false;
 
-        this.dataService.setActiveItemIndex(i);
-        this.eventManager.openProject();
 
-        this.openProject(i);
-      }, 500);
+          this.dataService.setActiveItemIndex(i);
+          this.eventManager.openProject();
+
+          this.openProject(i);
+        }, 500);
+      } else {
+          console.log(i);
+          this.selectedIndex = i;
+          this.focused = true;
+          this.loading = false;
+
+          this.dataService.setActiveItemIndex(i);
+          this.eventManager.openProject();
+
+          this.openProject(i);
+      }
+
+
 
 
     }
   }
-  closeProjectIfOpen() {
+  closeProjectIfOpen(navigating: boolean) {
     if (this.focused) {
-      this.closeProject(this.dataService.activeIndex)
+      this.closeProject(this.dataService.activeIndex, navigating)
     }
   }
 
@@ -395,7 +421,7 @@ export class D3Service {
   }
 
   checkIfHovered(el: Element) {
-    if (el.id !== null && el.id.indexOf('image') > -1) {
+    if (!this.loading && el.id !== null && el.id.indexOf('image') > -1 ) {
       console.log(el.id);
       const index = parseInt(el.id.slice(6), 10);
 

@@ -56,8 +56,6 @@ export class ArrowButtonComponent implements OnInit {
   }
 
   handleOnBlur(e) {
-    console.log('BLURRRRRRR')
     e.target.style.setProperty('box-shadow', 'unset' );
-
   }
 }
