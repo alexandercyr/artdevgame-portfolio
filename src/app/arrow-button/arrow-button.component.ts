@@ -31,8 +31,6 @@ export class ArrowButtonComponent implements OnInit {
     const self = this;
     const sub = this.route.params.subscribe(params => {
       this.refreshUI();
-      this.target.style.setProperty('box-shadow', '0 0 0 0.2rem ' + this.dataService.activeColor.getRGBAString(0.3) );
-
     });
 
 

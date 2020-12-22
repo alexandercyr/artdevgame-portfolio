@@ -257,10 +257,11 @@ export class D3Service {
     .attr("height", radius * 2)
     .duration(this.transitionDuration);
 
-    setTimeout(() => {
-      this.node.select(`#image-${selected}-sml`)
-      .attr("display", "none");
-    }, this.transitionDuration)
+    // Disabling appears to stop disappearing projects after quick changing
+    // setTimeout(() => {
+    //   this.node.select(`#image-${selected}-sml`)
+    //   .attr("display", "none");
+    // }, this.transitionDuration)
 
     this.node.select(`#image-${selected}`).transition()
     .attr("x", -radius)

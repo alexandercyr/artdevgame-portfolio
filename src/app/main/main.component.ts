@@ -53,7 +53,7 @@ export class MainComponent implements AfterContentInit, OnInit {
       console.log('main: ' + this.path);
 
       if (this.path === '') {
-        this.d3Service.closeProject(this.d3Service.activeItemId);
+        this.d3Service.closeProject(this.d3Service.activeItemId, false);
       }
     });
   }

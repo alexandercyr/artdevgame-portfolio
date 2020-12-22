@@ -46,7 +46,7 @@ export class EventManagerService {
 
      // this.uiService.openProject();
     } else {
-      this.d3Service.closeProjectIfOpen();
+      this.d3Service.closeProjectIfOpen(false);
       this.uiService.closeProject();
     }
   }

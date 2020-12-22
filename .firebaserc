@@ -1,12 +1,12 @@
 {
   "projects": {
-    "default": "artgamedev-portfolio"
+    "default": "alexcyr"
   },
   "targets": {
-    "artgamedev-portfolio": {
+    "alexcyr": {
       "hosting": {
         "portfolio2020": [
-          "artgamedev-portfolio"
+          "alexcyr"
         ]
       }
     }
