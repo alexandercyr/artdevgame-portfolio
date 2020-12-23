@@ -21,10 +21,32 @@ export class DataService {
   nextProject: Project;
   filterState: FilterState;
 
+  colors = [
+    //blue
+    {
+      r: 0,
+      g: 0,
+      b: 1
+    },
+    //orange
+    {
+      r: 0.969,
+      g: 0.576,
+      b: 0.118
+    },
+    //pink
+    {
+      r: 0.929,
+      g: 0.118,
+      b: 0.475
+    }];
+
   constructor(private eventManager: EventManagerService) {
     this.projectIds = Object.keys(data.projects);
     this.eventManager.setDataService(this);
     this.filterState = new FilterState();
+    this.activeColor = new Color(this.colors[0].r, this.colors[0].g, this.colors[0].b);
+
   }
 
   public setActiveProject(project: Project) {

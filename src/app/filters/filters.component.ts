@@ -10,15 +10,16 @@ import { EventManagerService } from '../_services/event-manager.service';
 })
 export class FiltersComponent implements OnInit {
 
-  list;
+  target;
+  list: String[];
   typeList: SelectItem[] = [];
   mediaList: SelectItem[] = [];
   techList: SelectItem[] = [];
 
-
   constructor(public dataService: DataService, private eventManager: EventManagerService) { }
 
   ngOnInit(): void {
+
     this.list = this.dataService.projectIds.map(id => {
       return this.dataService.projects[id];
     })
@@ -26,9 +27,29 @@ export class FiltersComponent implements OnInit {
     this.mediaList = this.findUniqueItems('media');
     this.techList = this.findUniqueItems('tech');
 
-  }
+    setTimeout(() => {
+      document.querySelectorAll('.p-multiselect.p-component').forEach(item => {
+        item.addEventListener('mouseenter', event => {
+          console.log('mouseover');
 
-  findUniqueItems(key: string) {
+          event.target.style.setProperty('border-color',  this.dataService.activeColor.getRGBString() );
+        })
+        item.addEventListener('mouseleave', event => {
+          console.log('mouseout');
+          event.target.style.setProperty('border-color',  "#333" );
+        })
+        // item.addEventListener('mouseexit', event => {
+        //   console.log(event);
+        //   event.target.style.setProperty('border-color',  "#333");
+
+        // })
+      })
+      }, 10);
+
+
+    }
+
+  findUniqueItems(key: string): SelectItem[] {
     const array = [];
 
     const stringArray = [];
@@ -48,7 +69,7 @@ export class FiltersComponent implements OnInit {
 		})
 
 		array.push(...dropdownItems);
-		array.sort((a, b) => a.label < b.label ? -1 : a.label > b.label ? 1 : 0);
+	///	array.sort((a, b) => a.label < b.label ? -1 : a.label > b.label ? 1 : 0);
 
 		return array;
   }
@@ -58,4 +79,36 @@ export class FiltersComponent implements OnInit {
     this.eventManager.updateFilter();
   }
 
+  handleOnFocus(e) {
+    console.log(e.originalEvent);
+    setTimeout(() => {
+      this.target = document.querySelector('.p-focus');
+
+      console.log(this.target);
+      this.target.style.setProperty('box-shadow', '0 0 0 0.2rem ' + this.dataService.activeColor.getRGBAString(0.3) );
+
+    }, 0)
+   }
+
+  handleOnBlur(e) {
+    this.target.style.setProperty('box-shadow', 'unset' );
+  }
+
+  handleMouseOver(e) {
+    setTimeout(() => {
+      this.target = document.querySelector('.p-focus');
+
+      console.log(e.originalElement.target);
+      e.originalElement.target.style.setProperty('border-color',  this.dataService.activeColor.getRGBAString(0.3) );
+
+    }, 0)
+  }
+
+  showingPanel() {
+    document.querySelectorAll('.p-checkbox .p-checkbox-box.p-highlight').forEach(item => {
+      // item.style.setProperty('border-color',  this.dataService.activeColor.getRGBString());
+      // item.style.setProperty('background',  this.dataService.activeColor.getRGBString());
+
+    })
+  }
 }
