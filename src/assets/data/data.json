@@ -2,7 +2,7 @@
   "projects": {
     "30-clean": {
       "id": "30-clean",
-      "type": ["design", "front-end"],
+      "type": ["design", "development"],
       "media": ["web"],
       "tech": ["ruby", "sketch"],
       "title": "The 30 Clean",

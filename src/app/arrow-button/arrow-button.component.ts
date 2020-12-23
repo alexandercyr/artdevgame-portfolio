@@ -32,8 +32,6 @@ export class ArrowButtonComponent implements OnInit {
     const sub = this.route.params.subscribe(params => {
       this.refreshUI();
     });
-
-
   }
 
   refreshUI() {

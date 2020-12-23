@@ -29,6 +29,8 @@ export class EventManagerService {
 
   public projectHoverExit() {
     this.uiService.handleHover(false);
+    this.dataService.setActiveItemIndex(undefined);
+
   }
 
   public openProject(){
@@ -68,6 +70,10 @@ export class EventManagerService {
     this.dataService.setActiveItemIndex(undefined);
     this.setActiveProject(this.dataService.projects[projectId]);
     this.uiService.isFocused = true;
+  }
 
+  public updateFilter() {
+    this.dataService.filterProjects();
+    this.d3Service.resetVisualization();
   }
 }

@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { NavComponent } from './nav/nav.component';
 import { ColorFiltersComponent } from './color-filters/color-filters.component';
 import { ProjectComponent } from './project/project.component';
 import { HeaderUiComponent } from './header-ui/header-ui.component';
@@ -17,13 +16,20 @@ import { BackButtonComponent } from './back-button/back-button.component';
 import { IconComponent } from './icon/icon.component';
 import { HttpClientModule } from '@angular/common/http';
 import {ButtonModule} from 'primeng/button';
+import {MultiSelectModule} from 'primeng/multiselect';
+import { FormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
+
 import { ArrowButtonComponent } from './arrow-button/arrow-button.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FiltersComponent } from './filters/filters.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    NavComponent,
     ColorFiltersComponent,
     ProjectComponent,
     HeaderUiComponent,
@@ -34,13 +40,18 @@ import { ArrowButtonComponent } from './arrow-button/arrow-button.component';
     PhotoGridComponent,
     BackButtonComponent,
     IconComponent,
-    ArrowButtonComponent
+    ArrowButtonComponent,
+    NavbarComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ButtonModule
+    ButtonModule,
+    MultiSelectModule,
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

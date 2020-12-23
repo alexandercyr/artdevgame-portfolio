@@ -84,7 +84,6 @@ export class D3Service {
   }
 
   setupVisualization() {
-
     const objs: any[] = this.data();
     this.nodes = objs.map(Object.create);
 
@@ -448,5 +447,10 @@ export class D3Service {
       this.eventManager.projectHoverExit();
 
     }
+  }
+
+  resetVisualization() {
+    d3.selectAll("svg#chart > *").remove()
+    this.setupVisualization();
   }
 }

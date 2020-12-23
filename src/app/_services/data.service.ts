@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as data from '../../assets/data/data.json';
 import { Color } from '../_models/color.model';
+import { FilterState } from '../_models/filter-state.model';
 import { Project } from '../_models/project.model';
 import { EventManagerService } from './event-manager.service';
 
@@ -18,10 +19,12 @@ export class DataService {
   activeIndex;
   previousProject: Project;
   nextProject: Project;
+  filterState: FilterState;
 
   constructor(private eventManager: EventManagerService) {
     this.projectIds = Object.keys(data.projects);
     this.eventManager.setDataService(this);
+    this.filterState = new FilterState();
   }
 
   public setActiveProject(project: Project) {
@@ -55,4 +58,27 @@ export class DataService {
     let prevIndex = this.activeIndex - 1 < 0 ? this.projectIds.length - 1 : this.activeIndex - 1;
     this.previousProject = this.projects[this.projectIds[prevIndex]];
   }
+
+  public filterProjects() {
+    const allProjectIds = Object.keys(data.projects);
+
+    const filteredIds = allProjectIds.filter(projectId => {
+      return this.projectHasFilter(projectId, 'type') &&
+      this.projectHasFilter(projectId, 'media') &&
+      this.projectHasFilter(projectId, 'tech');
+    })
+
+    this.projectIds = filteredIds;
+  }
+
+  projectHasFilter(projectId: string, key: string) {
+    // return true if all filters unselected OR selected filter is found in particular project
+    return this.filterState[key].length === 0 ||
+    this.filterState[key].filter(filter => {
+      return this.projects[projectId][key].indexOf(filter) >= 0;
+    }).length > 0;
+  }
+
+
+
 }
