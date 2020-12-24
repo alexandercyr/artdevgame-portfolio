@@ -36,19 +36,19 @@
         {
           "type": "PHOTOGRID",
           "content": {
-            "vertical": true,
+            "vertical": false,
             "images":[
               {
-                "label": "Interesting image",
-                "src": "/assets/images/mocks/web-mock2.jpg"
+                "label": "Dashboard",
+                "src": "/assets/images/projects/30-clean/30clean_dashboard.jpg"
               },
               {
-                "label": "Interesting image 2",
-                "src": "/assets/images/mocks/web-mock3.jpg"
+                "label": "Group Feed",
+                "src": "/assets/images/projects/30-clean/30clean_feed.jpg"
               },
               {
-                "label": "Interesting image 3",
-                "src": "/assets/images/mocks/web-mock4.jpg"
+                "label": "Onboarding",
+                "src": "/assets/images/projects/30-clean/30clean_login.jpg"
               }
             ]
           }

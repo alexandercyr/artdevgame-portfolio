@@ -25,6 +25,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ArrowButtonComponent } from './arrow-button/arrow-button.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FiltersComponent } from './filters/filters.component';
+import { UiImageComponent } from './project/components/ui-image/ui-image.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { FiltersComponent } from './filters/filters.component';
     IconComponent,
     ArrowButtonComponent,
     NavbarComponent,
-    FiltersComponent
+    FiltersComponent,
+    UiImageComponent
   ],
   imports: [
     BrowserModule,

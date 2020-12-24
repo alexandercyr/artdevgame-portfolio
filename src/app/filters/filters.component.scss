@@ -24,4 +24,16 @@
   .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
     background-color: #f0f0f0
   }
+
+  .p-checkbox .p-checkbox-box.p-highlight {
+    border-color: #000;
+    background: #000;
+  }
+  .p-checkbox .p-checkbox-box.p-highlight:hover {
+    border-color: #000;
+    background: #000;
+  }
+  .p-checkbox .p-checkbox-box:hover  {
+    border-color: #000;
+  }
 }

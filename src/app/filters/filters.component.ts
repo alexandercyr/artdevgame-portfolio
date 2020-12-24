@@ -30,13 +30,14 @@ export class FiltersComponent implements OnInit {
     setTimeout(() => {
       document.querySelectorAll('.p-multiselect.p-component').forEach(item => {
         item.addEventListener('mouseenter', event => {
-          console.log('mouseover');
+          const target = event.target as HTMLTextAreaElement;
 
-          event.target.style.setProperty('border-color',  this.dataService.activeColor.getRGBString() );
+          target.style.setProperty('border-color',  this.dataService.activeColor.getRGBString() );
         })
         item.addEventListener('mouseleave', event => {
-          console.log('mouseout');
-          event.target.style.setProperty('border-color',  "#333" );
+          const target = event.target as HTMLTextAreaElement;
+
+          target.style.setProperty('border-color',  "#333" );
         })
         // item.addEventListener('mouseexit', event => {
         //   console.log(event);
@@ -84,7 +85,6 @@ export class FiltersComponent implements OnInit {
     setTimeout(() => {
       this.target = document.querySelector('.p-focus');
 
-      console.log(this.target);
       this.target.style.setProperty('box-shadow', '0 0 0 0.2rem ' + this.dataService.activeColor.getRGBAString(0.3) );
 
     }, 0)
@@ -98,7 +98,6 @@ export class FiltersComponent implements OnInit {
     setTimeout(() => {
       this.target = document.querySelector('.p-focus');
 
-      console.log(e.originalElement.target);
       e.originalElement.target.style.setProperty('border-color',  this.dataService.activeColor.getRGBAString(0.3) );
 
     }, 0)
