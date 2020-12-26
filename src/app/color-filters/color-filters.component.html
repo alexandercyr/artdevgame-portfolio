@@ -2,9 +2,9 @@
   <filter [id]="filter.r.toString() + filter.g.toString() + filter.b.toString()">
     <feColorMatrix type="matrix" result="grayscale" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0" />
     <feComponentTransfer color-interpolation-filters="sRGB" result="color_blend">
-      <feFuncR type="table" [attr.tableValues]="filter.r + ' 1'"></feFuncR>
-      <feFuncG type="table" [attr.tableValues]="filter.g + ' 1'"></feFuncG>
-      <feFuncB type="table" [attr.tableValues]="filter.b + ' 1'"></feFuncB>
+      <feFuncR type="table" [attr.tableValues]="dataService.isDarkMode ? '0 ' + filter.r: filter.r + ' 1'"></feFuncR>
+      <feFuncG type="table" [attr.tableValues]="dataService.isDarkMode ? '0 ' + filter.g: filter.g + ' 1'"></feFuncG>
+      <feFuncB type="table" [attr.tableValues]="dataService.isDarkMode ? '0 ' + filter.b: filter.b + ' 1'"></feFuncB>
       <feFuncA type="table" tableValues="0 1"></feFuncA>
     </feComponentTransfer>
   </filter>

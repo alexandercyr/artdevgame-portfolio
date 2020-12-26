@@ -8,6 +8,7 @@ import { Color } from '../_models/color.model';
 import { DataService } from './data.service';
 import { EventManagerService } from './event-manager.service';
 import { NavigationService } from './navigation.service';
+import { UiService } from './ui.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -56,7 +57,7 @@ export class D3Service {
 
   colors =  d3.scaleOrdinal(d3.range(this.n), d3.schemeTableau10);
 
-  constructor(private router: Router, private ngZone: NgZone, private eventManager: EventManagerService, private dataService: DataService, private navigate: NavigationService) {
+  constructor(private router: Router, private ngZone: NgZone, private eventManager: EventManagerService, private dataService: DataService, private navigate: NavigationService, private uiService: UiService) {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
 
@@ -450,7 +451,9 @@ export class D3Service {
   }
 
   resetVisualization() {
-    d3.selectAll("svg#chart > *").remove()
-    this.setupVisualization();
+    if (!this.uiService.isFocused) {
+      d3.selectAll("svg#chart > *").remove()
+      this.setupVisualization();
+    }
   }
 }

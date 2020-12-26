@@ -28,3 +28,12 @@
   font-weight: 100;
   font-family: $font-sans;
 }
+
+:host-context(.dark) {
+  .title {
+    color: #999;
+  }
+  .text {
+    color: #757575;
+  }
+}

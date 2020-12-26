@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EventManagerService } from '../_services/event-manager.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  isDarkMode = false;
+
+  constructor(private eventManager: EventManagerService) { }
 
   ngOnInit(): void {
   }
 
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+    this.eventManager.toggleDarkMode();
+  }
+
+  toggleColorPicker() {
+
+  }
 }

@@ -39,6 +39,8 @@ export class EventManagerService {
 
   public closeProject() {
     this.uiService.closeProject();
+    this.setActiveProject(undefined);
+
   }
   public setActiveProject(project: Project) {
 
@@ -75,5 +77,9 @@ export class EventManagerService {
   public updateFilter() {
     this.dataService.filterProjects();
     this.d3Service.resetVisualization();
+  }
+
+  public toggleDarkMode() {
+    this.dataService.toggleDarkMode();
   }
 }

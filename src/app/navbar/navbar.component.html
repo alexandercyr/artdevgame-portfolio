@@ -1,5 +1,9 @@
 <div class="navbar">
   <span class="site-name">alexander cyr</span>
   <app-filters></app-filters>
+  <div>
+    <button (click)="toggleDarkMode()">{{isDarkMode ? 'Dark' : 'Light'}}</button>
+    <button (click)="toggleColorPicker()">Color</button>
 
+  </div>
 </div>

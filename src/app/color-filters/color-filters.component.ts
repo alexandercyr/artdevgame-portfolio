@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DataService } from '../_services/data.service';
 
 @Component({
   selector: 'app-color-filters',
@@ -10,7 +11,7 @@ export class ColorFiltersComponent implements OnInit {
   @Input()
   filters = [];
 
-  constructor() { }
+  constructor(public dataService: DataService) { }
 
   ngOnInit(): void {
   }

@@ -86,3 +86,8 @@ img {
 
 
 }
+:host-context(.dark) {
+  .image-container {
+    background-color: #444;
+  }
+}

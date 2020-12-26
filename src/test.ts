@@ -2,7 +2,8 @@
 
 import 'zone.js/dist/zone-testing';
 import { getTestBed } from '@angular/core/testing';
-import {
+i
+mport {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';

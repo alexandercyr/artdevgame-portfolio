@@ -20,6 +20,7 @@ export class DataService {
   previousProject: Project;
   nextProject: Project;
   filterState: FilterState;
+  isDarkMode = false;
 
   colors = [
     //blue
@@ -101,6 +102,14 @@ export class DataService {
     }).length > 0;
   }
 
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+    if (this.isDarkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
 
+    }
+  }
 
 }
