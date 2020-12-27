@@ -1,0 +1,67 @@
+@import '../../assets/styles/variables.scss';
+
+.multi {
+  position: relative;
+}
+
+.multi-select-clear {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  border: none;
+  border-radius: 15px;
+  height: 30px;
+  width: 30px;
+  background-color: blue;
+  padding: 0;
+  color: white;
+  cursor: pointer;
+  font-family: $font-mono;
+}
+.multi-select-clear:hover span{
+  display: none;
+}
+.multi-select-clear:hover:before{
+  content: 'X';
+}
+
+:host ::ng-deep {
+
+  .p-multiselect {
+    margin: 0 5px;
+    border-radius: 0px;
+    border: 0;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+  }
+
+  .p-multiselect-label {
+    font-family: $font-mono;
+
+  }
+  .p-multiselect-panel {
+    border-radius: 0;
+  }
+  .p-multiselect-item {
+    font-family: $font-mono;
+
+  }
+  .p-multiselect-filter-container {
+    display: none;
+  }
+  .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
+    background-color: #f0f0f0;
+  }
+
+  .p-checkbox .p-checkbox-box.p-highlight {
+    border-color: #000;
+    background: #000;
+  }
+  .p-checkbox .p-checkbox-box.p-highlight:hover {
+    border-color: #000;
+    background: #000;
+  }
+  .p-checkbox .p-checkbox-box:hover  {
+    border-color: #000;
+  }
+}

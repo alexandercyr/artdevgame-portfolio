@@ -26,6 +26,7 @@ import { ArrowButtonComponent } from './arrow-button/arrow-button.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FiltersComponent } from './filters/filters.component';
 import { UiImageComponent } from './project/components/ui-image/ui-image.component';
+import { MultiselectComponent } from './multiselect/multiselect.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { UiImageComponent } from './project/components/ui-image/ui-image.compone
     ArrowButtonComponent,
     NavbarComponent,
     FiltersComponent,
-    UiImageComponent
+    UiImageComponent,
+    MultiselectComponent
   ],
   imports: [
     BrowserModule,

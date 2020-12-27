@@ -31,6 +31,7 @@ export class D3Service {
   loading = false;
   focused = false;
   transitionDuration = 1000;
+  needsResetting = false;
 
   filters = [
     //blue
@@ -319,6 +320,7 @@ export class D3Service {
     setTimeout(() => {
       this.node.select(`#image-${selected}`)
       .attr("display", "none");
+
     }, this.transitionDuration)
 
     if (isNavigating) {
@@ -326,11 +328,19 @@ export class D3Service {
     } else {
       setTimeout(() => {
         this.focused = false;
+
       }, this.transitionDuration);
     }
 
 
     this.simulation.force("collide").initialize(this.nodes);
+
+    if (this.needsResetting) {
+      setTimeout(() => {
+        d3.selectAll("svg#chart > *").remove()
+      this.setupVisualization();
+      },this.transitionDuration)
+    }
 
 
   }
@@ -454,6 +464,10 @@ export class D3Service {
     if (!this.uiService.isFocused) {
       d3.selectAll("svg#chart > *").remove()
       this.setupVisualization();
+      this.needsResetting = false;
+
+    } else {
+      this.needsResetting = true;
     }
   }
 }

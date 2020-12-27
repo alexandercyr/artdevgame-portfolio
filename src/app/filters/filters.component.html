@@ -1,3 +1,10 @@
-<p-multiSelect [options]="typeList" [ngStyle]="{'color': dataService.activeColor.getRGBString() + ' !importatnt'}" [(ngModel)]="dataService.filterState.type" defaultLabel="type" [showHeader]="false" [displaySelectedLabel]="false" (onChange)="handleFilterChanged()" (onFocus)="handleOnFocus($event)" (onBlur)="handleOnBlur($event)"></p-multiSelect>
+<!-- <p-multiSelect [options]="typeList" selectedItemsLabel="{} items selected" [ngStyle]="{'color': dataService.activeColor.getRGBString() + ' !importatnt'}" [(ngModel)]="dataService.filterState.type" defaultLabel="type" [showToggleAll]="true"  [displaySelectedLabel]="false" (onChange)="handleFilterChanged()" (onFocus)="handleOnFocus($event)" (onBlur)="handleOnBlur($event)"></p-multiSelect> -->
+<div class="filters">
+  <app-multiselect [options]="typeList" name="type"></app-multiselect>
+  <app-multiselect [options]="mediaList" name="media"></app-multiselect>
+  <app-multiselect [options]="techList" name="tech"></app-multiselect>
+</div>
+
+<!--
 <p-multiSelect [options]="mediaList" [ngStyle]="{'color': dataService.activeColor.getRGBString() + ' !importatnt'}" [(ngModel)]="dataService.filterState.media" defaultLabel="media" [showHeader]="false" [displaySelectedLabel]="false" (onChange)="handleFilterChanged()" (onFocus)="handleOnFocus($event)" (onBlur)="handleOnBlur($event)"></p-multiSelect>
-<p-multiSelect [options]="techList" [ngStyle]="{'color': dataService.activeColor.getRGBString() + ' !importatnt'}" [(ngModel)]="dataService.filterState.tech" defaultLabel="tech" [showHeader]="false" [displaySelectedLabel]="false" (onChange)="handleFilterChanged()" (onFocus)="handleOnFocus($event)" (onBlur)="handleOnBlur($event)"></p-multiSelect>
+<p-multiSelect [options]="techList" [ngStyle]="{'color': dataService.activeColor.getRGBString() + ' !importatnt'}" [(ngModel)]="dataService.filterState.tech" defaultLabel="tech" [showHeader]="false" [displaySelectedLabel]="false" (onChange)="handleFilterChanged()" (onFocus)="handleOnFocus($event)" (onBlur)="handleOnBlur($event)"></p-multiSelect> -->

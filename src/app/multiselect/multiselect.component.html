@@ -1,0 +1,8 @@
+<div class="multi">
+  <p-multiSelect [options]="options" selectedItemsLabel="{} items selected" [ngStyle]="{'color': dataService.activeColor.getRGBString() + ' !important'}" [(ngModel)]="dataService.filterState[name]" [defaultLabel]="name" [showToggleAll]="true"  [displaySelectedLabel]="false" (onChange)="handleFilterChanged()" (onFocus)="handleOnFocus($event)" (onBlur)="handleOnBlur($event)"></p-multiSelect>
+
+  <button (click)="clearSelections()" *ngIf="dataService.filterState[name].length > 0" class="multi-select-clear" [ngStyle]="{'background-color': dataService.activeColor.getRGBString()}" >
+    <!-- <img src="../../assets/icons/clear-icon-blue.svg" alt="clear" /> -->
+    <span>{{dataService.filterState[name].length}}</span>
+  </button>
+</div>

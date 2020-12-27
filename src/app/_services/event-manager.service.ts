@@ -66,6 +66,7 @@ export class EventManagerService {
   }
 
   public navigateToProject(projectId) {
+
     this.d3Service.closeProjectIfOpen(true);
     // this.closeProject();
     this.uiService.isFocused = false;
