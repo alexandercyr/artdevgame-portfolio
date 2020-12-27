@@ -9,6 +9,7 @@ import { EventManagerService } from '../_services/event-manager.service';
 export class NavbarComponent implements OnInit {
 
   isDarkMode = false;
+  showingColorPicker = false;
 
   constructor(private eventManager: EventManagerService) { }
 
@@ -21,6 +22,6 @@ export class NavbarComponent implements OnInit {
   }
 
   toggleColorPicker() {
-
+    this.showingColorPicker = !this.showingColorPicker;
   }
 }

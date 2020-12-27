@@ -1,0 +1,7 @@
+<div *ngIf="visible" class="color-picker-container">
+  <div class="colors">
+    <div *ngFor="let color of colors; let i = index" class="color">
+      <p-colorPicker [(ngModel)]="dataService.colors[i]" (onChange)="colorChanged()" format="rgb"></p-colorPicker>
+    </div>
+  </div>
+</div>

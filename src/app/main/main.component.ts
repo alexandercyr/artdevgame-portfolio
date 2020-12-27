@@ -19,26 +19,6 @@ export class MainComponent implements AfterContentInit, OnInit {
   width = 960;
   height = 960;
 
-  filters = [
-    //blue
-    {
-      r: 0,
-      g: 0,
-      b: 1
-    },
-    //orange
-    {
-      r: 0.969,
-      g: 0.576,
-      b: 0.118
-    },
-    //pink
-    {
-      r: 0.929,
-      g: 0.118,
-      b: 0.475
-    }];
-
   path;
 
   constructor(private eventManager: EventManagerService, public dataService: DataService, private d3Service: D3Service, public uiService: UiService, private route: ActivatedRoute) { }

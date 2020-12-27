@@ -80,6 +80,10 @@ export class EventManagerService {
     this.d3Service.resetVisualization();
   }
 
+  public resetVisualization() {
+    this.d3Service.resetVisualization();
+  }
+
   public toggleDarkMode() {
     this.dataService.toggleDarkMode();
   }

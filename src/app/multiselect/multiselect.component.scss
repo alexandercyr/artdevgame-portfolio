@@ -6,17 +6,18 @@
 
 .multi-select-clear {
   position: absolute;
-  right: 3px;
-  top: 3px;
+  right: 15px;
+  top: 8px;
   border: none;
-  border-radius: 15px;
-  height: 30px;
-  width: 30px;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
   background-color: blue;
   padding: 0;
   color: white;
   cursor: pointer;
   font-family: $font-mono;
+  line-height: 20px;
 }
 .multi-select-clear:hover span{
   display: none;

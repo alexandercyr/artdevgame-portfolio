@@ -33,25 +33,7 @@ export class D3Service {
   transitionDuration = 1000;
   needsResetting = false;
 
-  filters = [
-    //blue
-    {
-      r: 0,
-      g: 0,
-      b: 1
-    },
-    //orange
-    {
-      r: 0.969,
-      g: 0.576,
-      b: 0.118
-    },
-    //pink
-    {
-      r: 0.929,
-      g: 0.118,
-      b: 0.475
-    }];
+
 
   mouseEvent;
   lastMouseEvent;
@@ -86,8 +68,10 @@ export class D3Service {
   }
 
   setupVisualization() {
+    this.n = this.dataService.colors.length;
     const objs: any[] = this.data();
     this.nodes = objs.map(Object.create);
+
 
       const self = this;
 
@@ -152,7 +136,7 @@ export class D3Service {
                 .attr("display", "none")
                 .attr("height", d => 2 * d.r)
                 .attr("width", d => 2 * d.r)
-                .attr("filter", d => `url(#${this.filters[d.group].r}${this.filters[d.group].g}${this.filters[d.group].b})`)
+                .attr("filter", d => `url(#${this.dataService.colors[d.group].r}${this.dataService.colors[d.group].g}${this.dataService.colors[d.group].b})`)
               )
 
             const smolImages = this.svg.selectAll("g.node")
@@ -167,7 +151,7 @@ export class D3Service {
               .attr("cursor", "pointer")
               .attr("height", d => 2 * d.r)
               .attr("width", d => 2 * d.r)
-              .attr("filter", d => `url(#${this.filters[d.group].r}${this.filters[d.group].g}${this.filters[d.group].b})`)
+              .attr("filter", d => `url(#${this.dataService.colors[d.group].r}${this.dataService.colors[d.group].g}${this.dataService.colors[d.group].b})`)
             )
 
 
@@ -347,7 +331,7 @@ export class D3Service {
   openProjectIfNotSet(projectId) {
     if (this.dataService.activeIndex === undefined) {
       const i = this.dataService.projectIds.indexOf(projectId);
-      this.dataService.setActiveColor(this.filters[i % (this.n)]);
+      this.dataService.setActiveColor(this.dataService.colors[i % (this.n)]);
       this.loading = true;
 
       if (this.navigate.isFirstLoad()) {
@@ -450,7 +434,7 @@ export class D3Service {
         // const mixedColor = color.colorMixer([col2.r * 255, col2.g * 255, col2.b * 255], 0.7)
         // this.dataService.setActiveColor({r: mixedColor[0] / 255, g: mixedColor[1]/ 255, b: mixedColor[2] / 255});
 
-        this.dataService.setActiveColor(this.filters[index % (this.n)]);
+        this.dataService.setActiveColor(this.dataService.colors[index % (this.n)]);
 
         this.eventManager.projectHoverEnter();
       }

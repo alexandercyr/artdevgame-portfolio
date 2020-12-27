@@ -19,6 +19,7 @@ import {ButtonModule} from 'primeng/button';
 import {MultiSelectModule} from 'primeng/multiselect';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ColorPickerModule} from 'primeng/colorpicker';
 
 
 
@@ -27,6 +28,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FiltersComponent } from './filters/filters.component';
 import { UiImageComponent } from './project/components/ui-image/ui-image.component';
 import { MultiselectComponent } from './multiselect/multiselect.component';
+import { ColorPickerComponent } from './color-picker/color-picker.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { MultiselectComponent } from './multiselect/multiselect.component';
     NavbarComponent,
     FiltersComponent,
     UiImageComponent,
-    MultiselectComponent
+    MultiselectComponent,
+    ColorPickerComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import { MultiselectComponent } from './multiselect/multiselect.component';
     ButtonModule,
     MultiSelectModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ColorPickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

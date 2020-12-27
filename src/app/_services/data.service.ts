@@ -27,22 +27,23 @@ export class DataService {
     {
       r: 0,
       g: 0,
-      b: 1
+      b: 255
     },
     //orange
     {
-      r: 0.969,
-      g: 0.576,
-      b: 0.118
+      r: Math.floor(0.969 * 255),
+      g: Math.floor(0.576 * 255),
+      b: Math.floor(0.118 * 255)
     },
     //pink
     {
-      r: 0.929,
-      g: 0.118,
-      b: 0.475
+      r: Math.floor(0.929 * 255),
+      g: Math.floor(0.118 * 255),
+      b: Math.floor(0.475 * 255)
     }];
 
   constructor(private eventManager: EventManagerService) {
+    console.log(this.colors);
     this.projectIds = Object.keys(data.projects);
     this.eventManager.setDataService(this);
     this.filterState = new FilterState();

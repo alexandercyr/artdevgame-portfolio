@@ -1,10 +1,15 @@
 @import '../../assets/styles/variables.scss';
 
+
 .scroll-frozen {
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
   position: absolute;
+
+
 }
+
 
 .container{
   display: flex;
@@ -12,11 +17,7 @@
   height: 100vh;
 
 }
-.sidebar {
-  flex: 2;
-  background-color: white;
-  height: 100vh;
-}
+
 .main {
   flex: 10;
 }

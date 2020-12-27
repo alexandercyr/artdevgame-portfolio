@@ -2,21 +2,26 @@
 
 .header-container {
   position: absolute;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
   z-index: 10;
+  top: 0;
+  left: 0;
 }
 
 .header-content {
   width: 100%;
-  max-width: 1080px;
-  margin: 0 50px;
   height: 100vh;
   position: relative;
+}
+.header-content-focused {
+  max-width: 1080px;
+  margin: 0 50px;
+
 }
 
 .popup {
@@ -100,7 +105,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .header-content {
+  .header-content-focused {
     width: 100%;
     margin: 0 15px;
   }
