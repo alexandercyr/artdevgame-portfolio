@@ -2,4 +2,107 @@
   position: absolute;
   right: 15px;
   top: 50px;
+  width: auto;
+  padding: 10px 10px 10px 3px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  z-index:6;
+
+}
+
+.colors {
+  display: flex;
+}
+
+.color {
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px;
+
+  button {
+    visibility: hidden;
+  }
+
+}
+
+.color:hover {
+  button {
+    visibility: visible;
+  }
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  height: 10px;
+}
+
+button:hover {
+  color: #666;
+}
+
+.edit-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 30px;
+  padding: 5px;
+  align-items: flex-start;
+  justify-content: center;
+
+  .add-button {
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    border: 1px dashed #e5e5e5;
+    color: #999;
+    padding: 0;
+
+  }
+  .reset-button {
+    text-align: center;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+
+    margin: 10px 0 0 0;
+    font-size: 9px;
+    color: #999
+  }
+
+  .reset-button:hover {
+   color: #666;
+  }
+}
+.trash-button {
+  margin-top: 3px;
+  color: #999;
+}
+.trash-button:hover {
+  color: #666;
+}
+.pi-trash {
+  font-size: 0.8rem !important;
+}
+
+.click-away {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index:5;
+}
+
+:host ::ng-deep {
+  .p-colorpicker-preview {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+  }
 }

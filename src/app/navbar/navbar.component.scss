@@ -14,3 +14,16 @@
   pointer-events: none;
 
 }
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+:host-context(.dark) {
+  button {
+    color: #e5e5e5;
+  }
+}
+

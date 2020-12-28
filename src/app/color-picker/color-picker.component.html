@@ -1,7 +1,13 @@
-<div *ngIf="visible" class="color-picker-container">
+<div *ngIf="visible" class="color-picker-container" (mouseleave)="closePicker()">
   <div class="colors">
-    <div *ngFor="let color of colors; let i = index" class="color">
-      <p-colorPicker [(ngModel)]="dataService.colors[i]" (onChange)="colorChanged()" format="rgb"></p-colorPicker>
+    <div *ngFor="let color of this.dataService.colors; let i = index" class="color">
+      <p-colorPicker  [(ngModel)]="dataService.colors[i]" (onChange)="updateColor()" format="rgb"></p-colorPicker>
+      <button class="trash-button" (click)="deleteColor(i)"><i class="pi pi-trash"></i></button>
+    </div>
+    <div class='edit-buttons'>
+      <button class="add-button" (click)="addColor()"><i class="pi pi-plus"></i></button>
+      <button class="reset-button" (click)="resetColors()"><span>RESET</span></button>
     </div>
   </div>
 </div>
+<!-- <div *ngIf="visible" class="click-away" (click)="closePicker()"></div> -->

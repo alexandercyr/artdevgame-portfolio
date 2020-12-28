@@ -22,33 +22,39 @@ export class DataService {
   filterState: FilterState;
   isDarkMode = false;
 
-  colors = [
-    //blue
-    {
-      r: 0,
-      g: 0,
-      b: 255
-    },
-    //orange
-    {
-      r: Math.floor(0.969 * 255),
-      g: Math.floor(0.576 * 255),
-      b: Math.floor(0.118 * 255)
-    },
-    //pink
-    {
-      r: Math.floor(0.929 * 255),
-      g: Math.floor(0.118 * 255),
-      b: Math.floor(0.475 * 255)
-    }];
+  colors = [];
+  userColors;
+
+  defaultColors = {
+    light: [
+      //blue
+      {
+        r: 0,
+        g: 0,
+        b: 255
+      },
+      //orange
+      {r: 247, g: 146, b: 30},
+      //pink
+      {r: 236, g: 30, b: 121}],
+    dark: [
+      //mint
+      {r: 66, g: 255, b: 224},
+      //orange
+      {r: 247, g: 146, b: 30},
+      //pink
+      {r: 236, g: 30, b: 121}]
+  }
+
 
   constructor(private eventManager: EventManagerService) {
     console.log(this.colors);
     this.projectIds = Object.keys(data.projects);
     this.eventManager.setDataService(this);
     this.filterState = new FilterState();
+    this.loadDarkModePrefs();
+    this.loadColors();
     this.activeColor = new Color(this.colors[0].r, this.colors[0].g, this.colors[0].b);
-
   }
 
   public setActiveProject(project: Project) {
@@ -91,7 +97,6 @@ export class DataService {
       this.projectHasFilter(projectId, 'media') &&
       this.projectHasFilter(projectId, 'tech');
     })
-
     this.projectIds = filteredIds;
   }
 
@@ -105,12 +110,58 @@ export class DataService {
 
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
+    localStorage.setItem('dark-mode', this.isDarkMode.toString());
     if (this.isDarkMode) {
       document.body.classList.add("dark");
     } else {
       document.body.classList.remove("dark");
+    }
+    this.loadColors();
+    this.eventManager.resetVisualization();
+  }
 
+  loadDarkModePrefs() {
+    const mode = localStorage.getItem('dark-mode');
+    if (mode) {
+      this.isDarkMode = mode === 'true'
+      if (this.isDarkMode) {
+        document.body.classList.add("dark");
+      }
+    } else {
+      const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+      this.isDarkMode = prefersDarkScheme.matches;
+      localStorage.setItem('dark-mode', this.isDarkMode.toString());
     }
   }
 
+  loadColors() {
+    const mode = this.isDarkMode ? 'dark' : 'light';
+    const colors = JSON.parse(localStorage.getItem('colors'));
+    this.userColors = {...colors};
+    if (colors) {
+      this.colors = [...colors[mode]];
+    } else {
+      localStorage.setItem('colors', JSON.stringify(this.defaultColors));
+      this.colors = this.defaultColors[mode];
+    }
+  }
+
+  addColor() {
+    this.colors.push(this.defaultColors[this.isDarkMode ? 'dark' : 'light'][0]);
+    this.updateColors();
+  }
+
+  updateColors() {
+    this.userColors[this.isDarkMode ? 'dark' : 'light'] = [...this.colors];
+    this.saveColors();
+  }
+
+  resetColors() {
+    this.colors = [...this.defaultColors[this.isDarkMode ? 'dark' : 'light']];
+    this.userColors[this.isDarkMode ? 'dark' : 'light'] = [...this.colors];
+    this.saveColors();
+  }
+  saveColors() {
+    localStorage.setItem('colors', JSON.stringify(this.userColors))
+  }
 }

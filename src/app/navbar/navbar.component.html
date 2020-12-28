@@ -2,9 +2,12 @@
   <span class="site-name">alexander cyr</span>
   <app-filters></app-filters>
   <div>
-    <button (click)="toggleDarkMode()">{{isDarkMode ? 'Dark' : 'Light'}}</button>
-    <button (click)="toggleColorPicker()">Color</button>
+    <button (click)="toggleDarkMode()"><i [ngClass]="{'pi': true, 'pi-sun': isDarkMode, 'pi-moon': !isDarkMode}"></i></button>
+    <button (click)="toggleColorPicker()"><i class="pi pi-eye"></i></button>
+    <button ><i class="pi pi-info-circle"></i></button>
+
+
 
   </div>
 </div>
-<app-color-picker [visible]="showingColorPicker"></app-color-picker>
+<app-color-picker [visible]="showingColorPicker" (handleClosePicker)="toggleColorPicker()"></app-color-picker>
