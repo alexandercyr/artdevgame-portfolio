@@ -124,13 +124,14 @@ export class DataService {
     const mode = localStorage.getItem('dark-mode');
     if (mode) {
       this.isDarkMode = mode === 'true'
-      if (this.isDarkMode) {
-        document.body.classList.add("dark");
-      }
+
     } else {
       const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
       this.isDarkMode = prefersDarkScheme.matches;
       localStorage.setItem('dark-mode', this.isDarkMode.toString());
+    }
+    if (this.isDarkMode) {
+      document.body.classList.add("dark");
     }
   }
 

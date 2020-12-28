@@ -22,6 +22,9 @@ button {
 }
 
 :host-context(.dark) {
+  .site-name {
+    color: #999;
+  }
   button {
     color: #e5e5e5;
   }

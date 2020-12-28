@@ -27,3 +27,4 @@ export class NavbarComponent implements OnInit {
     this.showingColorPicker = !this.showingColorPicker;
   }
 }
+
