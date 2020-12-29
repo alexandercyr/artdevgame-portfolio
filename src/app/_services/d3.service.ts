@@ -181,6 +181,12 @@ export class D3Service {
             if (!self.focused) {
               self.focused = !self.focused;
 
+              const activeItemId = self.dataService.projectIds[i];
+
+              self.dataService.setActiveItemIndex(i);
+              self.eventManager.setActiveProject(self.dataService.projects[activeItemId]);
+              self.dataService.setActiveColor(self.dataService.colors[i % (self.n)]);
+              // self.eventManager.projectHoverEnter();
               self.eventManager.openProject();
               self.openProject(i);
 

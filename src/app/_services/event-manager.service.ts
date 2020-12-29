@@ -30,7 +30,6 @@ export class EventManagerService {
   public projectHoverExit() {
     this.uiService.handleHover(false);
     this.dataService.setActiveItemIndex(undefined);
-
   }
 
   public openProject(){
