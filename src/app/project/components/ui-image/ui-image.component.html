@@ -1,4 +1,4 @@
-<div #container class="image-container">
+<div #container class="image-container" (click)="imageClick()">
   <div [class]="'inner ' + directionClass + ' ' + parentClass" >
     <img #imageEl [src]="image.src" loading="lazy" [alt]="image.label" (load)="checkDimensions()">
   </div>

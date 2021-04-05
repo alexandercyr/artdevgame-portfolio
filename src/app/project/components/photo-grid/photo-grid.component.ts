@@ -9,9 +9,17 @@ export class PhotoGridComponent implements OnInit {
 
   @Input() content;
 
+  showImage = false;
+  activeIndex = 0;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  imageClicked(index) {
+    this.activeIndex = index;
+    this.showImage = true;
+    console.log('clicked');
+  }
 }

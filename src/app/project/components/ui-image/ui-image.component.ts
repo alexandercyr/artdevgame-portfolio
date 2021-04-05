@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-ui-image',
@@ -10,6 +10,8 @@ export class UiImageComponent implements OnInit {
   @ViewChild('imageEl', {static: true}) imageEl: ElementRef;
 
   @Input() image;
+
+  @Output() handleClick: EventEmitter<any> = new EventEmitter<any>();
 
   directionClass = 'vertical';
   parentClass = 'landscape';
@@ -35,5 +37,9 @@ export class UiImageComponent implements OnInit {
       } else {
         this.parentClass = 'portrait'
       }
+  }
+
+  imageClick() {
+    this.handleClick.emit();
   }
 }

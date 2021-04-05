@@ -20,7 +20,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ColorPickerModule} from 'primeng/colorpicker';
-
+import {GalleriaModule} from 'primeng/galleria';
 
 
 import { ArrowButtonComponent } from './arrow-button/arrow-button.component';
@@ -59,7 +59,8 @@ import { ColorPickerComponent } from './color-picker/color-picker.component';
     MultiSelectModule,
     FormsModule,
     BrowserAnimationsModule,
-    ColorPickerModule
+    ColorPickerModule,
+    GalleriaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

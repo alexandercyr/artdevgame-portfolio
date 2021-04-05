@@ -114,7 +114,7 @@ export class D3Service {
             .join("g")
               .attr("id", d => d.id)
               .attr("class", "node")
-              .attr("filter", "drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5))")
+              // .attr("filter", "drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5))")
               .call( g => g
                 .append("svg:clipPath")
                .attr("id",  function(d) { return "circle" + d.id;})
