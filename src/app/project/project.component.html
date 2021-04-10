@@ -3,8 +3,13 @@
     <div class="gradient"></div>
   </div>
   <div *ngIf="project !== undefined && project.pageContent !== undefined" class="project-content">
-    <app-feature-text [content]="project.pageContent[1].content"></app-feature-text>
-    <app-photo-grid [content]="project.pageContent[2].content"></app-photo-grid>
-    <app-text-block [content]="project.pageContent[0].content"></app-text-block>
+    <div *ngFor="let section of project.pageContent">
+      <div [ngSwitch]="section.type">
+        <app-feature-text *ngSwitchCase="ContentType.FEATURE" [content]="section.content"></app-feature-text>
+        <app-photo-grid *ngSwitchCase="ContentType.PHOTOGRID" [content]="section.content"></app-photo-grid>
+        <app-image-carousel *ngSwitchCase="ContentType.CAROUSEL" [images]="section.images"></app-image-carousel>
+        <app-text-block *ngSwitchCase="ContentType.TEXT" [content]="section.content"></app-text-block>
+      </div>
+    </div>
   </div>
 </div>

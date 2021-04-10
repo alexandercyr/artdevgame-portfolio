@@ -1,23 +1,15 @@
 <div class="photo-grid">
   <div class="content" [ngClass]="{'flip': content.vertical}">
     <div class="single">
-      <!-- <div class="image" [ngStyle]="{'background-image': 'url(' + content.images[0].src +')'}"></div> -->
-      <!-- <div class="ui-image" >
-        <img [src]="content.images[0].src" [alt]="content.images[0].label" />
-      </div> -->
       <app-ui-image (handleClick)="imageClicked(0)" class="ui-image" [image]="content.images[0]"></app-ui-image>
-
     </div>
     <div class="double">
       <div class="overflow">
-        <!-- <div class="image" [ngStyle]="{'background-image': 'url(' + content.images[1].src +')'}"></div> -->
         <app-ui-image (handleClick)="imageClicked(1)" class="ui-image" [image]="content.images[1]"></app-ui-image>
 
       </div>
       <div class="overflow">
         <app-ui-image (handleClick)="imageClicked(2)" class="ui-image" [image]="content.images[2]"></app-ui-image>
-
-        <!-- <div class="image" [ngStyle]="{'background-image': 'url(' + content.images[2].src +')'}"></div> -->
       </div>
     </div>
 
@@ -27,10 +19,5 @@
     <ng-template pTemplate="item" let-item>
         <img [src]="item.src" style="width: 100%; display: block;"/>
     </ng-template>
-    <!-- <ng-template pTemplate="thumbnail" let-item>
-        <div class="p-grid p-nogutter p-justify-center">
-            <img [src]="item.thumbnailImageSrc" style="display: block;"/>
-        </div>
-    </ng-template> -->
-</p-galleria>
+  </p-galleria>
 </div>

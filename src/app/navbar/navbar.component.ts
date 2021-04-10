@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../_services/data.service';
 import { EventManagerService } from '../_services/event-manager.service';
+import { UiService } from '../_services/ui.service';
 
 @Component({
   selector: 'app-navbar',

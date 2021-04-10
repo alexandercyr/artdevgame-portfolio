@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { DataService } from '../_services/data.service';
 import { EventManagerService } from '../_services/event-manager.service';
+import { UiService } from '../_services/ui.service';
 
 @Component({
   selector: 'app-filters',
@@ -16,7 +17,7 @@ export class FiltersComponent implements OnInit {
   mediaList: SelectItem[] = [];
   techList: SelectItem[] = [];
 
-  constructor(public dataService: DataService, private eventManager: EventManagerService) { }
+  constructor(public dataService: DataService, private eventManager: EventManagerService,  public uiService: UiService) { }
 
   ngOnInit(): void {
 

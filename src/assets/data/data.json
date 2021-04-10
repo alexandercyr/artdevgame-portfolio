@@ -11,17 +11,6 @@
       "priority": 1,
       "pageContent": [
         {
-          "type": "TEXT",
-          "content": [
-            {
-              "label": "Synopsis",
-              "text": [
-                "30 Clean connects clean eating challengers, giving them all the support they need in one place. Users can post photos, share stories, find tips and recipes, and be inspired by the successes of all the other challengers."
-              ]
-            }
-          ]
-        },
-        {
           "type": "FEATURE",
           "content": [
             {
@@ -52,17 +41,37 @@
               }
             ]
           }
-        }
-        , {
-          "type": "block",
-          "header": "Identity",
-          "copy": "",
-          "images": [
+        },
+        {
+          "type": "TEXT",
+          "content": [
             {
-
+              "label": "Synopsis",
+              "text": [
+                "30 Clean connects clean eating challengers, giving them all the support they need in one place. Users can post photos, share stories, find tips and recipes, and be inspired by the successes of all the other challengers."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "CAROUSEL",
+          "images":[
+            {
+              "label": "Dashboard",
+              "src": "/assets/images/projects/30-clean/30clean_dashboard2.jpg"
+            },
+            {
+              "label": "Group Feed",
+              "src": "/assets/images/projects/30-clean/30clean_feed.jpg"
+            },
+            {
+              "label": "Onboarding",
+              "src": "/assets/images/projects/30-clean/30clean_login.jpg"
             }
           ]
         }
+
+
       ]
     },
     "preuss-pets": {

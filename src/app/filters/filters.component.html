@@ -1,4 +1,4 @@
-<div class="filters">
+<div class="filters" [ngClass]="{hidden: uiService.isFocused }">
   <app-multiselect [options]="typeList" name="type"></app-multiselect>
   <app-multiselect [options]="mediaList" name="media"></app-multiselect>
   <app-multiselect [options]="techList" name="tech"></app-multiselect>

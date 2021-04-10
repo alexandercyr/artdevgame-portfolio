@@ -1,0 +1,11 @@
+.image {
+  max-width: 90%;
+}
+
+:host ::ng-deep {
+  .p-carousel-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

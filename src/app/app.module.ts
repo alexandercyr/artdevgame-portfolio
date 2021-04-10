@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {GalleriaModule} from 'primeng/galleria';
+import {CarouselModule} from 'primeng/carousel';
 
 
 import { ArrowButtonComponent } from './arrow-button/arrow-button.component';
@@ -29,6 +30,7 @@ import { FiltersComponent } from './filters/filters.component';
 import { UiImageComponent } from './project/components/ui-image/ui-image.component';
 import { MultiselectComponent } from './multiselect/multiselect.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
+import { ImageCarouselComponent } from './image-carousel/image-carousel.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { ColorPickerComponent } from './color-picker/color-picker.component';
     FiltersComponent,
     UiImageComponent,
     MultiselectComponent,
-    ColorPickerComponent
+    ColorPickerComponent,
+    ImageCarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { ColorPickerComponent } from './color-picker/color-picker.component';
     FormsModule,
     BrowserAnimationsModule,
     ColorPickerModule,
-    GalleriaModule
+    GalleriaModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

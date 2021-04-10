@@ -1,0 +1,11 @@
+<p-carousel [value]="images" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
+  <ng-template let-image pTemplate="item" class="flex">
+    <img (click)="imageClicked(image)" [src]="image.src" class="image" />
+  </ng-template>
+</p-carousel>
+<p-galleria [(value)]="images" [(visible)]="showImage" [(activeIndex)]="activeIndex" [containerStyle]="{'max-width': '850px'}"
+    [circular]="true" [fullScreen]="true" [showItemNavigators]="true" [showThumbnails]="false" [baseZIndex]="100000">
+    <ng-template pTemplate="item" let-item>
+        <img [src]="item.src" style="width: 100%; display: block;"/>
+    </ng-template>
+</p-galleria>

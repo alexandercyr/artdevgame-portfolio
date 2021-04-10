@@ -1,0 +1,6 @@
+enum Component {
+  FEATURE = "FEATURE",
+  PHOTOGRID = "PHOTOGRID",
+  CAROUSEL = "CAROUSEL",
+  TEXT = "TEXT",
+}
