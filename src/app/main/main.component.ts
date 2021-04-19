@@ -49,10 +49,15 @@ export class MainComponent implements AfterContentInit, OnInit {
   resize() {
     this.width = window.innerWidth;
     this.width = window.innerHeight;
-    this.d3Service.svg.width = this.width;
-    this.d3Service.svg.style.height = this.height;
+    // this.d3Service.svg.style.width = this.width;
+    // this.d3Service.svg.style.height = this.height;
 
-    this.d3Service.simulation.restart();
+    this.d3Service.svg = d3.select("svg#chart")
+    .attr("width",window.innerWidth )
+    .attr("height", window.innerHeight );
+
+    // this.d3Service.simulation.restart();
+    this.d3Service.resetVisualization();
   }
 
 

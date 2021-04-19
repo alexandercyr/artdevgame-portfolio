@@ -72,6 +72,9 @@ export class D3Service {
     const objs: any[] = this.data();
     this.nodes = objs.map(Object.create);
 
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+
 
       const self = this;
 
@@ -457,6 +460,9 @@ export class D3Service {
       this.needsResetting = false;
 
     } else {
+      this.width = window.innerWidth;
+    this.height = window.innerHeight;
+      this.openProject(this.dataService.activeIndex);
       this.needsResetting = true;
     }
   }
