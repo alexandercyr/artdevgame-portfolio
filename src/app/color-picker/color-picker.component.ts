@@ -20,8 +20,6 @@ export class ColorPickerComponent implements OnInit {
 
   ngOnInit(): void {
     this.colors = [...this.dataService.colors];
-
-
   }
 
   closePicker() {
@@ -35,8 +33,6 @@ export class ColorPickerComponent implements OnInit {
 
       if (id === this.dataService.activeProjectId) {
         this.dataService.setActiveColor(new Color(color.r, color.g, color.b));
-
-
       }
       const image = document.querySelector('#image-' + index) as HTMLElement;
       const imageSml = document.querySelector('#image-' + index + '-sml') as HTMLElement;
