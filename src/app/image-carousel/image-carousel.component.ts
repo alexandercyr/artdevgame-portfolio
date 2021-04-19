@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DataService } from '../_services/data.service';
 
 @Component({
   selector: 'app-image-carousel',
@@ -9,31 +10,15 @@ export class ImageCarouselComponent implements OnInit {
 
   @Input()
   images;
-  responsiveOptions;
   showImage = false;
   activeIndex = 0;
 
-  constructor() {
-    this.responsiveOptions = [
-      {
-          breakpoint: '1024px',
-          numVisible: 3,
-          numScroll: 1
-      },
-      {
-          breakpoint: '768px',
-          numVisible: 2,
-          numScroll: 1
-      },
-      {
-          breakpoint: '560px',
-          numVisible: 1,
-          numScroll: 1
-      }
-  ];
+  constructor(public dataService: DataService) {
+
   }
 
   ngOnInit(): void {
+
   }
 
   imageClicked(image) {

@@ -1,10 +1,42 @@
+@import '../../../../assets/styles/variables.scss';
+
 .text-block {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .text-content {
-  max-width: 600px;
+  max-width: 860px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.text {
+  font-size: 18px;
+  color: #333;
+  font-weight: 100;
+  font-family: $font-sans;
+}
+
+:host-context(.dark) {
+  .title {
+    color: #999;
+  }
+  .text {
+    color: #757575;
+  }
 }

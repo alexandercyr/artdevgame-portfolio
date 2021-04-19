@@ -29,7 +29,7 @@ export class ArrowButtonComponent implements OnInit {
 
   ngOnInit(): void {
     const self = this;
-    const sub = this.route.params.subscribe(params => {
+    this.sub = this.route.params.subscribe(params => {
       this.refreshUI();
     });
   }

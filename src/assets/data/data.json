@@ -12,15 +12,13 @@
       "pageContent": [
         {
           "type": "FEATURE",
-          "content": [
-            {
+          "content":{
               "title" : "A Clean Eating Challenge",
-              "subtitle": "Objective",
+              "subtitle": "Overview",
               "text": [
                 "30 Clean connects clean eating challengers, giving them all the support they need in one place. Users can post photos, share stories, find tips and recipes, and be inspired by the successes of all the other challengers."
               ]
-            }
-          ]
+          }
         },
         {
           "type": "PHOTOGRID",
@@ -44,14 +42,15 @@
         },
         {
           "type": "TEXT",
-          "content": [
-            {
-              "label": "Synopsis",
+          "content":{
+              "title" : "Supporting a Healthy Community",
+              "subtitle": "Objective",
               "text": [
-                "30 Clean connects clean eating challengers, giving them all the support they need in one place. Users can post photos, share stories, find tips and recipes, and be inspired by the successes of all the other challengers."
+                "The group at 30 Clean was already busy running 30-day programs, utilizing Facebook for their community groups. Our team was brought in to supercharge their current process, introducing a marketing sales funnel and by developing a challenger-focused dashboard application, including everything relevant to a users clean eating challenge.",
+                "The design direction of the dashboard needed to reflect and support the goal of creating healthy habits. The main features of the dashboard are the daily diary and gratitude journal, a recipes page to find and share healthy meal ideas, and a resources tab to make it easy to find all necessary information relevant to their clean eating journey.",
+                "Working back and forth with the 30 Clean team, I worked on designs iteritively, collaborating with the 30 Clean at every step on prototypes with InvisionApp. Since their current users were already familiar with Facebook, creating a seamless onboarding experience with Facebook login integration was a must."
               ]
-            }
-          ]
+          }
         },
         {
           "type": "CAROUSEL",

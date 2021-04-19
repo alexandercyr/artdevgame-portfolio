@@ -77,6 +77,9 @@ export class DataService {
 
   public setActiveColor(color) {
     this.activeColor = new Color(color.r, color.g, color.b);
+    document.documentElement.style.setProperty('--primary-color', this.activeColor.getRGBString());
+    document.documentElement.style.setProperty('--primary-color-highlight', this.activeColor.getRGBAString(0.3));
+
   }
 
   public setNextProject() {

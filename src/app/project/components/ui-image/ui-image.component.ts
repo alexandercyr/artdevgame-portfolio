@@ -10,6 +10,8 @@ export class UiImageComponent implements OnInit {
   @ViewChild('imageEl', {static: true}) imageEl: ElementRef;
 
   @Input() image;
+  @Input() color = '#ededed';
+
 
   @Output() handleClick: EventEmitter<any> = new EventEmitter<any>();
 
@@ -35,7 +37,7 @@ export class UiImageComponent implements OnInit {
         this.parentClass = 'landscape'
 
       } else {
-        this.parentClass = 'portrait'
+        // this.parentClass = 'portrait'
       }
   }
 

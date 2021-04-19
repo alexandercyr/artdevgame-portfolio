@@ -1,6 +1,7 @@
-<p-carousel [value]="images" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
-  <ng-template let-image pTemplate="item" class="flex">
-    <img (click)="imageClicked(image)" [src]="image.src" class="image" />
+<p-carousel [value]="images" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true" >
+  <ng-template let-image pTemplate="item" class="image-container">
+    <app-ui-image (handleClick)="imageClicked(image)" class="ui-image" [image]="image" ></app-ui-image>
+    <!-- <div (click)="imageClicked(image)" [ngStyle]="{'background-image': 'url(' + image.src + ')'}" class="image" ></div> -->
   </ng-template>
 </p-carousel>
 <p-galleria [(value)]="images" [(visible)]="showImage" [(activeIndex)]="activeIndex" [containerStyle]="{'max-width': '850px'}"

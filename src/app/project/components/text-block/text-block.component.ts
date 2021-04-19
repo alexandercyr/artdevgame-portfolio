@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DataService } from 'src/app/_services/data.service';
 
 @Component({
   selector: 'app-text-block',
@@ -9,10 +10,9 @@ export class TextBlockComponent implements OnInit {
 
   @Input() content;
 
-  constructor() { }
+  constructor(public dataService: DataService) { }
 
   ngOnInit(): void {
-    console.log(this.content);
   }
 
 }

@@ -36,6 +36,7 @@ export class ColorPickerComponent implements OnInit {
       if (id === this.dataService.activeProjectId) {
         this.dataService.setActiveColor(new Color(color.r, color.g, color.b));
 
+
       }
       const image = document.querySelector('#image-' + index) as HTMLElement;
       const imageSml = document.querySelector('#image-' + index + '-sml') as HTMLElement;
@@ -46,6 +47,7 @@ export class ColorPickerComponent implements OnInit {
     });
     this.eventManager.resetVisualization();
   }
+
 
   updateColor() {
     this.dataService.updateColors();
