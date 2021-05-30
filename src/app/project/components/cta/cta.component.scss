@@ -1,0 +1,21 @@
+.cta {
+  width: calc(100% - 100px);
+  padding: 50px;
+  position: relative;
+}
+
+h4 {
+  color: white;
+  margin: 0;
+  font-size: 62px;
+  max-width: 650px;
+}
+
+.globe-img {
+  position: absolute;
+  right: 25px;
+  bottom: -25px;
+  width: 275px;
+  height: 85%;
+  opacity: 0.25;
+}

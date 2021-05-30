@@ -33,6 +33,8 @@ import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { ImageCarouselComponent } from './project/components/image-carousel/image-carousel.component';
 import { VideoComponent } from './project/components/video/video.component';
 import { ProjectInfoComponent } from './project/components/project-info/project-info.component';
+import { CtaComponent } from './project/components/cta/cta.component';
+import { SimpleButtonComponent } from './simple-button/simple-button.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { ProjectInfoComponent } from './project/components/project-info/project-
     ColorPickerComponent,
     ImageCarouselComponent,
     VideoComponent,
-    ProjectInfoComponent
+    ProjectInfoComponent,
+    CtaComponent,
+    SimpleButtonComponent
 
   ],
   imports: [

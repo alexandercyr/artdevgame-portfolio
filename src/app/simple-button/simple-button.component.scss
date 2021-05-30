@@ -1,0 +1,118 @@
+@import '../../assets/styles/variables.scss';
+
+button {
+  pointer-events: all;
+  background-color: transparent;
+  height: 40px;
+  width: auto;
+  display: flex;
+  padding: 0;
+  box-sizing: content-box;
+  border-radius: 0px;
+  cursor: pointer;
+  border: none;
+
+  .button-text {
+    line-height: 40px;
+    font-family: $font-mono;
+    padding: 0 15px;
+    font-size: 18px;
+  }
+
+  .icon {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+
+    div {
+      height: 20px;
+      width: 20px;
+    }
+  }
+
+}
+
+
+:host ::ng-deep {
+
+  .p-button {
+    pointer-events: all;
+    background-color: transparent;
+    height: 40px;
+    width: auto;
+    display: flex;
+    padding: 0;
+    box-sizing: content-box;
+    border-radius: 0px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    .p-button-icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .p-button-label {
+      padding: 0;
+      font-size: 18px;
+      font-family: $font-mono;
+      pointer-events: none;
+    }
+
+  }
+  .reverse {
+    .p-button-icon {
+      border-right: 0;
+      margin-left: 0;
+    }
+
+    .p-button-label {
+      padding: 0;
+      font-size: 18px;
+      font-family: $font-mono;
+    }
+  }
+
+}
+
+:host ::ng-deep .p-button:hover {
+  background-color: transparent;
+
+}
+
+:host ::ng-deep {
+  .hover-effect {
+    .p-button-icon {
+      transition: all 0.25s ease-in-out;
+      // transform: translate(0);
+      margin-left: 0;
+    }
+  }
+  .hover-effect:hover {
+    .p-button-icon {
+      // transform: translate(5px);
+      margin-left: 10px;
+
+    }
+
+  }
+}
+
+:host-context(.dark) {
+  .p-button {
+    //placeholder
+  }
+
+  .p-button:hover {
+    //placeholder
+  }
+}
+

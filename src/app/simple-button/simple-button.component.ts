@@ -6,15 +6,19 @@ import { EventManagerService } from '../_services/event-manager.service';
 import { NavigationService } from '../_services/navigation.service';
 
 @Component({
-  selector: 'app-arrow-button',
-  templateUrl: './arrow-button.component.html',
-  styleUrls: ['./arrow-button.component.scss']
+  selector: 'app-simple-button',
+  templateUrl: './simple-button.component.html',
+  styleUrls: ['./simple-button.component.scss']
 })
-export class ArrowButtonComponent implements OnInit {
+export class SimpleButtonComponent implements OnInit {
 
   @Input() label = "";
 
+  @Input() textColor;
   @Input() direction = "left";
+  @Input() iconName = "pi-arrow-left";
+  @Input() hover = false;
+
   @Output() onButtonClick: EventEmitter<any> = new EventEmitter<any>();
 
   color: Color;

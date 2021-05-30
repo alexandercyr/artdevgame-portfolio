@@ -1,0 +1,7 @@
+<div class="cta" [ngStyle]="{'background-color': dataService.activeColor.getRGBString()}">
+  <h4>Find me on the world wide web</h4>
+  <app-simple-button (onButtonClick)="navigateToAboutScreen()" label="contact info" iconName="pi-arrow-right" direction="right" [hover]="true" textColor="#fff"></app-simple-button>
+
+  <img class="globe-img" src="assets/icons/globe.svg" />
+
+</div>
