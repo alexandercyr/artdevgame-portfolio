@@ -11,6 +11,7 @@ export class UiImageComponent implements OnInit {
 
   @Input() image;
   @Input() color = '#ededed';
+  @Input() hover = false;
 
 
   @Output() handleClick: EventEmitter<any> = new EventEmitter<any>();

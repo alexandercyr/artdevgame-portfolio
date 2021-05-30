@@ -30,7 +30,9 @@ import { FiltersComponent } from './filters/filters.component';
 import { UiImageComponent } from './project/components/ui-image/ui-image.component';
 import { MultiselectComponent } from './multiselect/multiselect.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
-import { ImageCarouselComponent } from './image-carousel/image-carousel.component';
+import { ImageCarouselComponent } from './project/components/image-carousel/image-carousel.component';
+import { VideoComponent } from './project/components/video/video.component';
+import { ProjectInfoComponent } from './project/components/project-info/project-info.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,10 @@ import { ImageCarouselComponent } from './image-carousel/image-carousel.componen
     UiImageComponent,
     MultiselectComponent,
     ColorPickerComponent,
-    ImageCarouselComponent
+    ImageCarouselComponent,
+    VideoComponent,
+    ProjectInfoComponent
+
   ],
   imports: [
     BrowserModule,

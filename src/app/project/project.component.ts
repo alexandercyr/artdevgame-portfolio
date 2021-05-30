@@ -10,6 +10,8 @@ enum Content {
   PHOTOGRID = "PHOTOGRID",
   CAROUSEL = "CAROUSEL",
   TEXT = "TEXT",
+  VIDEO = "VIDEO",
+
 }
 
 @Component({

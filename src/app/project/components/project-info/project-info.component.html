@@ -1,0 +1,30 @@
+<div class="project-info">
+  <span class="info-head" [style]="{'color': dataService.activeColor.getRGBString()}">ROLE & DURATION</span>
+
+  <div class="info-section" *ngIf="dataService.activeProject.info.role">
+    <h5 >{{dataService.activeProject.info.role}}</h5>
+    <hr>
+  </div>
+
+  <div class="info-section tech">
+    <p>Tech: {{techString}}</p>
+    <hr>
+  </div>
+
+  <div class="info-section team" *ngIf="dataService.activeProject.info.team">
+    <p>Team: {{dataService.activeProject.info.team}}</p>
+    <hr>
+  </div>
+
+  <div class="info-section date" *ngIf="dataService.activeProject.info.date">
+    <p>{{dataService.activeProject.info.date}}</p>
+    <hr>
+  </div>
+
+  <div class="info-section website" *ngIf="dataService.activeProject.info.website">
+    <a [href]="dataService.activeProject.info.website" target="_blank">{{dataService.activeProject.info.website}}</a>
+    <hr>
+  </div>
+
+
+</div>

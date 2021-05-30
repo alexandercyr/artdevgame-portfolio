@@ -14,8 +14,9 @@
 
 
 .project-content {
-  max-width: 1080px;
-  width: 100%;
+  max-width: 1600px;
+  width: calc(100% - 100px);
+  position: relative;
   margin: 0 50px;
   pointer-events: all;
   z-index: 5;
@@ -49,5 +50,8 @@
 @media only screen and (max-width: 600px) {
   .project-content {
     margin: 0 15px;
+    width: calc(100% - 30px);
+
   }
+
 }

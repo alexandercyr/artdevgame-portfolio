@@ -7,6 +7,7 @@ export class Project {
   short;
   imgUrl;
   priority;
+  info;
 
   constructor() {}
 }

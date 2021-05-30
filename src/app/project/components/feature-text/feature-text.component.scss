@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 }
 
 .text-content {
@@ -29,11 +30,24 @@
   font-family: $font-sans;
 }
 
+.info-container {
+  width: auto;
+}
+
 :host-context(.dark) {
   .title {
     color: #999;
   }
   .text {
     color: #757575;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .text-block {
+    flex-direction: column;
+  }
+  .info-container {
+    width: 100%;
   }
 }

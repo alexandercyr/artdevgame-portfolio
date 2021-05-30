@@ -1,15 +1,15 @@
 <div class="photo-grid">
   <div class="content" [ngClass]="{'flip': content.vertical}">
     <div class="single">
-      <app-ui-image (handleClick)="imageClicked(0)" class="ui-image" [image]="content.images[0]"></app-ui-image>
+      <app-ui-image (handleClick)="imageClicked(0)" class="ui-image" [image]="content.images[0]" [hover]="true"></app-ui-image>
     </div>
     <div class="double">
       <div class="overflow">
-        <app-ui-image (handleClick)="imageClicked(1)" class="ui-image" [image]="content.images[1]"></app-ui-image>
+        <app-ui-image (handleClick)="imageClicked(1)" class="ui-image" [image]="content.images[1]" [hover]="true"></app-ui-image>
 
       </div>
       <div class="overflow">
-        <app-ui-image (handleClick)="imageClicked(2)" class="ui-image" [image]="content.images[2]"></app-ui-image>
+        <app-ui-image (handleClick)="imageClicked(2)" class="ui-image" [image]="content.images[2]" [hover]="true"></app-ui-image>
       </div>
     </div>
 

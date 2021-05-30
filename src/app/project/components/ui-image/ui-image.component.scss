@@ -24,10 +24,10 @@
   min-width: 250px;
   max-width: 95%;
   width: 80%;
-  max-height: 600px;
   margin: 10% 0;
   transform: scale(1);
   transition: all 0.3s ease-in-out;
+
 }
 
 
@@ -78,14 +78,6 @@ img {
 .image-container:hover {
   cursor: pointer;
 
-  .inner {
-    transform: scale(1.1);
-  }
-
-  img {
-    box-shadow: 0px 5px 25px rgba(0,0,0,0.05);
-  }
-
 
 }
 :host-context(.dark) {
@@ -105,5 +97,18 @@ img {
 
     }
 
+  }
+}
+
+
+.hover-effect:hover {
+  cursor: pointer;
+
+  .inner {
+    transform: scale(1.1);
+  }
+
+  img {
+    box-shadow: 0px 5px 25px rgba(0,0,0,0.05);
   }
 }

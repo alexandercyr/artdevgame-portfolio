@@ -9,6 +9,8 @@
         <app-photo-grid *ngSwitchCase="ContentType.PHOTOGRID" [content]="section.content"></app-photo-grid>
         <app-image-carousel *ngSwitchCase="ContentType.CAROUSEL" [images]="section.images"></app-image-carousel>
         <app-text-block *ngSwitchCase="ContentType.TEXT" [content]="section.content"></app-text-block>
+        <app-video *ngSwitchCase="ContentType.VIDEO" [content]="section.content"></app-video>
+
       </div>
     </div>
   </div>

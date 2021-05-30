@@ -1,0 +1,188 @@
+{
+  "projects": {
+    "30-clean": {
+      "id": "30-clean",
+      "type": ["design", "development"],
+      "media": ["web"],
+      "tech": ["ruby", "sketch"],
+      "title": "The 30 Clean",
+      "short": "30 Clean connects clean eating challengers, giving them all the support they need in one place. Users can post photos, share stories, find tips and recipes, and be inspired by the successes of all the other challengers.",
+      "imgUrl": "/assets/images/mocks/web-mock1.jpg",
+      "priority": 1,
+      "pageContent": [
+        {
+          "type": "FEATURE",
+          "content":{
+              "title" : "A Clean Eating Challenge",
+              "subtitle": "Overview",
+              "text": [
+                "30 Clean connects clean eating challengers, giving them all the support they need in one place. Users can post photos, share stories, find tips and recipes, and be inspired by the successes of all the other challengers."
+              ]
+          }
+        },
+        {
+          "type": "PHOTOGRID",
+          "content": {
+            "vertical": false,
+            "images":[
+              {
+                "label": "Dashboard",
+                "src": "/assets/images/projects/30-clean/30clean_dashboard2.jpg"
+              },
+              {
+                "label": "Group Feed",
+                "src": "/assets/images/projects/30-clean/30clean_feed.jpg"
+              },
+              {
+                "label": "Onboarding",
+                "src": "/assets/images/projects/30-clean/30clean_login.jpg"
+              }
+            ]
+          }
+        },
+        {
+          "type": "TEXT",
+          "content":{
+              "title" : "Supporting a Healthy Community",
+              "subtitle": "Objective",
+              "text": [
+                "The group at 30 Clean was already busy running 30-day programs, utilizing Facebook for their community groups. Our team was brought in to supercharge their current process, introducing a marketing sales funnel and by developing a challenger-focused dashboard application, including everything relevant to a users clean eating challenge.",
+                "The design direction of the dashboard needed to reflect and support the goal of creating healthy habits. The main features of the dashboard are the daily diary and gratitude journal, a recipes page to find and share healthy meal ideas, and a resources tab to make it easy to find all necessary information relevant to their clean eating journey.",
+                "Working back and forth with the 30 Clean team, I worked on designs iteritively, collaborating with the 30 Clean at every step on prototypes with InvisionApp. Since their current users were already familiar with Facebook, creating a seamless onboarding experience with Facebook login integration was a must."
+              ]
+          }
+        },
+        {
+          "type": "CAROUSEL",
+          "images":[
+            {
+              "label": "Dashboard",
+              "src": "/assets/images/projects/30-clean/30clean_dashboard2.jpg"
+            },
+            {
+              "label": "Group Feed",
+              "src": "/assets/images/projects/30-clean/30clean_feed.jpg"
+            },
+            {
+              "label": "Onboarding",
+              "src": "/assets/images/projects/30-clean/30clean_login.jpg"
+            }
+          ]
+        }
+
+
+      ]
+    },
+    "preuss-pets": {
+      "id": "preuss-pets",
+      "type": ["design"],
+      "media": ["web"],
+      "tech": ["sketch"],
+      "title": "Preuss Pets",
+      "short": "Preuss Pets has been in business for the last 30 years and was looking for a more immersive experience on their website. They wanted their knowledge and care that they always offer in-store to be just as prominent online. The new design offers numerous gateways to learn more about animals and a look into the lifestyle at Preuss Pets through various photos, videos, and even audio talk shows.",
+      "imgUrl": "/assets/images/mocks/web-mock2.jpg",
+      "priority": 1
+    },
+    "ingham-health-plan": {
+      "id": "ingham-health-plan",
+      "type": ["design", "development"],
+      "media": ["web"],
+      "tech": ["illustator", "html/css", "DotNetNuke"],
+      "title": "Ingham Health Plan",
+      "short": "Ingham Health Plan(IHP) is a site redesign for community health access programs. The main goal of the redesign was to connect all various sub divisions of IHP in a way that is easy to navigate and understand.",
+      "imgUrl": "/assets/images/mocks/web-mock3.jpg",
+      "priority": 1
+    },
+    "washi-con": {
+      "id": "washi-con",
+      "type": ["design"],
+      "media": ["print"],
+      "tech": ["illustator"],
+      "title": "Washi Con",
+      "short": "I was fortunate enough to be tasked with creating graphic materials for Washi Con, hosted at Eastern Michigan University. Washi Con is an anime, gaming, and cosplay convention. Working with an unusual combination of eggplant, mountain man, and eagle for mascots, it was a unique and exciting challenge to explore illustrative solutions. The first year I produced t-shirt art, signage, and marketing materials, and for the following three years just t-shirt art.",
+      "imgUrl": "/assets/images/mocks/web-mock3.jpg",
+      "priority": 1
+    },
+    "eat-me": {
+      "id": "eat-me",
+      "type": ["design"],
+      "media": ["mobile"],
+      "tech": ["illustator"],
+      "title": "Eat Me!",
+      "short": "Eat Me! is a cooking assistant designed with the inspired chef in mind, allowing users to collect appetizing recipes and organize them however they choose. My research for this project began by following my roommate, Vince, as he cooked; I noted how he experimented during the cooking process. He doesn't follow a recipe but instead is driven by instinct and emotion. Through processes of iteration, the Eat Me! app concept came to form.",
+      "imgUrl": "/assets/images/mocks/mobile-mock2.jpg",
+      "priority": 1
+    },
+    "spared-change": {
+      "id": "spared-change",
+      "type": ["design"],
+      "media": ["mobile"],
+      "tech": ["illustator"],
+      "title": "Spared Change",
+      "short": "Spared Change saves your \"extra change\" in a digital wallet. Tracking credit card purchases, Spared Change rounds up all purchases to the nearest dollar. Users can withdraw, but also select any number of organizations to donate to. The goal is to give users a way to save money while also providing simple ways to reach out and help worldwide organizations. In a digital world where physical cash is becoming obsolete, there should be a way to help users save their would be extra change. \n Spared Change is a mobile application I originally designed for the \"AIGA Sylvia Harris Citizen Design Award\". Although it didn't win, my design made it to the final round where it was one of 15 finalists.",
+      "imgUrl": "/assets/images/mocks/mobile-mock3.jpg",
+      "priority": 1
+    },
+    "illustrations": {
+      "id": "illustrations",
+      "type": ["design"],
+      "media": ["print"],
+      "tech": ["illustrator"],
+      "title": "Illustrations",
+      "short": "A collection of art and designs done for fun and various competitions such as Threadless.",
+      "imgUrl": "/assets/images/mocks/mobile-mock3.jpg",
+      "priority": 1
+    },
+    "detroit-tigers": {
+      "id": "detroit-tigers",
+      "type": ["design"],
+      "media": ["print"],
+      "tech": ["illustrator"],
+      "title": "Detroit Tigers",
+      "short": "While working at Midnite Oil Creative, I had the privilege to work on many exciting materials for the Detroit Tigers organization.",
+      "imgUrl": "/assets/images/mocks/mobile-mock3.jpg",
+      "priority": 1
+    },
+    "dave-and-busters": {
+      "id": "dave-and-busters",
+      "type": ["design"],
+      "media": ["print"],
+      "tech": ["illustrator"],
+      "title": "Dave & Busters",
+      "short": "A client of Midnite Oil Creative, we worked on seasonal and special event in-store signage and menus as well as worked on marketing ads and email blasts.",
+      "imgUrl": "/assets/images/mocks/mobile-mock3.jpg",
+      "priority": 1
+    },
+    "the-state-news": {
+      "id": "the-state-news",
+      "type": ["design"],
+      "media": ["web"],
+      "tech": ["illustator"],
+      "title": "The State News",
+      "short": "Created web designs for newspapers, magazines, and colleges across the nation.",
+      "imgUrl": "/assets/images/mocks/web-mock4.jpg",
+      "priority": 1
+    },
+    "wantify": {
+      "id": "wantify",
+      "type": ["design", "development"],
+      "media": ["mobile", "web"],
+      "tech": ["swift", "react", "keycloak", "illustrator"],
+      "title": "Wantify",
+      "short": "Wantify provides the inside scoop for all your local shopping needs. While working at Shrine Development, on this project I worked on branding, app design, ios development and front-end development. Wantify consists of a consumer side mobile app, and a merchant side web app. Merchants can post news and deals that can be seen in the app. Consumers can add and message merchants. There were a lot of people invloved in this project working on everything from back-end api, sign-in with keycloak, a messaging service, stripe integration, and auto adding users through email invites.",
+      "imgUrl": "/assets/images/mocks/mobile-web-mock1.jpg",
+      "priority": 1
+    },
+    "scribble-stacks": {
+      "id": "scribble-stacks",
+      "type": ["design", "development", "games"],
+      "media": ["mobile"],
+      "tech": ["swift", "firebase", "illustrator"],
+      "title": "Scribble Stacks",
+      "short": "Pictionary meets the old schoolground game Telephone. A new form of multiplayer mobile game where users play together in groups of friends rather than 1-on-1. After completing a drawing or phrase, their turn is sent to the stack for any one of their friends to pick up and continue onward. Game ends when a full cycle of turns is completed. Pass-and-play mode available for offline play. Built for iOS with Swift and Firebase api.",
+      "imgUrl": "/assets/images/mocks/mobile-mock1.jpg",
+      "priority": 1
+    }
+
+  }
+}

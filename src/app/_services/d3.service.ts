@@ -61,9 +61,7 @@ export class D3Service {
     return Array.from({length: this.dataService.projectIds.length}, (_, i) => {
 
       const radius = r();
-      var img = new Image(100, 100);
-      img.src = '/assets/images/phone.jpg';
-      return {id: i, r: radius, startingSize: radius, group: (i % (this.n)), img: data.projects[this.dataService.projectIds[i]].imgUrl}
+      return {id: i, r: radius, startingSize: radius, group: (i % (this.n)), projectId: this.dataService.projectIds[i], imgUrl: "/assets/images/projects/" + this.dataService.projectIds[i] + "/" + this.dataService.projectIds[i] + "-feature.jpg"}
     });
   }
 
@@ -130,7 +128,7 @@ export class D3Service {
               .call( g => g
                .append("svg:image")
                .attr("clip-path", d => "url(#circle" + d.id + ")")
-                .attr("xlink:href",  function(d) { return d.img;})
+                .attr("xlink:href",  function(d) { return d.imgUrl;})
                 .attr("x", function(d) { return -d.r;})
                 .attr("y", function(d) { return -d.r;})
                 .attr("id", d => "image-" + d.id)
@@ -139,6 +137,7 @@ export class D3Service {
                 .attr("display", "none")
                 .attr("height", d => 2 * d.r)
                 .attr("width", d => 2 * d.r)
+                .attr("preserveAspectRatio", "xMidYMid slice")
                 .attr("filter", d => `url(#${this.dataService.colors[d.group].r}${this.dataService.colors[d.group].g}${this.dataService.colors[d.group].b})`)
               )
 
@@ -146,7 +145,7 @@ export class D3Service {
             .call( g => g
               .append("svg:image")
               .attr("clip-path", d => "url(#circle" + d.id + ")")
-              .attr("xlink:href",  function(d) { return "/assets/images/phone-sml.jpg";})
+              .attr("xlink:href",  function(d) { return "/assets/images/projects/" + d.projectId + "/" + d.projectId + "-feature-sml.jpg";})
               .attr("x", function(d) { return -d.r;})
               .attr("y", function(d) { return -d.r;})
               .attr("id", d => "image-" + d.id + "-sml")
@@ -154,6 +153,7 @@ export class D3Service {
               .attr("cursor", "pointer")
               .attr("height", d => 2 * d.r)
               .attr("width", d => 2 * d.r)
+              .attr("preserveAspectRatio", "xMidYMid slice")
               .attr("filter", d => `url(#${this.dataService.colors[d.group].r}${this.dataService.colors[d.group].g}${this.dataService.colors[d.group].b})`)
             )
 

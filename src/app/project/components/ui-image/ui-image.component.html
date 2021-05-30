@@ -1,4 +1,4 @@
-<div #container class="image-container" [ngStyle]="{'background-color': color}" (click)="imageClick()">
+<div #container class="image-container" [ngClass]="{'hover-effect': hover}" (click)="imageClick()">
   <div [class]="'inner ' + directionClass + ' ' + parentClass" >
     <img #imageEl [src]="image.src" loading="lazy" [alt]="image.label" (load)="checkDimensions()">
   </div>

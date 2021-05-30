@@ -1,0 +1,76 @@
+@import '../../../../assets/styles/variables.scss';
+
+
+.project-info {
+  margin-left: 50px;
+  max-width: 260px;
+}
+
+.info-head {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: $font-sans;
+}
+
+.info-section {
+  color: #333;
+
+  h5 {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 20px 0;
+    font-family: $font-sans;
+
+  }
+  p {
+    margin: 20px 0;
+    font-family: $font-sans;
+
+  }
+
+}
+
+.website {
+  font-size: 16px;
+  width: 100%;
+
+  a {
+    display: block;
+    font-family: $font-sans;
+    margin: 20px 0;
+    color: #333;
+    text-decoration: none;
+    overflow-wrap: break-word;
+
+    // ellipse
+    // overflow: hidden;
+    // white-space: nowrap;
+    // text-overflow: ellipsis;
+  }
+}
+
+:host-context(.dark) {
+  .info-section {
+    h5 {
+      color: #999;
+
+    }
+    p {
+      color: #757575;
+    }
+  }
+  .website a {
+    color: #757575;
+  }
+
+}
+
+@media only screen and (max-width: 900px) {
+  .project-info {
+    margin-left: 0;
+    margin-top: 50px;
+    max-width: unset;
+    width: 100%;
+    padding-bottom: 50px;
+  }
+}
