@@ -36,6 +36,7 @@ import { ProjectInfoComponent } from './project/components/project-info/project-
 import { CtaComponent } from './project/components/cta/cta.component';
 import { SimpleButtonComponent } from './simple-button/simple-button.component';
 import { SuggestedContentComponent } from './project/components/suggested-content/suggested-content.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { SuggestedContentComponent } from './project/components/suggested-conten
     ProjectInfoComponent,
     CtaComponent,
     SimpleButtonComponent,
-    SuggestedContentComponent
+    SuggestedContentComponent,
+    FooterComponent
 
   ],
   imports: [

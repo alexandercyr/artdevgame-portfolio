@@ -63,6 +63,7 @@ export class SuggestedContentComponent implements OnInit {
   }
 
   handleTagClick(tag) {
+    console.log(tag);
     this.dataService.filterState[tag.value.key] = [tag.label];
     this.eventManager.updateFilter();
     this.returnToExplorer();

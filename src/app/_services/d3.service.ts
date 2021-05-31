@@ -226,7 +226,7 @@ export class D3Service {
 
   openProject(selected) {
 
-    this.router.navigate([data.projects[this.dataService.projectIds[selected]].id])
+    this.router.navigate([data.projects[Object.keys(data.projects)[selected]].id])
     this.svg
       .attr("height", 2 * window.innerHeight)
 
@@ -461,7 +461,7 @@ export class D3Service {
 
     } else {
       this.width = window.innerWidth;
-    this.height = window.innerHeight;
+      this.height = window.innerHeight;
       this.openProject(this.dataService.activeIndex);
       this.needsResetting = true;
     }
