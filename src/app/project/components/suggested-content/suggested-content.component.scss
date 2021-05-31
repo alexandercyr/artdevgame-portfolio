@@ -1,0 +1,61 @@
+@import '../../../../assets/styles/variables.scss';
+
+.suggested-content {
+  margin: 50px auto;
+
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h3 {
+    font-family: $font-sans;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .nav-buttons {
+    display: flex;
+    justify-content: flex-start;
+
+    .scroll {
+      margin-left: 35px;
+    }
+  }
+
+  .bubbles {
+    max-width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .bubble {
+      display: flex;
+      align-items: center;
+      border: none;
+      height: 40px;
+      border-radius: 20px;
+      padding: 0 30px;
+      cursor: pointer;
+      font-family: $font-sans;
+      font-size: 24px;
+      margin-right: 15px;
+      margin-top: 15px;
+      line-height: 45px;
+    }
+
+    .bubble:hover {
+      opacity: 0.9
+    }
+
+
+  }
+
+  .direction-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+}

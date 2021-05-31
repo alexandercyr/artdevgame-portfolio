@@ -35,6 +35,7 @@ import { VideoComponent } from './project/components/video/video.component';
 import { ProjectInfoComponent } from './project/components/project-info/project-info.component';
 import { CtaComponent } from './project/components/cta/cta.component';
 import { SimpleButtonComponent } from './simple-button/simple-button.component';
+import { SuggestedContentComponent } from './project/components/suggested-content/suggested-content.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { SimpleButtonComponent } from './simple-button/simple-button.component';
     VideoComponent,
     ProjectInfoComponent,
     CtaComponent,
-    SimpleButtonComponent
+    SimpleButtonComponent,
+    SuggestedContentComponent
 
   ],
   imports: [

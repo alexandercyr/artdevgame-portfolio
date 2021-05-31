@@ -1,0 +1,18 @@
+<div class="suggested-content">
+  <div class="header-row">
+    <h3>Keep Exploring</h3>
+    <div class="nav-buttons">
+      <app-simple-button (onButtonClick)="returnToExplorer()" label="return to explorer" iconName="pi-chevron-left" ></app-simple-button>
+      <app-simple-button class="scroll" (onButtonClick)="scrollToTop()" label="scroll to top" iconName="pi-chevron-up" direction="right" ></app-simple-button>
+
+    </div>
+  </div>
+  <div class="bubbles">
+      <button class="bubble" *ngFor="let item of filters" [ngStyle]="{'background-color': dataService.activeColor.getRGBString(), 'color': dataService.isDarkMode ? '#000' : '#fff'}" (click)="handleTagClick(item)">{{item.label}}</button>
+  </div>
+  <div class="direction-buttons" >
+    <app-arrow-button (onButtonClick)="navigateButtonClick(dataService.previousProject.id)" [label]="dataService.previousProject.title"></app-arrow-button>
+    <app-arrow-button (onButtonClick)="navigateButtonClick(dataService.nextProject.id)" [label]="dataService.nextProject.title" direction="right"></app-arrow-button>
+
+  </div>
+</div>
