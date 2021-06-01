@@ -12,6 +12,7 @@ export class SuggestedContentComponent implements OnInit {
 
   filters = [];
   projectIds = [];
+  viewingMore = false;
 
   constructor(private eventManager: EventManagerService, public dataService: DataService) { }
 
@@ -20,7 +21,6 @@ export class SuggestedContentComponent implements OnInit {
     this.projectIds = Object.keys(this.dataService.projects);
     this.filters.push(...this.findUniqueItems('type'));
     this.filters.push(...this.findUniqueItems('media'));
-    this.filters.push(...this.findUniqueItems('tech'));
 
   }
 
@@ -72,6 +72,17 @@ export class SuggestedContentComponent implements OnInit {
   navigateButtonClick(path: string) {
     window.scrollTo(0,0);
     this.eventManager.navigateToProject(path);
+  }
+
+  toggleViewMore() {
+    this.viewingMore = !this.viewingMore;
+
+    if (this.viewingMore) {
+      this.filters.push(...this.findUniqueItems('tech'));
+    } else {
+      this.filters = this.filters.filter(item => item.value.key !== 'tech');
+    }
+
   }
 
 }

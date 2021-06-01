@@ -1,3 +1,7 @@
-<button pButton [id]="direction + '-button'" type="button" [ngClass]="{'reverse': direction === 'right', 'hover-effect': hover}" [ngStyle]="{'color': textColor ? textColor : dataService.activeColor.getRGBString()}" pRipple [iconPos]="direction"  [label]="label" [icon]="'pi ' + iconName"  (focus)="handleOnFocus($event)" (click)="handleButtonClick($event)" (blur)="handleOnBlur($event)">
+<button *ngIf="iconName !== ''" pButton [id]="direction + '-button'" type="button" [ngClass]="{'reverse': direction === 'right', 'hover-effect': hover}" [ngStyle]="{'color': textColor ? textColor : dataService.activeColor.getRGBString()}" pRipple [iconPos]="direction"  [label]="label" [icon]="'pi ' + iconName"  (focus)="handleOnFocus($event)" (click)="handleButtonClick($event)" (blur)="handleOnBlur($event)">
+  <!-- <app-icon [ngStyle]="{'border-right': '1px solid ' + color }" height="20px" width="20px" class="icon" [color]="color" name="close"></app-icon> -->
+</button>
+
+<button *ngIf="iconName === ''" pButton type="button" [ngStyle]="{'color': textColor ? textColor : dataService.activeColor.getRGBString()}" pRipple [label]="label" (focus)="handleOnFocus($event)" (click)="handleButtonClick($event)" (blur)="handleOnBlur($event)">
   <!-- <app-icon [ngStyle]="{'border-right': '1px solid ' + color }" height="20px" width="20px" class="icon" [color]="color" name="close"></app-icon> -->
 </button>

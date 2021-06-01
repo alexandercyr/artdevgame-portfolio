@@ -9,7 +9,10 @@
   </div>
   <div class="bubbles">
       <button class="bubble" *ngFor="let item of filters" [ngStyle]="{'background-color': dataService.activeColor.getRGBString(), 'color': dataService.isDarkMode ? '#000' : '#fff'}" (click)="handleTagClick(item)">{{item.label}}</button>
+
   </div>
+  <app-simple-button class="show-more-button" (onButtonClick)="toggleViewMore()" [label]="viewingMore ? 'show less' : 'show more'" iconName="" direction="right" ></app-simple-button>
+
   <div class="direction-buttons" >
     <app-arrow-button (onButtonClick)="navigateButtonClick(dataService.previousProject.id)" [label]="dataService.previousProject.title"></app-arrow-button>
     <app-arrow-button (onButtonClick)="navigateButtonClick(dataService.nextProject.id)" [label]="dataService.nextProject.title" direction="right"></app-arrow-button>

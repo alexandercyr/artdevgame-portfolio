@@ -61,7 +61,10 @@ export class D3Service {
     return Array.from({length: this.dataService.projectIds.length}, (_, i) => {
 
       const radius = r();
-      return {id: i, r: radius, startingSize: radius, group: (i % (this.n)), projectId: this.dataService.projectIds[i], imgUrl: "/assets/images/projects/" + this.dataService.projectIds[i] + "/" + this.dataService.projectIds[i] + "-feature.jpg"}
+      if (!this.dataService.projects[this.dataService.projectIds[i]].color) {
+        this.dataService.projects[this.dataService.projectIds[i]].color = this.dataService.colors[(i % (this.n))]
+      }
+      return {id: i, r: radius, startingSize: radius, group: (i % (this.n)), projectId: this.dataService.projectIds[i], imgUrl: "/assets/images/projects/" + this.dataService.projectIds[i] + "/" + this.dataService.projectIds[i] + "-feature.jpg", color: this.dataService.projects[this.dataService.projectIds[i]].color}
     });
   }
 
@@ -138,7 +141,7 @@ export class D3Service {
                 .attr("height", d => 2 * d.r)
                 .attr("width", d => 2 * d.r)
                 .attr("preserveAspectRatio", "xMidYMid slice")
-                .attr("filter", d => `url(#${this.dataService.colors[d.group].r}${this.dataService.colors[d.group].g}${this.dataService.colors[d.group].b})`)
+                .attr("filter", d => `url(#${d.color.r}${d.color.g}${d.color.b})`)
               )
 
             const smolImages = this.svg.selectAll("g.node")
@@ -154,7 +157,7 @@ export class D3Service {
               .attr("height", d => 2 * d.r)
               .attr("width", d => 2 * d.r)
               .attr("preserveAspectRatio", "xMidYMid slice")
-              .attr("filter", d => `url(#${this.dataService.colors[d.group].r}${this.dataService.colors[d.group].g}${this.dataService.colors[d.group].b})`)
+              .attr("filter", d => `url(#${d.color.r}${d.color.g}${d.color.b})`)
             )
 
 
@@ -188,7 +191,7 @@ export class D3Service {
 
               self.dataService.setActiveItemIndex(i);
               self.eventManager.setActiveProject(self.dataService.projects[activeItemId]);
-              self.dataService.setActiveColor(self.dataService.colors[i % (self.n)]);
+              self.dataService.setActiveColor(self.dataService.projects[activeItemId].color);
               // self.eventManager.projectHoverEnter();
               self.eventManager.openProject();
               self.openProject(i);
@@ -443,7 +446,7 @@ export class D3Service {
         // const mixedColor = color.colorMixer([col2.r * 255, col2.g * 255, col2.b * 255], 0.7)
         // this.dataService.setActiveColor({r: mixedColor[0] / 255, g: mixedColor[1]/ 255, b: mixedColor[2] / 255});
 
-        this.dataService.setActiveColor(this.dataService.colors[index % (this.n)]);
+        this.dataService.setActiveColor(this.dataService.projects[activeItemId].color);
 
         this.eventManager.projectHoverEnter();
       }

@@ -16,7 +16,7 @@ export class SimpleButtonComponent implements OnInit {
 
   @Input() textColor;
   @Input() direction = "left";
-  @Input() iconName = "pi-arrow-left";
+  @Input() iconName = "";
   @Input() hover = false;
 
   @Output() onButtonClick: EventEmitter<any> = new EventEmitter<any>();
