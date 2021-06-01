@@ -343,7 +343,7 @@ export class D3Service {
   openProjectIfNotSet(projectId) {
     if (this.dataService.activeIndex === undefined) {
       const i = this.dataService.projectIds.indexOf(projectId);
-      this.dataService.setActiveColor(this.dataService.colors[i % (this.n)]);
+      this.dataService.setActiveColor(this.dataService.projects[projectId].color);
       this.loading = true;
 
       if (this.navigate.isFirstLoad()) {

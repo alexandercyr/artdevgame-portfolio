@@ -120,6 +120,7 @@ export class DataService {
       document.body.classList.remove("dark");
     }
     this.loadColors();
+    this.refreshProjectColors();
     this.eventManager.resetVisualization();
   }
 
@@ -157,16 +158,24 @@ export class DataService {
 
   updateColors() {
     this.userColors[this.isDarkMode ? 'dark' : 'light'] = [...this.colors];
+    this.refreshProjectColors();
     this.saveColors();
   }
 
   resetColors() {
     this.colors = [...this.defaultColors[this.isDarkMode ? 'dark' : 'light']];
     this.userColors[this.isDarkMode ? 'dark' : 'light'] = [...this.colors];
+    this.refreshProjectColors();
     this.saveColors();
   }
   saveColors() {
     localStorage.setItem('colors', JSON.stringify(this.userColors))
+  }
+
+  refreshProjectColors() {
+    this.projectIds.forEach((id, i) => {
+      this.projects[id].color = this.colors[(i % (this.colors.length))];
+    })
   }
 
 

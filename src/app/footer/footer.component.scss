@@ -58,3 +58,9 @@
   }
 
 }
+
+:host-context(.dark) {
+  .footer {
+    background-color: #0c0c0c;
+  }
+}

@@ -62,4 +62,26 @@
     margin-top: 30px;
   }
 
+
+  @media only screen and (max-width: 900px) {
+    .header-row{
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .nav-buttons {
+      margin-left: -15px;
+      margin-top: 5px;
+    }
+    .bubbles {
+      margin-top: 10px;
+    }
+  }
+
+}
+
+:host-context(.dark) {
+  h3 {
+    color: #999;
+  }
+
 }

@@ -115,3 +115,9 @@
   }
 
 }
+
+:host-context(.dark) {
+  .info-tag p {
+    color: black;
+  }
+}

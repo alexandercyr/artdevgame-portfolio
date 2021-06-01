@@ -3,6 +3,7 @@
   margin: 100px 0;
   padding: 50px;
   position: relative;
+  overflow: hidden;
 }
 
 h4 {
@@ -20,4 +21,11 @@ h4 {
   height: 85%;
   opacity: 0.25;
   pointer-events: none;
+}
+
+:host-context(.dark) {
+  h4 {
+    color: black;
+  }
+
 }
