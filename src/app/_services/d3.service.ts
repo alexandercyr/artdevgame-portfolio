@@ -30,7 +30,7 @@ export class D3Service {
 
   loading = false;
   focused = false;
-  transitionDuration = 1000;
+  transitionDuration = 750;
   needsResetting = false;
 
 

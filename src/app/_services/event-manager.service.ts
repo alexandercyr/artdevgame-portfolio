@@ -12,6 +12,8 @@ export class EventManagerService {
 
   d3Service: D3Service;
   dataService: DataService;
+  transitionDuration = 1000;
+  transitioning = false;
 
   constructor(private uiService: UiService, private navigate: NavigationService) { }
 
@@ -66,12 +68,19 @@ export class EventManagerService {
 
   public navigateToProject(projectId) {
 
-    this.d3Service.closeProjectIfOpen(true);
-    // this.closeProject();
-    this.uiService.isFocused = false;
-    this.dataService.setActiveItemIndex(undefined);
-    this.setActiveProject(this.dataService.projects[projectId]);
-    this.uiService.isFocused = true;
+    if (!this.transitioning) {
+      this.transitioning = true;
+      setTimeout(() => {this.transitioning = false}, this.transitionDuration);
+
+      this.d3Service.closeProjectIfOpen(true);
+      // this.closeProject();
+      this.uiService.isFocused = false;
+      this.dataService.setActiveItemIndex(undefined);
+      this.setActiveProject(this.dataService.projects[projectId]);
+      this.uiService.isFocused = true;
+
+    }
+
   }
 
   public updateFilter() {
