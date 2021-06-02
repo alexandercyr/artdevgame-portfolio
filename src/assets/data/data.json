@@ -31,21 +31,32 @@
           }
         },
         {
+          "type": "TEXT",
+          "content":{
+              "title" : "A journey into SEO and content driven marketing",
+              "subtitle": "THE PROJECT",
+              "text": [
+                "With the intention of creating an affiliate marketing site, a major concern for this project was proper search engine optimization. One thing that was done to mitigate the drawbacks of single-page-applications, what the use of a package called Scully which was used to compiled individual html pages for each and every route in the app (rooms, items, blog posts).",
+                "Another thing to note is the use of the same item titles and descriptions directly found from Wayfair, the site mainly used for affiliate links. It is unclear if replicating this content had a positive effect or not."
+              ]
+          }
+        },
+        {
           "type": "PHOTOGRID",
           "content": {
             "vertical": false,
             "images":[
               {
                 "label": "Dashboard",
-                "src": "/assets/images/projects/30-clean/30clean_dashboard2.jpg"
+                "src": "/assets/images/projects/interior-design/interior-design-1.jpg"
               },
               {
                 "label": "Group Feed",
-                "src": "/assets/images/projects/30-clean/30clean_feed.jpg"
+                "src": "/assets/images/projects/interior-design/interior-design-2.jpg"
               },
               {
                 "label": "Onboarding",
-                "src": "/assets/images/projects/30-clean/30clean_login.jpg"
+                "src": "/assets/images/projects/interior-design/interior-design-3.jpg"
               }
             ]
           }
@@ -53,12 +64,10 @@
         {
           "type": "TEXT",
           "content":{
-              "title" : "Supporting a Healthy Community",
-              "subtitle": "Objective",
               "text": [
-                "The group at 30 Clean was already busy running 30-day programs, utilizing Facebook for their community groups. Our team was brought in to supercharge their current process, introducing a marketing sales funnel and by developing a challenger-focused dashboard application, including everything relevant to a users clean eating challenge.",
-                "The design direction of the dashboard needed to reflect and support the goal of creating healthy habits. The main features of the dashboard are the daily diary and gratitude journal, a recipes page to find and share healthy meal ideas, and a resources tab to make it easy to find all necessary information relevant to their clean eating journey.",
-                "Working back and forth with the 30 Clean team, I worked on designs iteritively, collaborating with the 30 Clean at every step on prototypes with InvisionApp. Since their current users were already familiar with Facebook, creating a seamless onboarding experience with Facebook login integration was a must."
+                "I then created a blog to support the application in an attempt to draw more traffic with content filled with interior design information. The site posts are made of markdown files, largely inspired by the work of Chris Perko [https://github.com/BaronVonPerko/StaticAngularBlog]. If you somehow see this, thanks Chris! ",
+                "The last piece I set up was an instagram page filled with awesome images of rooms. I wasn't until I finished the app that I realized I would regularly needed to post to instagram and write blog posts to gain any noticeable traffic. That said, I don't know much of anything about interior design to create meaningful content that I soon lost interest in the project.",
+                "¯\\_(ツ)_/¯"
               ]
           }
         },
@@ -67,15 +76,47 @@
           "images":[
             {
               "label": "Dashboard",
-              "src": "/assets/images/projects/30-clean/30clean_dashboard2.jpg"
+              "src": "/assets/images/projects/interior-design/interior-design-4.jpg"
             },
             {
               "label": "Group Feed",
-              "src": "/assets/images/projects/30-clean/30clean_feed.jpg"
+              "src": "/assets/images/projects/interior-design/interior-design-5.jpg"
             },
             {
               "label": "Onboarding",
-              "src": "/assets/images/projects/30-clean/30clean_login.jpg"
+              "src": "/assets/images/projects/interior-design/interior-design-6.jpg"
+            }
+          ]
+        },
+        {
+          "type": "TEXT",
+          "content":{
+              "title" : "Building an efficient work pipeline",
+              "subtitle": "CUSTOM TOOLS",
+              "text": [
+                "Rooms are filled with countless items, and getting everything added was the biggest obstacle. Each item needs to have a set of attributes, with the most important being the live, hover area.",
+                "In editor mode, polygonal shapes can be drawn directly onto an image, defining the active area for an item. Once the remaining meta-data is filled out, an item can be pushed to a firebase data store for easy management during development. When deploying to production, the firebase data is written to a local json file for each room to reduce read counts."
+              ]
+          }
+        },
+        {
+          "type": "CAROUSEL",
+          "images":[
+            {
+              "label": "Dashboard",
+              "src": "/assets/images/projects/interior-design/interior-design-7.jpg"
+            },
+            {
+              "label": "Group Feed",
+              "src": "/assets/images/projects/interior-design/interior-design-8.jpg"
+            },
+            {
+              "label": "Onboarding",
+              "src": "/assets/images/projects/interior-design/interior-design-9.jpg"
+            },
+            {
+              "label": "Onboarding",
+              "src": "/assets/images/projects/interior-design/interior-design-10.jpg"
             }
           ]
         }
