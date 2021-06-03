@@ -1,3 +1,4 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../_services/data.service';
@@ -17,6 +18,15 @@ export class HeaderUiComponent implements OnInit {
     console.log('HEADER');
     console.log(this.dataService)
     console.log(this.dataService.nextProject);
+  }
+
+  arrayToCommaSeparatedString(array: string[]) {
+    let str = '';
+    array.forEach((item, i) => {
+      str += item;
+      str += i === array.length - 1 ? '' : array.length - i > 2 ? ', ' : ' & ';
+    })
+    return str;
   }
 
   getClassString() {

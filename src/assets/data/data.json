@@ -202,6 +202,50 @@
 
 
       ]
+    },
+    "scribble-stacks": {
+      "id": "scribble-stacks",
+      "type": ["design", "development"],
+      "media": ["mobile"],
+      "tech": ["swift", "illustrator", "firebase"],
+      "title": "Scribble Stacks",
+      "priority": 1,
+      "info" : {
+        "role": "Personal Project",
+        "date": "Oct 2016 - Feb 2018"
+      },
+      "pageContent": [
+        {
+          "type": "FEATURE",
+          "content":{
+              "title" : "An App Made to Draw People Together",
+              "subtitle": "Overview",
+              "text": [
+                "Pictionary meets the old schoolground game Telephone. A new form of multiplayer mobile game where users play together in groups of friends rather than 1-on-1. After completing a drawing or phrase, their turn is sent to the stack for any one of their friends to pick up and continue onward. Game ends when a full cycle of turns is completed. Pass-and-play mode available for offline play. Built for iOS with Swift and Firebase api."
+              ]
+          }
+        },
+        {
+          "type": "PHOTOGRID",
+          "content": {
+            "vertical": false,
+            "images":[
+              {
+                "label": "Scribble Featured",
+                "src": "/assets/images/projects/scribble-stacks/scribble-main.png"
+              },
+              {
+                "label": "Draw a word",
+                "src": "/assets/images/projects/scribble-stacks/scribble1.png"
+              },
+              {
+                "label": "Guess a drawing",
+                "src": "/assets/images/projects/scribble-stacks/scribble2.png"
+              }
+            ]
+          }
+        }
+      ]
     }
 
   }

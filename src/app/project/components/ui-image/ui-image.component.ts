@@ -38,7 +38,7 @@ export class UiImageComponent implements OnInit {
         this.parentClass = 'landscape'
 
       } else {
-        // this.parentClass = 'portrait'
+        this.parentClass = 'portrait'
       }
   }
 
