@@ -18,6 +18,7 @@ export class SimpleButtonComponent implements OnInit {
   @Input() direction = "left";
   @Input() iconName = "";
   @Input() hover = false;
+  @Input() large = false;
 
   @Output() onButtonClick: EventEmitter<any> = new EventEmitter<any>();
 

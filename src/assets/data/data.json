@@ -65,8 +65,8 @@
           "type": "TEXT",
           "content":{
               "text": [
-                "I then created a blog to support the application in an attempt to draw more traffic with content filled with interior design information. The site posts are made of markdown files, largely inspired by the work of Chris Perko [https://github.com/BaronVonPerko/StaticAngularBlog]. If you somehow see this, thanks Chris! ",
-                "The last piece I set up was an instagram page filled with awesome images of rooms. I wasn't until I finished the app that I realized I would regularly needed to post to instagram and write blog posts to gain any noticeable traffic. That said, I don't know much of anything about interior design to create meaningful content that I soon lost interest in the project.",
+                "I then created a blog to support the application in an attempt to draw more traffic with content filled with interior design information. The site posts are made of markdown files, largely inspired by the work of <a href='https://github.com/BaronVonPerko/StaticAngularBlog' target='_blank'>Chris Perko</a>. If you somehow happen to see this, thanks Chris!",
+                "The last piece I set up was an instagram page filled with images of awesome rooms. It wasn't until I finished the app that I realized I would regularly need to post to instagram and write blog posts to gain any noticeable traffic. That said, I know close to nothing about interior design and not nearly enough to create meaningful content so I soon lost interest in the project.",
                 "¯\\_(ツ)_/¯"
               ]
           }
